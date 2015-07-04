@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Article" syncable="YES">
+        <attribute name="ar_inf" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ar_inf_wo_vowels" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ar1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ar2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ar3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="form" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mn1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mn2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mn3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nr" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
+        <attribute name="opt" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="root" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="translation" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Article" positionX="-63" positionY="-18" width="128" height="240"/>
+    </elements>
 </model>
