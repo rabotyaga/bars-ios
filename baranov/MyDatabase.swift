@@ -92,25 +92,21 @@ class MyDatabase {
         switch(query) {
         case let .Like(query_string):
             if let match = query_string.rangeOfString("^\\p{Arabic}+$", options: .RegularExpressionSearch) {
-                println("arabic like")
-                f_articles = articles_table.filter(like("%\(query_string)%", ar_inf_wo_vowels)).order(nr)
-                queryRegex = makeRegexWithVowels(query_string)
+                f_articles = articles_table.filter(like("%\(query_string.stripForbiddenCharacters())%", ar_inf_wo_vowels)).order(nr)
+                queryRegex = makeRegexWithVowels(query_string.stripForbiddenCharacters())
             } else {
-                println("else like")
-                f_articles = articles_table.filter(like("%\(query_string)%", translation)).order(nr)
+                f_articles = articles_table.filter(like("%\(query_string.stripForbiddenCharacters())%", translation)).order(nr)
                 searchingInArabic = false
-                queryRegex = NSRegularExpression(pattern: query_string, options: nil, error: nil)!
+                queryRegex = NSRegularExpression(pattern: query_string.stripForbiddenCharacters(), options: nil, error: nil)!
             }
         case let .Exact(query_string):
             if let match = query_string.rangeOfString("^\\p{Arabic}+$", options: .RegularExpressionSearch) {
-                println("arabic exact")
-                f_articles = articles_table.filter(query_string == articles_table[ar_inf_wo_vowels]).order(nr)
-                queryRegex = makeRegexWithVowels(query_string)
+                f_articles = articles_table.filter(query_string.stripForbiddenCharacters() == articles_table[ar_inf_wo_vowels]).order(nr)
+                queryRegex = makeRegexWithVowels(query_string.stripForbiddenCharacters())
             } else {
-                println("else exact")
-                f_articles = articles_table.filter(like("% \(query_string) %", translation)).order(nr)
+                f_articles = articles_table.filter(like("% \(query_string.stripForbiddenCharacters()) %", translation)).order(nr)
                 searchingInArabic = false
-                queryRegex = NSRegularExpression(pattern: query_string, options: nil, error: nil)!
+                queryRegex = NSRegularExpression(pattern: query_string.stripForbiddenCharacters(), options: nil, error: nil)!
             }
         default:
             queryRegex = NSRegularExpression(pattern: "", options: nil, error: nil)!

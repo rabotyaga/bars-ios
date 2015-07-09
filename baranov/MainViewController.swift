@@ -142,13 +142,11 @@ class MainViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     // MARK: - UISearchBarDelegate
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
-        
-        if let match = searchBar.text.rangeOfString("^(\\p{Arabic}+)|(\\p{Cyrillic}+)$", options: .RegularExpressionSearch) {
-            println("ar-cyr match")
-        } else {
-            println("no ar-cyr")
+        searchBar.text = searchBar.text.stripForbiddenCharacters()
+        if (searchBar.text.length == 0) {
+            return
         }
+        searchBar.resignFirstResponder()
         
         if (count(searchBar.text) == 1 && segmentedControl.selectedSegmentIndex == 0) {
             let title = NSLocalizedString("youEnteredOnlyOneCharacter", comment: "")
