@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  baranov
+
+  Created by Ivan on 06/07/15.
+  Copyright (c) 2015 Rabotyaga. All rights reserved.
+*/
+
+"searchPlaceholder" = "Арабское или русское слово";
+"results" = "Результатов: %d";
+"searchLike" = "Любое вхождение";
+"searchExact" = "Точное совпадение";
+"youEnteredOnlyOneCharacter" = "Вы ввели всего 1 символ";
+"theSearchWillBeMadeInExactMode" = "Поиск будет произведен в режиме \"точное совпадение\"";
+
+
+
