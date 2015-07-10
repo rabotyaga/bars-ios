@@ -13,6 +13,10 @@
 "youEnteredOnlyOneCharacter" = "Вы ввели всего 1 символ";
 "theSearchWillBeMadeInExactMode" = "Поиск будет произведен в режиме \"точное совпадение\"";
 "root" = "Корень ";
+"nothingFound" = "Ничего не найдено";
+"youDidSearchUsingExactMode" = "Вы искали в режиме точного совпадения. Переключить в режим любого вхождения?";
+"OK" = "OK";
+"Cancel" = "Отмена";
 
 
 

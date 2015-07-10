@@ -199,6 +199,27 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         self.tableView.reloadData()
         self.updateResultsIndicator(self.articleDataSourceDelegate.articles_count)
         self.tableView.setContentOffset(CGPointZero, animated: true)
+        
+        if (queryResult.articles.count == 0) && (segmentedControl.selectedSegmentIndex == 1) {
+            let title = NSLocalizedString("nothingFound", comment: "")
+            let message = NSLocalizedString("youDidSearchUsingExactMode", comment: "")
+            let okButtonTitle = NSLocalizedString("OK", comment: "")
+            let cancelButtonTitle = NSLocalizedString("Cancel", comment: "")
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: okButtonTitle, style: .Cancel) { action in
+                // resubmit query in Like mode
+                self.segmentedControl.selectedSegmentIndex = 0
+                self.searchBarSearchButtonClicked(self.searchBar)
+            }
+            let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Default) { action in
+                // do nothing
+                self.searchBar.becomeFirstResponder()
+            }
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+
+            presentViewController(alertController, animated: true, completion: nil)
+        }
     }
     
     // MARK: - UI Show & Hide
