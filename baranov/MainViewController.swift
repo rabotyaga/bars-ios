@@ -136,8 +136,6 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
             if let cell = sender as? ArticleTableViewCell {
                 if let indexPath = self.tableView.indexPathForCell(cell) {
                     let article = self.articleDataSourceDelegate.articleForIndexPath(indexPath)
-                    
-                    println("setting dst article to load to # \(article.nr)")
                     detailsViewController.articleToLoad = article
                 }
             }

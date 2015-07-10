@@ -34,7 +34,6 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
         if let article = articleToLoad {
             articleLoader.loadArticlesByQuery(AQuery.Root(article.root))
             self.title = NSLocalizedString("root", comment: "") + article.root
-            println("# \(article.nr)")
         }
         
         self.navigationController?.delegate = self
@@ -82,8 +81,8 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
                 // there is a bug in iOS 7.x-8.4
                 // with scrolling tableView with autoLayout cell height
                 // as a dirty workaround sometimes helps calling scroll twice
-                self.tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .Top)
-                self.tableView.selectRowAtIndexPath(selectedIndexPath, animated: true, scrollPosition: .Top)
+                self.tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .Bottom)
+                self.tableView.selectRowAtIndexPath(selectedIndexPath, animated: true, scrollPosition: .Middle)
             }
         } else {
             self.tableView.setContentOffset(CGPointZero, animated: true)
