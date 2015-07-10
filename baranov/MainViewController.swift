@@ -193,6 +193,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, UITableViewDele
         self.articleDataSourceDelegate.sections = queryResult.sections
         self.tableView.reloadData()
         self.updateResultsIndicator(self.articleDataSourceDelegate.articles_count)
+        self.tableView.setContentOffset(CGPointZero, animated: true)
     }
     
     // MARK: - UI Show & Hide
