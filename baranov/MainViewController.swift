@@ -198,7 +198,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         self.updateResultsIndicator(self.articleDataSourceDelegate.articles_count)
         self.tableView.setContentOffset(CGPointZero, animated: true)
         
-        if (queryResult.articles.count == 0) && (segmentedControl.selectedSegmentIndex == 1) {
+        if (queryResult.articles.count == 0) && (segmentedControl.selectedSegmentIndex == 1) && (searchBar.text.length > 1) {
             let title = NSLocalizedString("nothingFound", comment: "")
             let message = NSLocalizedString("youDidSearchUsingExactMode", comment: "")
             let okButtonTitle = NSLocalizedString("OK", comment: "")
@@ -210,7 +210,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
                 self.searchBarSearchButtonClicked(self.searchBar)
             }
             let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Default) { action in
-                // do nothing
+                // make searchBar active
                 self.searchBar.becomeFirstResponder()
             }
             alertController.addAction(okAction)
