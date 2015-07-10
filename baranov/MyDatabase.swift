@@ -116,8 +116,10 @@ class MyDatabase {
         var i = 0
         var sa: Article
         var si = 0
-        var current_section = SectionInfo(name: "", rows: 0, articles: [])
+        var current_section = SectionInfo(name: "", rows: 0, articles: [], matchScore: 0)
         var opts: String = ""
+
+        var current_article_match_score = 0
         
         if let unwrapped_f_articles = f_articles {
             for a in unwrapped_f_articles {
@@ -126,7 +128,7 @@ class MyDatabase {
                     ar_inf: a[ar_inf],
                     ar_inf_wo_vowels: a[ar_inf_wo_vowels],
                     transcription: a[transcription],
-                    translation: a[translation].stringByReplacingOccurrencesOfString("\\n", withString: "\n"),
+                    translation: a[translation],
                     root: a[root],
                     form: a[form],
                     vocalization: a[vocalization],
@@ -143,10 +145,12 @@ class MyDatabase {
                 if (searchingInArabic) {
                     for match in queryRegex.matchesInString(sa.ar_inf.string, options: nil, range: NSMakeRange(0, sa.ar_inf.length)) as! [NSTextCheckingResult] {
                         sa.ar_inf.addAttributes(matchAttr, range: match.range)
+                        current_article_match_score = Int(Float(match.range.length) / Float(sa.ar_inf.string.length) * 100)
                     }
                 } else {
                     for match in queryRegex.matchesInString(sa.translation.string, options: nil, range: NSMakeRange(0, sa.translation.length)) as! [NSTextCheckingResult] {
                         sa.translation.addAttributes(matchAttr, range: match.range)
+                        current_article_match_score = Int(Float(match.range.length) / Float(sa.translation.string.length) * 100)
                     }
                 }
                 
@@ -160,16 +164,19 @@ class MyDatabase {
                 }
                 
                 if (i == 0) {
-                    current_section = SectionInfo(name: sa.root, rows: 0, articles: [sa])
+                    current_section = SectionInfo(name: sa.root, rows: 0, articles: [sa], matchScore: current_article_match_score)
                     si++
                 } else {
                     if (sa.root == current_section.name) {
                         current_section.articles.append(sa)
+                        if (current_section.matchScore < current_article_match_score) {
+                            current_section.matchScore = current_article_match_score
+                        }
                         si++
                     } else {
                         current_section.rows = si
                         sections.append(current_section)
-                        current_section = SectionInfo(name: sa.root, rows: 0, articles: [sa])
+                        current_section = SectionInfo(name: sa.root, rows: 0, articles: [sa], matchScore: current_article_match_score)
                         si = 1
                     }
                 }
@@ -181,6 +188,10 @@ class MyDatabase {
             current_section.rows = si
             sections.append(current_section)
         }
+        
+        sections.sort { $0.matchScore > $1.matchScore }
+        // articles still not sorted
+        // but only articles.count is used from articles
         
         stopTime = NSDate.timeIntervalSinceReferenceDate()
         var readTime: Double = stopTime - startTime

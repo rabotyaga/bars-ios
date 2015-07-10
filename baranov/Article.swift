@@ -9,9 +9,10 @@
 import UIKit
 
 struct SectionInfo {
-    var name : String
-    var rows : Int
+    var name: String
+    var rows: Int
     var articles: [Article]
+    var matchScore: Int
 }
 
 class Article {
@@ -40,7 +41,7 @@ class Article {
         self.ar_inf = NSMutableAttributedString(string: ar_inf)
         self.ar_inf_wo_vowels = ar_inf_wo_vowels
         self.transcription = transcription
-        self.translation = NSMutableAttributedString(string: translation)
+        self.translation = NSMutableAttributedString(string: translation.stringByReplacingOccurrencesOfString("\\n", withString: "\n"))
         self.root = root
         self.form = form
         
@@ -55,30 +56,12 @@ class Article {
         
         self.opts = NSMutableAttributedString()
         
-        var opts = bidiWrap(opt, ltr: true)
-        if (!opts.isEmpty) {
-            opts += " "
-        }
-        opts += bidiWrap(mn1, ltr: true)
-        if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
-            opts += " "
-        }
-        opts += bidiWrap(ar1, ltr: false)
-        if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
-            opts += " "
-        }
-        opts += bidiWrap(mn2, ltr: true)
-        if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
-            opts += " "
-        }
-        opts += bidiWrap(ar2, ltr: false)
-        if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
-            opts += " "
-        }
-        opts += bidiWrap(mn3, ltr: true)
-        if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
-            opts += " "
-        }
+        var opts = bidiWrapWithTrailingSpace(opt, ltr: true)
+        opts += bidiWrapWithTrailingSpace(mn1, ltr: true)
+        opts += bidiWrapWithTrailingSpace(ar1, ltr: false)
+        opts += bidiWrapWithTrailingSpace(mn2, ltr: true)
+        opts += bidiWrapWithTrailingSpace(ar2, ltr: false)
+        opts += bidiWrapWithTrailingSpace(mn3, ltr: true)
         opts += bidiWrap(ar3, ltr: false)
         opts = bidiWrap(opts, ltr: true)
         
@@ -95,6 +78,13 @@ class Article {
         */
     }
     
+    private func bidiWrapWithTrailingSpace(string: String, ltr: Bool) -> String {
+        var bidiWrapped = bidiWrap(string, ltr: ltr)
+        if (!bidiWrapped.isEmpty) {
+            bidiWrapped = bidiWrapped + " "
+        }
+        return bidiWrapped
+    }
     
     private func bidiWrap(string: String, ltr: Bool) -> String {
         var bidiWrapped = string
