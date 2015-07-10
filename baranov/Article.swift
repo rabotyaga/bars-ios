@@ -15,7 +15,7 @@ struct SectionInfo {
     var matchScore: Int
 }
 
-class Article {
+class Article: Equatable {
     var nr: Int64
     var ar_inf: NSMutableAttributedString
     var ar_inf_wo_vowels: String
@@ -97,4 +97,8 @@ class Article {
         }
         return bidiWrapped
     }
+}
+
+func ==(lhs: Article, rhs: Article) -> Bool {
+    return lhs.nr == rhs.nr
 }

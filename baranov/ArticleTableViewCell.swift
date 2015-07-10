@@ -35,6 +35,8 @@ class ArticleTableViewCell: UITableViewCell {
         bgSelectedView.backgroundColor = UIColor.selectedBg()
         self.selectedBackgroundView = bgSelectedView
         
+        accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

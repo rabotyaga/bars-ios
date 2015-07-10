@@ -12,6 +12,7 @@
 "searchExact" = "Точное совпадение";
 "youEnteredOnlyOneCharacter" = "Вы ввели всего 1 символ";
 "theSearchWillBeMadeInExactMode" = "Поиск будет произведен в режиме \"точное совпадение\"";
+"root" = "Корень ";
 
 
 

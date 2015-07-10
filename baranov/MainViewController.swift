@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UISearchBarDelegate, UITableViewDelegate, ArticleLoaderDelegate {
+class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDelegate {
 
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var tableView: UITableView!
@@ -23,7 +23,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     var segmentedControl: UISegmentedControl!
     var tableHeaderLabel: UILabel!
     
-    let articleDataSourceDelegate = ArticleDataSourceDelegate.sharedInstance
+    let articleDataSourceDelegate = ArticleDataSourceDelegate()
     var articleLoader : ArticleLoader!
     
     var query: AQuery {
@@ -48,7 +48,6 @@ class MainViewController: UIViewController, UISearchBarDelegate, UITableViewDele
         searchBar.placeholder = NSLocalizedString("searchPlaceholder", comment: "")
         searchBar.delegate = self
         navigationItem.titleView = searchBar
-        
         
         // toolbar setup
         segmentedControl = UISegmentedControl(items: [NSLocalizedString("searchLike", comment: ""), NSLocalizedString("searchExact", comment: "")])
@@ -75,8 +74,6 @@ class MainViewController: UIViewController, UISearchBarDelegate, UITableViewDele
         // results count indicator
         // as a main table header
         self.makeTableHeaderView()
-        
-        
         
         //??
         //definesPresentationContext = true
@@ -111,16 +108,6 @@ class MainViewController: UIViewController, UISearchBarDelegate, UITableViewDele
         }
         return nil
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
     func makeTableHeaderView() {
         let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 22))
@@ -137,6 +124,21 @@ class MainViewController: UIViewController, UISearchBarDelegate, UITableViewDele
     
     func updateResultsIndicator(count : Int) {
         self.tableHeaderLabel.text = String(format: NSLocalizedString("results", comment: ""), arguments: [count])
+    }
+    
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let detailsViewController = segue.destinationViewController as? DetailsViewController {
+            if let cell = sender as? ArticleTableViewCell {
+                if let indexPath = self.tableView.indexPathForCell(cell) {
+                    let article = self.articleDataSourceDelegate.articleForIndexPath(indexPath)
+                    
+                    println("setting dst article to load to # \(article.nr)")
+                    detailsViewController.articleToLoad = article
+                }
+            }
+        }
     }
     
     // MARK: - UISearchBarDelegate

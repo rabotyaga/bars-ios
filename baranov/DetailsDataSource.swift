@@ -1,34 +1,34 @@
 //
-//  ArticleDataSource.swift
+//  DetailsDataSource.swift
 //  baranov
 //
-//  Created by Ivan on 07/07/15.
+//  Created by Ivan on 10/07/15.
 //  Copyright (c) 2015 Rabotyaga. All rights reserved.
 //
 
 import UIKit
 
-class ArticleDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDelegate {
+class DetailsDataSource: NSObject, UITableViewDataSource {
     
-    var articles_count: Int = 0
-    var sections: [SectionInfo] = []
-    //var selectedArticle: Article?
+    var articles: [Article] = []
     
     override init() {
         super.init()
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return self.sections.count
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.sections[section].rows
+        return self.articles.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ArticleTableViewCell
-        let article = articleForIndexPath(indexPath)
+        let article = articles[indexPath.row]
+        
+        cell.accessoryType = UITableViewCellAccessoryType.None
         
         cell.arInfLabel.attributedText = article.ar_inf
         cell.translationTextView.attributedText = article.translation
@@ -71,27 +71,4 @@ class ArticleDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDel
         return cell
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 22))
-        view.autoresizingMask = UIViewAutoresizing.FlexibleWidth
-        let label = UILabel(frame: CGRectMake(0, 0, tableView.frame.size.width, 22))
-        label.autoresizingMask = UIViewAutoresizing.FlexibleWidth
-        label.text = self.sections[section].name
-        view.addSubview(label)
-        view.backgroundColor = UIColor.headerBg()
-        label.textAlignment = .Center
-        return view
-    }
-    
-    func articleForIndexPath(indexPath: NSIndexPath) -> Article {
-        let article = self.sections[indexPath.section].articles[indexPath.row]
-        return article
-    }
-    
-    /*func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let article = articleForIndexPath(indexPath)
-        selectedArticle = article
-        println("selected article \(selectedArticle?.nr)")
-    }*/
-
 }

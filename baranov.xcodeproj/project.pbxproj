@@ -13,6 +13,8 @@
 		2C15D80D1B47E8BD00935E9F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C15D80B1B47E8BD00935E9F /* LaunchScreen.xib */; };
 		2C15D8191B47E8BD00935E9F /* baranovTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15D8181B47E8BD00935E9F /* baranovTests.swift */; };
 		2C15D8231B47EE8800935E9F /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15D8221B47EE8800935E9F /* Article.swift */; };
+		2C16AD251B4FFC2600E72F9A /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16AD241B4FFC2600E72F9A /* DetailsViewController.swift */; };
+		2C16AD271B501A9B00E72F9A /* DetailsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16AD261B501A9B00E72F9A /* DetailsDataSource.swift */; };
 		2C24CA2B1B4C104E0045FF5F /* MyDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C24CA2A1B4C104E0045FF5F /* MyDatabase.swift */; };
 		2C24CA2D1B4C190C0045FF5F /* ArticleDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C24CA2C1B4C190C0045FF5F /* ArticleDataSourceDelegate.swift */; };
 		2C3D64F81B4962C400CEDCDB /* articles.db in Resources */ = {isa = PBXBuildFile; fileRef = 2C3D64F71B4962C400CEDCDB /* articles.db */; };
@@ -49,6 +51,8 @@
 		2C15D8171B47E8BD00935E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C15D8181B47E8BD00935E9F /* baranovTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = baranovTests.swift; sourceTree = "<group>"; };
 		2C15D8221B47EE8800935E9F /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		2C16AD241B4FFC2600E72F9A /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		2C16AD261B501A9B00E72F9A /* DetailsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsDataSource.swift; sourceTree = "<group>"; };
 		2C24CA2A1B4C104E0045FF5F /* MyDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDatabase.swift; sourceTree = "<group>"; };
 		2C24CA2C1B4C190C0045FF5F /* ArticleDataSourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleDataSourceDelegate.swift; sourceTree = "<group>"; };
 		2C3D64F71B4962C400CEDCDB /* articles.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = articles.db; sourceTree = "<group>"; };
@@ -119,8 +123,10 @@
 				2C3D64F71B4962C400CEDCDB /* articles.db */,
 				2C15D7FF1B47E8BD00935E9F /* AppDelegate.swift */,
 				2C67EF721B4AEADF00F19B2F /* MainViewController.swift */,
+				2C16AD241B4FFC2600E72F9A /* DetailsViewController.swift */,
 				2C77B5451B4C40E3005E3ECF /* ArticleLoader.swift */,
 				2C24CA2C1B4C190C0045FF5F /* ArticleDataSourceDelegate.swift */,
+				2C16AD261B501A9B00E72F9A /* DetailsDataSource.swift */,
 				2C67EF701B4ACD1600F19B2F /* Localizable.strings */,
 				2C67EF6A1B4AAF3500F19B2F /* SearchAutocompleteTableView.swift */,
 				2C24CA2A1B4C104E0045FF5F /* MyDatabase.swift */,
@@ -328,6 +334,7 @@
 				2C67EF731B4AEADF00F19B2F /* MainViewController.swift in Sources */,
 				2C3D64FC1B4A848C00CEDCDB /* UIColor+AppColors.swift in Sources */,
 				2C24CA2D1B4C190C0045FF5F /* ArticleDataSourceDelegate.swift in Sources */,
+				2C16AD271B501A9B00E72F9A /* DetailsDataSource.swift in Sources */,
 				2C15D8231B47EE8800935E9F /* Article.swift in Sources */,
 				2CD77A871B4BFFA000F50859 /* SearchAutocompleteTableViewCell.swift in Sources */,
 				2C67EF6B1B4AAF3500F19B2F /* SearchAutocompleteTableView.swift in Sources */,
@@ -336,6 +343,7 @@
 				2C24CA2B1B4C104E0045FF5F /* MyDatabase.swift in Sources */,
 				2C6D99691B483C0500DD5AAE /* ArticleTableViewCell.swift in Sources */,
 				2C77B5461B4C40E3005E3ECF /* ArticleLoader.swift in Sources */,
+				2C16AD251B4FFC2600E72F9A /* DetailsViewController.swift in Sources */,
 				2CD1D8731B4D370D00B4693E /* UIFont+AppSizes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

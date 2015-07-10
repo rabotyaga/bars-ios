@@ -82,7 +82,7 @@ class MyDatabase {
         
         var searchingInArabic: Bool = true
         
-        let queryRegex: NSRegularExpression
+        let queryRegex: NSRegularExpression?
         
         var articles: [Article] = []
         var sections: [SectionInfo] = []
@@ -97,7 +97,7 @@ class MyDatabase {
             } else {
                 f_articles = articles_table.filter(like("%\(query_string.stripForbiddenCharacters())%", translation)).order(nr)
                 searchingInArabic = false
-                queryRegex = NSRegularExpression(pattern: query_string.stripForbiddenCharacters(), options: nil, error: nil)!
+                queryRegex = NSRegularExpression(pattern: query_string.stripForbiddenCharacters(), options: nil, error: nil)
             }
         case let .Exact(query_string):
             if let match = query_string.rangeOfString("^\\p{Arabic}+$", options: .RegularExpressionSearch) {
@@ -106,10 +106,13 @@ class MyDatabase {
             } else {
                 f_articles = articles_table.filter(like("% \(query_string.stripForbiddenCharacters()) %", translation)).order(nr)
                 searchingInArabic = false
-                queryRegex = NSRegularExpression(pattern: query_string.stripForbiddenCharacters(), options: nil, error: nil)!
+                queryRegex = NSRegularExpression(pattern: query_string.stripForbiddenCharacters(), options: nil, error: nil)
             }
+        case let .Root(root_to_load):
+            f_articles = articles_table.filter(root_to_load == articles_table[root]).order(nr)
+            queryRegex = nil
         default:
-            queryRegex = NSRegularExpression(pattern: "", options: nil, error: nil)!
+            queryRegex = nil
             f_articles = nil
         }
         
@@ -142,15 +145,17 @@ class MyDatabase {
                     mn3: a[mn3]
                 )
                 
-                if (searchingInArabic) {
-                    for match in queryRegex.matchesInString(sa.ar_inf.string, options: nil, range: NSMakeRange(0, sa.ar_inf.length)) as! [NSTextCheckingResult] {
-                        sa.ar_inf.addAttributes(matchAttr, range: match.range)
-                        current_article_match_score = Int(Float(match.range.length) / Float(sa.ar_inf.string.length) * 100)
-                    }
-                } else {
-                    for match in queryRegex.matchesInString(sa.translation.string, options: nil, range: NSMakeRange(0, sa.translation.length)) as! [NSTextCheckingResult] {
-                        sa.translation.addAttributes(matchAttr, range: match.range)
-                        current_article_match_score = Int(Float(match.range.length) / Float(sa.translation.string.length) * 100)
+                if let qRegex = queryRegex {
+                    if (searchingInArabic) {
+                        for match in qRegex.matchesInString(sa.ar_inf.string, options: nil, range: NSMakeRange(0, sa.ar_inf.length)) as! [NSTextCheckingResult] {
+                            sa.ar_inf.addAttributes(matchAttr, range: match.range)
+                            current_article_match_score = Int(Float(match.range.length) / Float(sa.ar_inf.string.length) * 100)
+                        }
+                    } else {
+                        for match in qRegex.matchesInString(sa.translation.string, options: nil, range: NSMakeRange(0, sa.translation.length)) as! [NSTextCheckingResult] {
+                            sa.translation.addAttributes(matchAttr, range: match.range)
+                            current_article_match_score = Int(Float(match.range.length) / Float(sa.translation.string.length) * 100)
+                        }
                     }
                 }
                 
@@ -202,12 +207,12 @@ class MyDatabase {
     }
     
     
-    private func makeRegexWithVowels(query: String) -> NSRegularExpression {
+    private func makeRegexWithVowels(query: String) -> NSRegularExpression? {
         var pattern = ""
         for char in query {
             pattern = pattern + [char] + arabicVowelsPattern
         }
-        var queryRegex = NSRegularExpression(pattern: pattern, options: nil, error: nil)!
+        var queryRegex = NSRegularExpression(pattern: pattern, options: nil, error: nil)
         return queryRegex
     }
     
