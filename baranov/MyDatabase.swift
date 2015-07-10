@@ -45,6 +45,8 @@ class MyDatabase {
     static let arabicTextPattern = "[\\p{Arabic}]+((\\s*~)*(\\s*[\\p{Arabic}]+)+)*"
     let arabicTextRegex = NSRegularExpression(pattern: arabicTextPattern, options: nil, error: nil)!
     
+    let lastArticleNr: Int64?
+    
     private init() {
         let sourceFilename = NSBundle.mainBundle().resourcePath!.stringByAppendingPathComponent(dbFilename)
         let destinationPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true).first as! String
@@ -74,6 +76,7 @@ class MyDatabase {
         
         db = Database(destinationFilename)
         articles_table = db[articles_table_name]
+        lastArticleNr = articles_table.max(nr)
     }
     
     func fillInArticles(query: AQuery) -> QueryResult {
@@ -206,6 +209,19 @@ class MyDatabase {
         return QueryResult(query: query, articles: articles, sections: sections)
     }
     
+    func getNextRootByNr(nr: Int64, current_root: String) -> String {
+        if let root = articles_table.filter(articles_table[self.nr] > nr && articles_table[self.root] != current_root).order(self.nr).limit(1).first?.get(self.root) {
+            return root
+        }
+        return ""
+    }
+    
+    func getPreviousRootByNr(nr: Int64, current_root: String) -> String {
+        if let root = articles_table.filter(articles_table[self.nr] < nr && articles_table[self.root] != current_root).order(self.nr.desc).limit(1).first?.get(self.root) {
+            return root
+        }
+        return ""
+    }
     
     private func makeRegexWithVowels(query: String) -> NSRegularExpression? {
         var pattern = ""

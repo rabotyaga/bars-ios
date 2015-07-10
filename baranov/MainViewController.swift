@@ -59,6 +59,9 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         let flex = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         toolBar.items = [flex, barb, flex]
         
+        //hiding navigationController's builtin toolbar
+        //self.navigationController?.toolbarHidden = true
+        
         // special imageView with 0.5px height line at the bottom of navbar
         // find & store it for later hiding/showing
         // when showing/hiding toolbar

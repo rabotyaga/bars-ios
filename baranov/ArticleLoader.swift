@@ -75,7 +75,32 @@ class ArticleLoader {
                 }
             }
         }
-        
+    }
+    
+    func loadPreviousRoot() {
+        if let q = queryResult {
+            if let nr = q.articles.first?.nr, current_root = q.articles.first?.root {
+                if nr > 1 {
+                    let previousRoot = myDatabase.getPreviousRootByNr(nr, current_root: current_root)
+                    loadArticlesByQuery(AQuery.Root(previousRoot))
+                }
+            }
+        }
+    }
+    
+    func loadNextRoot() {
+        if let q = queryResult {
+            if let last_nr = q.articles.last?.nr, first_nr = q.articles.first?.nr, current_root = q.articles.first?.root {
+                if last_nr < lastArticleNr() {
+                    let nextRoot = myDatabase.getNextRootByNr(first_nr, current_root: current_root)
+                    loadArticlesByQuery(AQuery.Root(nextRoot))
+                }
+            }
+        }
+    }
+    
+    func lastArticleNr() -> Int64? {
+        return myDatabase.lastArticleNr
     }
     
     /*

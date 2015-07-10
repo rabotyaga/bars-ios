@@ -8,12 +8,14 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController, ArticleLoaderDelegate {
+class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigationControllerDelegate {
     
     var articleToLoad: Article?
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var backToolbarButton: UIBarButtonItem!
+    @IBOutlet weak var forwardToolbarButton: UIBarButtonItem!
     
     let detailsDataSource = DetailsDataSource()
     var articleLoader: ArticleLoader!
@@ -32,7 +34,11 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate {
         if let article = articleToLoad {
             articleLoader.loadArticlesByQuery(AQuery.Root(article.root))
             self.title = NSLocalizedString("root", comment: "") + article.root
+            println("# \(article.nr)")
         }
+        
+        self.navigationController?.delegate = self
+        self.navigationController?.toolbarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,16 +46,21 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
     /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+
+    }*/
+    
+    // MARK: - UINavigationControllerDelegate
+    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+        // hiding navigationController's builtin toolbar
+        // when going back to MainViewController
+        if let vc = viewController as? MainViewController {
+            self.navigationController?.setToolbarHidden(true, animated: true)
+        }
     }
-    */
     
     // MARK: - ArtcileLoaderDelegate
     
@@ -59,6 +70,9 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate {
     
     func loaderDidLoad(queryResult: QueryResult) {
         self.hideProgressIndicator()
+        if let root = queryResult.articles.first?.root {
+            self.title = NSLocalizedString("root", comment: "") + root
+        }
         self.detailsDataSource.articles = queryResult.articles
         self.tableView.reloadData()
         if let a = articleToLoad {
@@ -71,8 +85,36 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate {
                 self.tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .Top)
                 self.tableView.selectRowAtIndexPath(selectedIndexPath, animated: true, scrollPosition: .Top)
             }
+        } else {
+            self.tableView.setContentOffset(CGPointZero, animated: true)
+        }
+        if (queryResult.articles.first?.nr == 1) {
+            backToolbarButton.enabled = false
+        } else {
+            backToolbarButton.enabled = true
+            if (queryResult.articles.last?.nr == articleLoader.lastArticleNr()) {
+                forwardToolbarButton.enabled = false
+            } else {
+                forwardToolbarButton.enabled = true
+            }
         }
         self.tableView.allowsSelection = false
+    }
+    
+    // MARK: - Storyboard connected toolbar buttons actions
+    
+    @IBAction func loadPreviousRoot(sender: AnyObject) {
+        if let a = articleToLoad {
+            articleToLoad = nil
+        }
+        articleLoader.loadPreviousRoot();
+    }
+    
+    @IBAction func loadNextRoot(sender: AnyObject) {
+        if let a = articleToLoad {
+            articleToLoad = nil
+        }
+        articleLoader.loadNextRoot();
     }
     
     // MARK: - UI Show & Hide
