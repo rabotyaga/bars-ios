@@ -35,7 +35,7 @@ class Article {
     var mn3: String
     */
     
-    init(nr:Int64, ar_inf:String, ar_inf_wo_vowels:String, transcription:String, translation:String, root:String, form:String, vocalization: String?, homonym_nr:Int64?, opts:String/*, ar1:String, ar2:String, ar3:String, mn1:String, mn2:String, mn3:String*/) {
+    init(nr:Int64, ar_inf:String, ar_inf_wo_vowels:String, transcription:String, translation:String, root:String, form:String, vocalization: String?, homonym_nr:Int64?, opt:String, ar1:String, ar2:String, ar3:String, mn1:String, mn2:String, mn3:String) {
         self.nr = nr
         self.ar_inf = NSMutableAttributedString(string: ar_inf)
         self.ar_inf_wo_vowels = ar_inf_wo_vowels
@@ -53,7 +53,37 @@ class Article {
         
         self.homonym_nr = homonym_nr
         
+        self.opts = NSMutableAttributedString()
+        
+        var opts = bidiWrap(opt, ltr: true)
+        if (!opts.isEmpty) {
+            opts += " "
+        }
+        opts += bidiWrap(mn1, ltr: true)
+        if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
+            opts += " "
+        }
+        opts += bidiWrap(ar1, ltr: false)
+        if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
+            opts += " "
+        }
+        opts += bidiWrap(mn2, ltr: true)
+        if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
+            opts += " "
+        }
+        opts += bidiWrap(ar2, ltr: false)
+        if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
+            opts += " "
+        }
+        opts += bidiWrap(mn3, ltr: true)
+        if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
+            opts += " "
+        }
+        opts += bidiWrap(ar3, ltr: false)
+        opts = bidiWrap(opts, ltr: true)
+        
         self.opts = NSMutableAttributedString(string: opts)
+        
         /*
         self.opt = opt
         self.ar1 = ar1
@@ -63,5 +93,18 @@ class Article {
         self.mn2 = mn2
         self.mn3 = mn3
         */
+    }
+    
+    
+    private func bidiWrap(string: String, ltr: Bool) -> String {
+        var bidiWrapped = string
+        if (!bidiWrapped.isEmpty) {
+            if (ltr) {
+                bidiWrapped = "\u{202A}" + string + "\u{202C}"
+            } else {
+                bidiWrapped = "\u{202B}" + string + "\u{202C}"
+            }
+        }
+        return bidiWrapped
     }
 }

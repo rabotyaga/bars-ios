@@ -121,33 +121,6 @@ class MyDatabase {
         
         if let unwrapped_f_articles = f_articles {
             for a in unwrapped_f_articles {
-                opts = bidiWrap(a[opt], ltr: true)
-                if (!opts.isEmpty) {
-                    opts += " "
-                }
-                opts += bidiWrap(a[mn1], ltr: true)
-                if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
-                    opts += " "
-                }
-                opts += bidiWrap(a[ar1], ltr: false)
-                if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
-                    opts += " "
-                }
-                opts += bidiWrap(a[mn2], ltr: true)
-                if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
-                    opts += " "
-                }
-                opts += bidiWrap(a[ar2], ltr: false)
-                if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
-                    opts += " "
-                }
-                opts += bidiWrap(a[mn3], ltr: true)
-                if (opts.length > 0 && opts[opts.endIndex.predecessor()] != " ") {
-                    opts += " "
-                }
-                opts += bidiWrap(a[ar3], ltr: false)
-                opts = bidiWrap(opts, ltr: true)
-                
                 sa = Article.init(
                     nr: a[nr],
                     ar_inf: a[ar_inf],
@@ -158,13 +131,13 @@ class MyDatabase {
                     form: a[form],
                     vocalization: a[vocalization],
                     homonym_nr: a[homonym_nr],
-                    opts: opts/*,
+                    opt: a[opt],
                     ar1: a[ar1],
                     ar2: a[ar2],
                     ar3: a[ar3],
                     mn1: a[mn1],
                     mn2: a[mn2],
-                    mn3: a[mn3]*/
+                    mn3: a[mn3]
                 )
                 
                 if (searchingInArabic) {
@@ -226,19 +199,6 @@ class MyDatabase {
         var queryRegex = NSRegularExpression(pattern: pattern, options: nil, error: nil)!
         return queryRegex
     }
-    
-    private func bidiWrap(string: String, ltr: Bool) -> String {
-        var bidiWrapped = string
-        if (!bidiWrapped.isEmpty) {
-            if (ltr) {
-                bidiWrapped = "\u{202A}" + string + "\u{202C}"
-            } else {
-                bidiWrapped = "\u{202B}" + string + "\u{202C}"
-            }
-        }
-        return bidiWrapped
-    }
-    
     
     
     /*
