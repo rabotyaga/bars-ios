@@ -148,20 +148,23 @@ class MyDatabase {
                     mn3: a[mn3]
                 )
                 
+                current_article_match_score = 0
                 if let qRegex = queryRegex {
                     if (searchingInArabic) {
                         for match in qRegex.matchesInString(sa.ar_inf.string, options: nil, range: NSMakeRange(0, sa.ar_inf.length)) as! [NSTextCheckingResult] {
                             sa.ar_inf.addAttributes(matchAttr, range: match.range)
-                            current_article_match_score = Int(Float(match.range.length) / Float(sa.ar_inf.string.length) * 100)
+                            current_article_match_score += Int(Float(match.range.length) / Float(sa.ar_inf.string.length) * 100)
                         }
                     } else {
                         for match in qRegex.matchesInString(sa.translation.string, options: nil, range: NSMakeRange(0, sa.translation.length)) as! [NSTextCheckingResult] {
                             sa.translation.addAttributes(matchAttr, range: match.range)
-                            current_article_match_score = Int(Float(match.range.length) / Float(sa.translation.string.length) * 100)
+                            current_article_match_score += Int(Float(match.range.length) / Float(sa.translation.string.length) * 100)
                         }
                     }
                 }
                 
+                //sa.translation = NSMutableAttributedString(string: "\(current_article_match_score) nr \(sa.nr)")
+
                 sa.translation.addAttributes(translationSizeAttr, range: NSMakeRange(0, sa.translation.length))
                 for match in arabicTextRegex.matchesInString(sa.translation.string, options: nil, range: NSMakeRange(0, sa.translation.length)) {
                     sa.translation.addAttributes(arabicAttr, range: match.range)
@@ -197,7 +200,12 @@ class MyDatabase {
             sections.append(current_section)
         }
         
-        sections.sort { $0.matchScore > $1.matchScore }
+        sections.sort { (lhs: SectionInfo, rhs: SectionInfo) -> Bool in
+            if (lhs.matchScore == rhs.matchScore) {
+                return lhs.articles.first?.nr < rhs.articles.first?.nr
+            }
+            return lhs.matchScore > rhs.matchScore
+        }
         // articles still not sorted
         // but only articles.count is used from articles
         
