@@ -23,6 +23,8 @@
 		2C67EF711B4ACD1600F19B2F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 2C67EF701B4ACD1600F19B2F /* Localizable.strings */; };
 		2C67EF731B4AEADF00F19B2F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C67EF721B4AEADF00F19B2F /* MainViewController.swift */; };
 		2C6D99691B483C0500DD5AAE /* ArticleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C6D99681B483C0500DD5AAE /* ArticleTableViewCell.swift */; };
+		2C7479101B52E57000D3DC1C /* AlphabetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C74790F1B52E57000D3DC1C /* AlphabetViewController.swift */; };
+		2C7479121B52E57E00D3DC1C /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7479111B52E57E00D3DC1C /* AboutViewController.swift */; };
 		2C77B5461B4C40E3005E3ECF /* ArticleLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C77B5451B4C40E3005E3ECF /* ArticleLoader.swift */; };
 		2CD1D8731B4D370D00B4693E /* UIFont+AppSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD1D8721B4D370D00B4693E /* UIFont+AppSizes.swift */; };
 		2CD1D8751B4D3C3C00B4693E /* String+length.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD1D8741B4D3C3C00B4693E /* String+length.swift */; };
@@ -61,6 +63,8 @@
 		2C67EF701B4ACD1600F19B2F /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		2C67EF721B4AEADF00F19B2F /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2C6D99681B483C0500DD5AAE /* ArticleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleTableViewCell.swift; sourceTree = "<group>"; };
+		2C74790F1B52E57000D3DC1C /* AlphabetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphabetViewController.swift; sourceTree = "<group>"; };
+		2C7479111B52E57E00D3DC1C /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		2C77B5451B4C40E3005E3ECF /* ArticleLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleLoader.swift; sourceTree = "<group>"; };
 		2CD1D8721B4D370D00B4693E /* UIFont+AppSizes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+AppSizes.swift"; sourceTree = "<group>"; };
 		2CD1D8741B4D3C3C00B4693E /* String+length.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+length.swift"; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 				2C77B5451B4C40E3005E3ECF /* ArticleLoader.swift */,
 				2C24CA2C1B4C190C0045FF5F /* ArticleDataSourceDelegate.swift */,
 				2C16AD261B501A9B00E72F9A /* DetailsDataSource.swift */,
+				2C74790F1B52E57000D3DC1C /* AlphabetViewController.swift */,
+				2C7479111B52E57E00D3DC1C /* AboutViewController.swift */,
 				2C67EF701B4ACD1600F19B2F /* Localizable.strings */,
 				2C67EF6A1B4AAF3500F19B2F /* SearchAutocompleteTableView.swift */,
 				2C24CA2A1B4C104E0045FF5F /* MyDatabase.swift */,
@@ -334,6 +340,7 @@
 				2C67EF731B4AEADF00F19B2F /* MainViewController.swift in Sources */,
 				2C3D64FC1B4A848C00CEDCDB /* UIColor+AppColors.swift in Sources */,
 				2C24CA2D1B4C190C0045FF5F /* ArticleDataSourceDelegate.swift in Sources */,
+				2C7479101B52E57000D3DC1C /* AlphabetViewController.swift in Sources */,
 				2C16AD271B501A9B00E72F9A /* DetailsDataSource.swift in Sources */,
 				2C15D8231B47EE8800935E9F /* Article.swift in Sources */,
 				2CD77A871B4BFFA000F50859 /* SearchAutocompleteTableViewCell.swift in Sources */,
@@ -344,6 +351,7 @@
 				2C6D99691B483C0500DD5AAE /* ArticleTableViewCell.swift in Sources */,
 				2C77B5461B4C40E3005E3ECF /* ArticleLoader.swift in Sources */,
 				2C16AD251B4FFC2600E72F9A /* DetailsViewController.swift in Sources */,
+				2C7479121B52E57E00D3DC1C /* AboutViewController.swift in Sources */,
 				2CD1D8731B4D370D00B4693E /* UIFont+AppSizes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

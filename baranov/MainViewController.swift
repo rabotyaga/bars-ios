@@ -58,9 +58,9 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         let barb = UIBarButtonItem(customView: segmentedControl)
         let flex = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         toolBar.items = [flex, barb, flex]
-        
-        //hiding navigationController's builtin toolbar
-        //self.navigationController?.toolbarHidden = true
+
+        // show navigationController's builtin toolbar at start
+        self.navigationController?.toolbarHidden = false
         
         // special imageView with 0.5px height line at the bottom of navbar
         // find & store it for later hiding/showing
@@ -166,7 +166,9 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
             presentViewController(alertController, animated: true, completion: nil)
         }
         
-        self.articleLoader.loadArticlesByQuery(self.query)
+        if (self.articleLoader.queryResult?.query != self.query) {
+            self.articleLoader.loadArticlesByQuery(self.query)
+        }
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
@@ -223,6 +225,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     // MARK: - UI Show & Hide
     
     func showToolBar() {
+        // show top tool that extends nav bar
         self.toolBar.hidden = false
         UIView.animateWithDuration(0.3, animations: {
             self.toolBar.alpha = 1.0
@@ -231,9 +234,12 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
                 (value: Bool) in
                 self.navHairline?.hidden = true
         })
+        // show bottom tool bar
+        self.navigationController?.setToolbarHidden(false, animated: true)
     }
     
     func hideToolBar() {
+        // hide top tool bar that extends nav bar
         self.navHairline?.hidden = false
         UIView.animateWithDuration(0.3, animations: {
             self.toolBar.alpha = 0.0
@@ -242,7 +248,8 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
                 (value: Bool) in
                 self.toolBar.hidden = true
         })
-        
+        // hide bottom tool bar
+        self.navigationController?.setToolbarHidden(true, animated: true)
     }
     
     func showProgressIndicator() {
