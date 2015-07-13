@@ -38,6 +38,18 @@ class MyNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate
         }
     }
     
+    func sideMenuWillClose() {
+        if let mainViewController = topViewController as? MainViewController {
+            mainViewController.selectMenuButton(false)
+        }
+    }
+    
+    func sideMenuWillOpen() {
+        if let mainViewController = topViewController as? MainViewController {
+            mainViewController.selectMenuButton(true)
+        }
+    }
+    
 
     /*
     // MARK: - Navigation

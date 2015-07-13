@@ -44,4 +44,8 @@ extension UIColor {
     class func bkg3() -> UIColor {
         return UIColor(red: 251/255.0, green: 233/255.0, blue: 231/255.0, alpha: 1.0)
     }
+    
+    class func tintSelected() -> UIColor {
+        return UIColor(red: 198/255.0, green: 222/255.0, blue: 249/255.0, alpha: 1.0)
+    }
 }

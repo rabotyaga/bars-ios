@@ -15,10 +15,6 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressActivityIndicator: UIActivityIndicatorView!
     
-    @IBAction func menuButtonClicked(sender: AnyObject) {
-
-        toggleSideMenuView()
-    }
     var searchBar: UISearchBar!
     var navHairline: UIImageView?
     var segmentedControl: UISegmentedControl!
@@ -59,7 +55,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         let barb = UIBarButtonItem(customView: segmentedControl)
         let flex = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         toolBar.items = [flex, barb, flex]
-
+        
         // hide navigationController's builtin toolbar at start
         self.navigationController?.toolbarHidden = true
         
@@ -124,6 +120,16 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     
     func updateResultsIndicator(count : Int) {
         self.tableHeaderLabel.text = String(format: NSLocalizedString("results", comment: ""), arguments: [count])
+    }
+    
+    // MARK: - Storyboard connected actions
+    
+    @IBAction func menuButtonClicked(sender: AnyObject) {
+        if (sideMenuController()?.sideMenu?.isMenuOpen == true) {
+            hideSideMenuView()
+        } else {
+            showSideMenuView()
+        }
     }
     
     // MARK: - Navigation
@@ -225,26 +231,20 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     // MARK: - UI Show & Hide
     
     func showToolBar() {
-        // show top tool bar that extends nav bar
-        self.toolBar.hidden = false
+        // slide down top tool bar that extends nav bar
+        let frame = CGRectMake(0, toolBar.frame.origin.y + toolBar.frame.height, toolBar.frame.width, toolBar.frame.height)
         UIView.animateWithDuration(0.3, animations: {
-            self.toolBar.alpha = 1.0
+            self.toolBar.frame = frame
             self.navHairline?.alpha = 0.0
-            }, completion: {
-                (value: Bool) in
-                self.navHairline?.hidden = true
         })
     }
     
     func hideToolBar() {
-        // hide top tool bar that extends nav bar
-        self.navHairline?.hidden = false
+        // slide up top tool bar that extends nav bar
+        let frame = CGRectMake(0, toolBar.frame.origin.y - toolBar.frame.height, toolBar.frame.width, toolBar.frame.height)
         UIView.animateWithDuration(0.3, animations: {
-            self.toolBar.alpha = 0.0
+            self.toolBar.frame = frame
             self.navHairline?.alpha = 1.0
-            }, completion: {
-                (value: Bool) in
-                self.toolBar.hidden = true
         })
     }
     
@@ -256,6 +256,14 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     func hideProgressIndicator() {
         self.progressActivityIndicator.stopAnimating()
         self.tableView.hidden = false
+    }
+    
+    func selectMenuButton(selected: Bool) {
+        if (selected) {
+            menuButton.tintColor = UIColor.tintSelected()
+        } else {
+            menuButton.tintColor = self.view.tintColor
+        }
     }
 
     /*
