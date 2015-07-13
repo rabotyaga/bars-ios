@@ -29,6 +29,8 @@
 		2CD1D8731B4D370D00B4693E /* UIFont+AppSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD1D8721B4D370D00B4693E /* UIFont+AppSizes.swift */; };
 		2CD1D8751B4D3C3C00B4693E /* String+length.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD1D8741B4D3C3C00B4693E /* String+length.swift */; };
 		2CD77A871B4BFFA000F50859 /* SearchAutocompleteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CD77A861B4BFFA000F50859 /* SearchAutocompleteTableViewCell.swift */; };
+		2CE189321B53B33900D019DA /* AlphabetTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE189311B53B33900D019DA /* AlphabetTableViewCell.swift */; };
+		2CE189341B53B4A100D019DA /* Alphabet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE189331B53B4A100D019DA /* Alphabet.swift */; };
 		7B504B71273A149A0FFC6681 /* Pods_baranov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E11146E4FDE6E4AD19A3877A /* Pods_baranov.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,8 @@
 		2CD1D8721B4D370D00B4693E /* UIFont+AppSizes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+AppSizes.swift"; sourceTree = "<group>"; };
 		2CD1D8741B4D3C3C00B4693E /* String+length.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+length.swift"; sourceTree = "<group>"; };
 		2CD77A861B4BFFA000F50859 /* SearchAutocompleteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAutocompleteTableViewCell.swift; sourceTree = "<group>"; };
+		2CE189311B53B33900D019DA /* AlphabetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphabetTableViewCell.swift; sourceTree = "<group>"; };
+		2CE189331B53B4A100D019DA /* Alphabet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alphabet.swift; sourceTree = "<group>"; };
 		A568682317F0F6BA0780AB63 /* Pods-baranov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-baranov.debug.xcconfig"; path = "Pods/Target Support Files/Pods-baranov/Pods-baranov.debug.xcconfig"; sourceTree = "<group>"; };
 		E11146E4FDE6E4AD19A3877A /* Pods_baranov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_baranov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5AEA7ACC49199865E0334BD /* Pods-baranov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-baranov.release.xcconfig"; path = "Pods/Target Support Files/Pods-baranov/Pods-baranov.release.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +136,7 @@
 				2C24CA2C1B4C190C0045FF5F /* ArticleDataSourceDelegate.swift */,
 				2C16AD261B501A9B00E72F9A /* DetailsDataSource.swift */,
 				2C74790F1B52E57000D3DC1C /* AlphabetViewController.swift */,
+				2CE189331B53B4A100D019DA /* Alphabet.swift */,
 				2C7479111B52E57E00D3DC1C /* AboutViewController.swift */,
 				2C67EF701B4ACD1600F19B2F /* Localizable.strings */,
 				2C67EF6A1B4AAF3500F19B2F /* SearchAutocompleteTableView.swift */,
@@ -139,6 +144,7 @@
 				2CD1D8741B4D3C3C00B4693E /* String+length.swift */,
 				2CD1D8721B4D370D00B4693E /* UIFont+AppSizes.swift */,
 				2C15D8061B47E8BD00935E9F /* Main.storyboard */,
+				2CE189311B53B33900D019DA /* AlphabetTableViewCell.swift */,
 				2C6D99681B483C0500DD5AAE /* ArticleTableViewCell.swift */,
 				2CD77A861B4BFFA000F50859 /* SearchAutocompleteTableViewCell.swift */,
 				2C3D64FB1B4A848C00CEDCDB /* UIColor+AppColors.swift */,
@@ -343,6 +349,7 @@
 				2C7479101B52E57000D3DC1C /* AlphabetViewController.swift in Sources */,
 				2C16AD271B501A9B00E72F9A /* DetailsDataSource.swift in Sources */,
 				2C15D8231B47EE8800935E9F /* Article.swift in Sources */,
+				2CE189341B53B4A100D019DA /* Alphabet.swift in Sources */,
 				2CD77A871B4BFFA000F50859 /* SearchAutocompleteTableViewCell.swift in Sources */,
 				2C67EF6B1B4AAF3500F19B2F /* SearchAutocompleteTableView.swift in Sources */,
 				2CD1D8751B4D3C3C00B4693E /* String+length.swift in Sources */,
@@ -351,6 +358,7 @@
 				2C6D99691B483C0500DD5AAE /* ArticleTableViewCell.swift in Sources */,
 				2C77B5461B4C40E3005E3ECF /* ArticleLoader.swift in Sources */,
 				2C16AD251B4FFC2600E72F9A /* DetailsViewController.swift in Sources */,
+				2CE189321B53B33900D019DA /* AlphabetTableViewCell.swift in Sources */,
 				2C7479121B52E57E00D3DC1C /* AboutViewController.swift in Sources */,
 				2CD1D8731B4D370D00B4693E /* UIFont+AppSizes.swift in Sources */,
 			);
