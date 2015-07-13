@@ -17,36 +17,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="DCV-uj-gLe" customClass="SearchAutocompleteTableView" customModule="baranov" customModuleProvider="target">
-                                <rect key="frame" x="360" y="108" width="240" height="492"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="P0q-e3-Y9q"/>
-                                </constraints>
-                                <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AutocompleteCell" textLabel="pLX-sI-4x8" detailTextLabel="JR7-Dh-b0z" style="IBUITableViewCellStyleSubtitle" id="m0w-eu-ceX">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m0w-eu-ceX" id="Eic-pT-rvk">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pLX-sI-4x8">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JR7-Dh-b0z">
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dzl-Lg-Aog">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <subviews>
@@ -63,7 +33,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="YKd-l0-Aeb">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="180" id="1on-3Y-TDn" customClass="ArticleTableViewCell" customModule="baranov" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
@@ -189,13 +159,10 @@
                             <constraint firstItem="2wH-an-t77" firstAttribute="leading" secondItem="1se-jg-25P" secondAttribute="leading" id="5Om-cT-qps"/>
                             <constraint firstItem="2KH-nS-yht" firstAttribute="top" secondItem="YKd-l0-Aeb" secondAttribute="bottom" id="BKz-iS-PKx"/>
                             <constraint firstItem="2KH-nS-yht" firstAttribute="top" secondItem="dzl-Lg-Aog" secondAttribute="bottom" id="JxB-UR-Zy9"/>
-                            <constraint firstAttribute="trailing" secondItem="DCV-uj-gLe" secondAttribute="trailing" id="O9C-fT-hhE"/>
                             <constraint firstItem="dzl-Lg-Aog" firstAttribute="leading" secondItem="1se-jg-25P" secondAttribute="leading" id="Ov1-WY-8Xw"/>
                             <constraint firstItem="YKd-l0-Aeb" firstAttribute="top" secondItem="g6H-bx-wPL" secondAttribute="bottom" id="RBy-mf-INu"/>
                             <constraint firstAttribute="trailing" secondItem="YKd-l0-Aeb" secondAttribute="trailing" id="ds8-HM-5gE"/>
-                            <constraint firstItem="DCV-uj-gLe" firstAttribute="top" secondItem="2wH-an-t77" secondAttribute="bottom" id="jEf-8R-Cmq"/>
                             <constraint firstItem="g6H-bx-wPL" firstAttribute="top" secondItem="dzl-Lg-Aog" secondAttribute="top" id="mMr-Ma-Xtj"/>
-                            <constraint firstItem="2KH-nS-yht" firstAttribute="top" secondItem="DCV-uj-gLe" secondAttribute="bottom" id="q3o-5t-hGy"/>
                             <constraint firstItem="YKd-l0-Aeb" firstAttribute="leading" secondItem="1se-jg-25P" secondAttribute="leading" id="qho-x5-Yzb"/>
                             <constraint firstItem="2wH-an-t77" firstAttribute="top" secondItem="g6H-bx-wPL" secondAttribute="bottom" id="vo3-HT-teo"/>
                             <constraint firstAttribute="trailing" secondItem="dzl-Lg-Aog" secondAttribute="trailing" id="wSR-hs-oGN"/>
@@ -205,20 +172,26 @@
                     <toolbarItems>
                         <barButtonItem title="Алфавит" id="W2d-Ik-oAf">
                             <connections>
-                                <segue destination="Njv-AE-Jxl" kind="show" id="7dN-zO-vta"/>
+                                <segue destination="Njv-AE-Jxl" kind="show" identifier="showAlphabet" id="7dN-zO-vta"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="VV6-fb-VCa"/>
                         <barButtonItem title="О программе" id="Nod-sZ-MnM">
                             <connections>
-                                <segue destination="Beo-Se-DP5" kind="show" id="0Ia-m4-MFO"/>
+                                <segue destination="Beo-Se-DP5" kind="show" identifier="showAbout" id="0Ia-m4-MFO"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
-                    <navigationItem key="navigationItem" id="2gk-xG-NBx"/>
+                    <navigationItem key="navigationItem" id="2gk-xG-NBx">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="4Qu-fi-vaV">
+                            <connections>
+                                <action selector="menuButtonClicked:" destination="HpM-9N-lpe" id="Erf-ST-jsT"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="menuButton" destination="4Qu-fi-vaV" id="Pfy-HB-juO"/>
                         <outlet property="progressActivityIndicator" destination="izA-mZ-tyd" id="Rqo-Ua-SLq"/>
-                        <outlet property="searchAutocompleteTableView" destination="DCV-uj-gLe" id="bFi-T7-TGj"/>
                         <outlet property="tableView" destination="YKd-l0-Aeb" id="ReX-LF-0gH"/>
                         <outlet property="toolBar" destination="2wH-an-t77" id="xDV-DL-nNz"/>
                     </connections>
@@ -230,7 +203,7 @@
         <!--Alphabet View Controller-->
         <scene sceneID="C4b-Nu-3J3">
             <objects>
-                <viewController id="Njv-AE-Jxl" customClass="AlphabetViewController" customModule="baranov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AlphabetViewController" id="Njv-AE-Jxl" customClass="AlphabetViewController" customModule="baranov" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WH2-TX-int"/>
                         <viewControllerLayoutGuide type="bottom" id="hBq-iJ-UeR"/>
@@ -317,14 +290,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="notes" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khs-kf-IOu">
-                                                    <rect key="frame" x="20" y="178" width="560" height="49"/>
+                                                    <rect key="frame" x="20" y="178" width="560" height="44.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="khs-kf-IOu" secondAttribute="bottom" id="393-x6-BGO"/>
+                                                <constraint firstAttribute="bottom" secondItem="khs-kf-IOu" secondAttribute="bottom" constant="5" id="393-x6-BGO"/>
                                                 <constraint firstItem="Le6-Fc-c3J" firstAttribute="top" secondItem="YRE-1I-bSD" secondAttribute="bottom" constant="5" id="7Uz-Rs-TGw"/>
                                                 <constraint firstAttribute="trailing" secondItem="Le6-Fc-c3J" secondAttribute="trailing" constant="20" id="8Er-gM-gKs"/>
                                                 <constraint firstItem="khs-kf-IOu" firstAttribute="top" secondItem="5Pf-xv-WG2" secondAttribute="bottom" constant="8" id="8Ig-lB-RZa"/>
@@ -563,7 +536,7 @@
         <!--About View Controller-->
         <scene sceneID="BJG-c3-pVw">
             <objects>
-                <viewController id="Beo-Se-DP5" customClass="AboutViewController" customModule="baranov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AboutViewController" id="Beo-Se-DP5" customClass="AboutViewController" customModule="baranov" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Neu-jg-kYh"/>
                         <viewControllerLayoutGuide type="bottom" id="O5l-mm-Erl"/>
@@ -666,12 +639,15 @@
                     </view>
                     <connections>
                         <outlet property="appNameLongLabel" destination="6iB-rc-EDB" id="Wvp-Ho-4oc"/>
+                        <outlet property="bottomSpace" destination="oup-ch-K1q" id="7hq-CN-5fB"/>
                         <outlet property="copyrightLabel" destination="ach-Nt-lcI" id="AJg-1i-DjK"/>
                         <outlet property="description2Label" destination="gz9-Hp-SmG" id="WHw-mG-31X"/>
                         <outlet property="descriptionLabel" destination="EQe-u9-Shv" id="JQd-jZ-az0"/>
                         <outlet property="goToSiteButton" destination="zGk-Qe-Gds" id="u1C-LJ-3fg"/>
                         <outlet property="logoImageView" destination="N6o-7t-PVM" id="xO6-fO-KAN"/>
+                        <outlet property="mainView" destination="VSo-XO-JS1" id="GhE-1h-isR"/>
                         <outlet property="makeReviewButton" destination="Q9T-JX-X9a" id="MYS-bv-0S9"/>
+                        <outlet property="topSpace" destination="Hei-G6-xC3" id="inA-l6-JJ5"/>
                         <outlet property="versionLabel" destination="jKx-1n-VPS" id="uPE-vv-rhf"/>
                     </connections>
                 </viewController>
@@ -679,10 +655,10 @@
             </objects>
             <point key="canvasLocation" x="1133" y="1237"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--My Navigation Controller-->
         <scene sceneID="v4t-xK-6WO">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uN2-my-juR" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uN2-my-juR" customClass="MyNavigationController" customModule="baranov" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ngF-a2-8Zc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -703,5 +679,6 @@
     </scenes>
     <resources>
         <image name="Logo" width="76" height="76"/>
+        <image name="menu" width="24" height="24"/>
     </resources>
 </document>

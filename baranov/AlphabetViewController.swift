@@ -17,6 +17,8 @@ class AlphabetViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = NSLocalizedString("alphabet", comment: "")
+        
         // alphabet fill in
         alphabet.append(Letter(nr: 1, nv: 1, letter: "ا", notes: "Алиф\nслужит знаком долготы для фатхи\nявляется носителем хамзы", has_all_writings: false))
         alphabet.append(Letter(nr: 0, nv: 0, letter: "ى", notes: "Алиф максура", has_all_writings: false, has_nr: false))

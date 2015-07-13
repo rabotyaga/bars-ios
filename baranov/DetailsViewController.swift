@@ -53,6 +53,7 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
     }*/
     
     // MARK: - UINavigationControllerDelegate
+
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         // hiding navigationController's builtin toolbar
         // when going back to MainViewController

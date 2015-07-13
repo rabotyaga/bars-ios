@@ -30,6 +30,8 @@ class AboutViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.title = NSLocalizedString("about", comment: "")
+        
         appNameLongLabel.text = NSLocalizedString("appNameLong", comment: "")
         if let appVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String {
             versionLabel.text = NSLocalizedString("version", comment: "") + appVersion

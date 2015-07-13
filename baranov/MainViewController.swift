@@ -10,14 +10,15 @@ import UIKit
 
 class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDelegate {
 
+    @IBOutlet weak var menuButton: UIBarButtonItem!
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var progressActivityIndicator: UIActivityIndicatorView!
     
-    // later
-    @IBOutlet weak var searchAutocompleteTableView: UITableView!
+    @IBAction func menuButtonClicked(sender: AnyObject) {
 
-    
+        toggleSideMenuView()
+    }
     var searchBar: UISearchBar!
     var navHairline: UIImageView?
     var segmentedControl: UISegmentedControl!
@@ -59,8 +60,8 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         let flex = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
         toolBar.items = [flex, barb, flex]
 
-        // show navigationController's builtin toolbar at start
-        self.navigationController?.toolbarHidden = false
+        // hide navigationController's builtin toolbar at start
+        self.navigationController?.toolbarHidden = true
         
         // special imageView with 0.5px height line at the bottom of navbar
         // find & store it for later hiding/showing
@@ -80,10 +81,6 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         
         //??
         //definesPresentationContext = true
-        
-        // autocomplete table setup
-        // just hide it - it doesn't work
-        searchAutocompleteTableView.hidden = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -132,6 +129,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     // MARK: - Navigation
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        hideSideMenuView()
         if let detailsViewController = segue.destinationViewController as? DetailsViewController {
             if let cell = sender as? ArticleTableViewCell {
                 if let indexPath = self.tableView.indexPathForCell(cell) {
@@ -145,6 +143,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     // MARK: - UISearchBarDelegate
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        hideSideMenuView()
         searchBar.text = searchBar.text.stripForbiddenCharacters()
         if (searchBar.text.length == 0) {
             return
@@ -172,6 +171,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        hideSideMenuView()
         self.showToolBar()
         //showAutocompleteTable()
     }
@@ -225,7 +225,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     // MARK: - UI Show & Hide
     
     func showToolBar() {
-        // show top tool that extends nav bar
+        // show top tool bar that extends nav bar
         self.toolBar.hidden = false
         UIView.animateWithDuration(0.3, animations: {
             self.toolBar.alpha = 1.0
@@ -234,8 +234,6 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
                 (value: Bool) in
                 self.navHairline?.hidden = true
         })
-        // show bottom tool bar
-        self.navigationController?.setToolbarHidden(false, animated: true)
     }
     
     func hideToolBar() {
@@ -248,8 +246,6 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
                 (value: Bool) in
                 self.toolBar.hidden = true
         })
-        // hide bottom tool bar
-        self.navigationController?.setToolbarHidden(true, animated: true)
     }
     
     func showProgressIndicator() {
@@ -269,10 +265,5 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     
     func hideAutocompleteTable() {
         self.searchAutocompleteTableView.hidden = true
-    }
-    
-    */
-    
-    
-
+    }*/
 }
