@@ -50,7 +50,7 @@ class AlphabetViewController: UIViewController, UITableViewDataSource, UITableVi
         alphabet.append(Letter(nr: 28, nv: 10, letter: "ي", notes: "Йа\nслужит знаком долготы для кясры\nявляется носителем хамзы"))
         
         // hide navigationController's builtin toolbar
-        self.navigationController?.setToolbarHidden(true, animated: true)
+        self.navigationController?.setToolbarHidden(true, animated: false)
         
         // main table view setup
         tableView.rowHeight = UITableViewAutomaticDimension
