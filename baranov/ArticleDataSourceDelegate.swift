@@ -88,10 +88,21 @@ class ArticleDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDel
         return article
     }
     
-    /*func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let article = articleForIndexPath(indexPath)
-        selectedArticle = article
-        println("selected article \(selectedArticle?.nr)")
-    }*/
-
+    func tableView(tableView: UITableView, shouldShowMenuForRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject) -> Bool {
+        println(NSStringFromSelector(action))
+        if (action == "copy:") {
+            return true
+        }
+        return false
+    }
+    
+    func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
+        if (action == "copy:") {
+            articleForIndexPath(indexPath).copyToClipboard()
+        }
+    }
 }

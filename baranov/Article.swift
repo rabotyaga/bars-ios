@@ -97,6 +97,33 @@ class Article: Equatable {
         }
         return bidiWrapped
     }
+    
+    func copyToClipboard() {
+        let pasteBoard = UIPasteboard.generalPasteboard()
+        pasteBoard.string = self.toString()
+    }
+    
+    func toString() -> String {
+        var string = ""
+        
+        if (form.length > 0) {
+            string += form + " "
+        }
+        string += bidiWrapWithTrailingSpace(ar_inf.string, ltr: false)
+        string += transcription + " "
+        if let h = homonym_nr {
+            string += h.description + " "
+        }
+        if let v = vocalization {
+            string += v + " "
+        }
+        if (opts.length > 0) {
+            string += opts.string + " "
+        }
+        string += translation.string
+        string = bidiWrap(string, ltr: true)
+        return string
+    }
 }
 
 func ==(lhs: Article, rhs: Article) -> Bool {

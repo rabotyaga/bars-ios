@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigationControllerDelegate {
+class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigationControllerDelegate, UITableViewDelegate {
     
     var articleToLoad: Article?
 
@@ -30,6 +30,7 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 130
         tableView.dataSource = self.detailsDataSource
+        tableView.delegate = self.detailsDataSource
         
         if let article = articleToLoad {
             articleLoader.loadArticlesByQuery(AQuery.Root(article.root))
@@ -128,5 +129,4 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
         self.progressActivityIndicator.stopAnimating()
         self.tableView.hidden = false
     }
-
 }

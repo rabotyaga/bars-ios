@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailsDataSource: NSObject, UITableViewDataSource {
+class DetailsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     
     var articles: [Article] = []
     
@@ -71,4 +71,22 @@ class DetailsDataSource: NSObject, UITableViewDataSource {
         return cell
     }
     
+    // MARK: - UITableViewDelegate
+    
+    func tableView(tableView: UITableView, shouldShowMenuForRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject) -> Bool {
+        if (action == "copy:") {
+            return true
+        }
+        return false
+    }
+    
+    func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject!) {
+        if (action == "copy:") {
+            articles[indexPath.row].copyToClipboard()
+        }
+    }
 }
