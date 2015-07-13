@@ -12,6 +12,7 @@ class AboutViewController: UIViewController {
     
     let siteUrl = "https://desolate-island-2917.herokuapp.com/about"
     let itunesUrl = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=APP_ID&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"
+    let appId = "123456789";
     
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var appNameLongLabel: UILabel!
@@ -22,6 +23,10 @@ class AboutViewController: UIViewController {
     @IBOutlet weak var description2Label: UILabel!
     @IBOutlet weak var goToSiteButton: UIButton!
 
+    @IBOutlet var mainView: UIView!
+    @IBOutlet weak var topSpace: NSLayoutConstraint!
+    @IBOutlet weak var bottomSpace: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,10 +45,22 @@ class AboutViewController: UIViewController {
         description2Label.sizeToFit()
         goToSiteButton.setTitle(NSLocalizedString("goToSite", comment: ""), forState: .Normal)
         
-
         // hide navigationController's builtin toolbar
-        self.navigationController?.setToolbarHidden(true, animated: true)
+        self.navigationController?.setToolbarHidden(true, animated: false)
         
+        // adjust top & bottom space constraints
+        var vertSpace: CGFloat
+        if (mainView.bounds.height <= 480) {
+            vertSpace = mainView.bounds.height / 20
+        } else {
+            if (mainView.bounds.height <= 568) {
+                vertSpace = mainView.bounds.height / 10
+            } else {
+                vertSpace = mainView.bounds.height / 5
+            }
+        }
+        topSpace.constant = vertSpace
+        bottomSpace.constant = vertSpace
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,7 +71,7 @@ class AboutViewController: UIViewController {
     // MARK: - Storyboard connected buttons actions
     
     @IBAction func makeReviewButtonClicked(sender: AnyObject) {
-        if let url = NSURL(string: itunesUrl) {
+        if let url = NSURL(string: itunesUrl.stringByReplacingOccurrencesOfString("APP_ID", withString: appId, options: .LiteralSearch, range: nil)) {
             UIApplication.sharedApplication().openURL(url)
         }
     }
