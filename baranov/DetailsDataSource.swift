@@ -25,7 +25,7 @@ class DetailsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ArticleTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("DetailsCell", forIndexPath: indexPath) as! ArticleTableViewCell
         let article = articles[indexPath.row]
         
         cell.accessoryType = UITableViewCellAccessoryType.None
@@ -65,8 +65,9 @@ class DetailsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
             cell.homonymNrLabel.text = ""
         }
         
-        // needed for the 1st run to place label & textView correctly
-        cell.layoutIfNeeded()
+        // seems here auto layout & cell height do their work right
+        // no need to do extra
+        //cell.layoutIfNeeded()
         
         return cell
     }

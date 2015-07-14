@@ -66,6 +66,9 @@ class ArticleDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDel
         }
         
         // needed for the 1st run to place label & textView correctly
+        //cell.layoutIfNeeded()
+        cell.bounds = CGRect(x: 0, y: 0, width: CGRectGetWidth(tableView.bounds), height: 99999)
+        cell.contentView.bounds = cell.bounds
         cell.layoutIfNeeded()
         
         return cell

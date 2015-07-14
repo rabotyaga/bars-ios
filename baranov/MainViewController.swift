@@ -67,7 +67,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         
         // main table view setup
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 130
+        tableView.estimatedRowHeight = 180
         tableView.delegate = self.articleDataSourceDelegate
         tableView.dataSource = self.articleDataSourceDelegate
         

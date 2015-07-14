@@ -35,7 +35,7 @@ class ArticleTableViewCell: UITableViewCell {
         bgSelectedView.backgroundColor = UIColor.selectedBg()
         self.selectedBackgroundView = bgSelectedView
         
-        accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        //accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
     }
 
