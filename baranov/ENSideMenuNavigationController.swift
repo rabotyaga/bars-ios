@@ -5,6 +5,8 @@
 //  Created by Evgeny Nazarov on 29.09.14.
 //  Copyright (c) 2014 Evgeny Nazarov. All rights reserved.
 //
+//  Little bit modified code from https://github.com/evnaz/ENSwiftSideMenu
+//
 
 import UIKit
 

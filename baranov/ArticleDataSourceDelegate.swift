@@ -96,7 +96,6 @@ class ArticleDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject) -> Bool {
-        println(NSStringFromSelector(action))
         if (action == "copy:") {
             return true
         }
