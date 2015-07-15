@@ -79,7 +79,7 @@ class Article: Equatable {
     }
     
     private func bidiWrapWithTrailingSpace(string: String, ltr: Bool) -> String {
-        var bidiWrapped = bidiWrap(string, ltr: ltr)
+        var bidiWrapped = string.bidiWrapped(ltr)
         if (!bidiWrapped.isEmpty) {
             bidiWrapped = bidiWrapped + " "
         }
