@@ -87,15 +87,7 @@ class Article: Equatable {
     }
     
     private func bidiWrap(string: String, ltr: Bool) -> String {
-        var bidiWrapped = string
-        if (!bidiWrapped.isEmpty) {
-            if (ltr) {
-                bidiWrapped = "\u{202A}" + string + "\u{202C}"
-            } else {
-                bidiWrapped = "\u{202B}" + string + "\u{202C}"
-            }
-        }
-        return bidiWrapped
+        return string.bidiWrapped(ltr)
     }
     
     func copyToClipboard() {
