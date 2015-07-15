@@ -41,7 +41,7 @@ class Article: Equatable {
         self.ar_inf = NSMutableAttributedString(string: ar_inf)
         self.ar_inf_wo_vowels = ar_inf_wo_vowels
         self.transcription = transcription
-        self.translation = NSMutableAttributedString(string: translation.stringByReplacingOccurrencesOfString("\\n", withString: "\n"))
+        self.translation = NSMutableAttributedString(string: translation.stringByReplacingOccurrencesOfString("\\n", withString: "\n").stringByReplacingOccurrencesOfString("\\r", withString: ""))
         self.root = root
         self.form = form
         
