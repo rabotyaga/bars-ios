@@ -116,7 +116,7 @@ class MenuTableViewController: UITableViewController {
         //last one - delete search history
         if indexPath.row == 3 {
             let message = NSLocalizedString("deleteSearchHistory", comment: "") + "?"
-            let okButtonTitle = NSLocalizedString("OK", comment: "")
+            let okButtonTitle = NSLocalizedString("delete", comment: "")
             let cancelButtonTitle = NSLocalizedString("Cancel", comment: "")
             let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
             let okAction = UIAlertAction(title: okButtonTitle, style: .Cancel) { action in
