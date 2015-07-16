@@ -17,10 +17,11 @@ class MenuTableViewController: UITableViewController {
     
     let menu = [
         MenuItem(name: NSLocalizedString("alphabet", comment: ""), controllerName: "AlphabetViewController"),
-        MenuItem(name: NSLocalizedString("about", comment: ""), controllerName: "AboutViewController")
+        MenuItem(name: NSLocalizedString("about", comment: ""), controllerName: "AboutViewController"),
+        MenuItem(name: "", controllerName: ""),
+        MenuItem(name: NSLocalizedString("deleteSearchHistory", comment: ""), controllerName: "")
     ]
 
-    var selectedMenuItem : Int = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -63,6 +64,13 @@ class MenuTableViewController: UITableViewController {
         
         cell!.textLabel?.text = menu[indexPath.row].name
         
+        if (indexPath.row == 3) {
+            cell!.textLabel?.font = UIFont.systemFontOfSize(14)
+            cell!.textLabel?.lineBreakMode = .ByWordWrapping
+            cell!.textLabel?.preferredMaxLayoutWidth = cell!.frame.size.width
+            cell!.textLabel?.numberOfLines = 0
+        }
+        
         return cell!
     }
     
@@ -71,23 +79,40 @@ class MenuTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+
+        if (indexPath.row == 2) {
+            // "separator"/empty menu line
+            return
+        }
+        
         toggleSideMenuView()
         
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
-        let destViewController = mainStoryboard.instantiateViewControllerWithIdentifier(menu[indexPath.row].controllerName) as! UIViewController
+        // first & 2nd menu lines have controllerName
+        if (!menu[indexPath.row].controllerName.isEmpty) {
+            let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
+            let destViewController = mainStoryboard.instantiateViewControllerWithIdentifier(menu[indexPath.row].controllerName) as! UIViewController
+            
+            sideMenuController()?.pushViewController(destViewController)
+        }
         
-        sideMenuController()?.pushViewController(destViewController)
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        //last one - delete search history
+        if indexPath.row == 3 {
+            let message = NSLocalizedString("deleteSearchHistory", comment: "") + "?"
+            let okButtonTitle = NSLocalizedString("OK", comment: "")
+            let cancelButtonTitle = NSLocalizedString("Cancel", comment: "")
+            let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+            let okAction = UIAlertAction(title: okButtonTitle, style: .Cancel) { action in
+                // delete
+                MyDatabase.sharedInstance.clearSearchHistory()
+            }
+            let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Default) { action in
+                // do nothing
+            }
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            
+            presentViewController(alertController, animated: true, completion: nil)
+        }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

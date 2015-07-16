@@ -20,6 +20,10 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     var segmentedControl: UISegmentedControl!
     var tableHeaderLabel: UILabel!
     
+    var toolBarShown: Bool = false
+    
+    var searchAutocomplete = SearchAutocompleteTableViewController()
+    
     let articleDataSourceDelegate = ArticleDataSourceDelegate()
     var articleLoader : ArticleLoader!
     
@@ -57,7 +61,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         toolBar.items = [flex, barb, flex]
         
         // hide navigationController's builtin toolbar at start
-        self.navigationController?.toolbarHidden = true
+        navigationController?.toolbarHidden = true
         
         // special imageView with 0.5px height line at the bottom of navbar
         // find & store it for later hiding/showing
@@ -77,6 +81,11 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         
         //??
         //definesPresentationContext = true
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "orientationChanged:", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        
+        searchAutocomplete.setup(view, searchBarDelegate: self, searchBar: searchBar)
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -113,9 +122,9 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         view.addSubview(label)
         label.textAlignment = .Center
         
-        self.tableHeaderLabel = label
+        tableHeaderLabel = label
         
-        self.tableView.tableHeaderView = view
+        tableView.tableHeaderView = view
     }
     
     func updateResultsIndicator(count : Int) {
@@ -166,45 +175,44 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
             }
             alertController.addAction(cancelAction)
             
-            self.segmentedControl.selectedSegmentIndex = 1
+            segmentedControl.selectedSegmentIndex = 1
             
             presentViewController(alertController, animated: true, completion: nil)
         }
         
-        if (self.articleLoader.queryResult?.query != self.query) {
-            self.articleLoader.loadArticlesByQuery(self.query)
+        if (articleLoader.queryResult?.query != query) {
+            articleLoader.loadArticlesByQuery(query)
         }
     }
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         hideSideMenuView()
-        self.showToolBar()
-        //showAutocompleteTable()
+        showToolBar()
+        searchAutocomplete.textDidChange(searchBar.text)
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
-        self.hideToolBar()
-        //hideAutocompleteTable()
+        hideToolBar()
+        searchAutocomplete.hideAutocompleteTable()
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        // for autocomplete
-        //println("s \(searchText)")
+        searchAutocomplete.textDidChange(searchText)
     }
     
     // MARK: - ArtcileLoaderDelegate
     
     func loaderWillLoad() {
-        self.showProgressIndicator()
+        showProgressIndicator()
     }
     
     func loaderDidLoad(queryResult: QueryResult) {
-        self.hideProgressIndicator()
-        self.articleDataSourceDelegate.articles_count = queryResult.articles.count
-        self.articleDataSourceDelegate.sections = queryResult.sections
-        self.tableView.reloadData()
-        self.updateResultsIndicator(self.articleDataSourceDelegate.articles_count)
-        self.tableView.setContentOffset(CGPointZero, animated: true)
+        hideProgressIndicator()
+        articleDataSourceDelegate.articles_count = queryResult.articles.count
+        articleDataSourceDelegate.sections = queryResult.sections
+        tableView.reloadData()
+        updateResultsIndicator(articleDataSourceDelegate.articles_count)
+        tableView.setContentOffset(CGPointZero, animated: true)
         
         if (queryResult.articles.count == 0) && (segmentedControl.selectedSegmentIndex == 1) && (searchBar.text.length > 1) {
             let title = NSLocalizedString("nothingFound", comment: "")
@@ -226,52 +234,79 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
 
             presentViewController(alertController, animated: true, completion: nil)
         }
+        
+        if let firstArticle = queryResult.sections.first?.articles.first {
+            // save search history
+            var detailsString = firstArticle.ar_inf.string.bidiWrapped() + ": "
+            if (firstArticle.translation.string.length > 30) {
+                let index: String.Index = advance(firstArticle.translation.string.startIndex, 30)
+                detailsString += "\(firstArticle.translation.string.substringToIndex(index))...".bidiWrapped(true)
+            } else {
+                detailsString += firstArticle.translation.string.bidiWrapped(true)
+            }
+            
+            let sh = SearchHistory(searchString: getStringFromQuery(queryResult.query), details: detailsString.bidiWrapped(true))
+
+            searchAutocomplete.saveSearchHistory(sh)
+        }
+    }
+    
+    // MARK: - UIDeviceOrientationDidChangeNotification
+    
+    func orientationChanged(notification: NSNotification) {
+        // orientation change while toolBar is shown
+        // should recalc its frame and redraw it
+        // toolBar.frame.origin.y should be 20 in portrait mode (64 - 44)
+        // and -12 in landscape mode (32 - 44)
+        if (toolBarShown && toolBar.frame.origin.y <= 20) {
+            toolBarShown = false
+            showToolBar()
+        }
     }
     
     // MARK: - UI Show & Hide
     
     func showToolBar() {
         // slide down top tool bar that extends nav bar
-        let frame = CGRectMake(0, toolBar.frame.origin.y + toolBar.frame.height, toolBar.frame.width, toolBar.frame.height)
-        UIView.animateWithDuration(0.3, animations: {
-            self.toolBar.frame = frame
-            self.navHairline?.alpha = 0.0
-        })
+        if (!toolBarShown) {
+            // slide down top tool bar that extends nav bar
+            let frame = CGRectMake(0, toolBar.frame.origin.y + toolBar.frame.height, toolBar.frame.width, toolBar.frame.height)
+            UIView.animateWithDuration(0.3, animations: {
+                self.toolBar.frame = frame
+                self.navHairline?.alpha = 0.0
+            })
+            toolBarShown = true
+        }
     }
     
     func hideToolBar() {
         // slide up top tool bar that extends nav bar
-        let frame = CGRectMake(0, toolBar.frame.origin.y - toolBar.frame.height, toolBar.frame.width, toolBar.frame.height)
-        UIView.animateWithDuration(0.3, animations: {
-            self.toolBar.frame = frame
-            self.navHairline?.alpha = 1.0
-        })
+        if (toolBarShown) {
+            let frame = CGRectMake(0, toolBar.frame.origin.y - toolBar.frame.height, toolBar.frame.width, toolBar.frame.height)
+            UIView.animateWithDuration(0.3, animations: {
+                self.toolBar.frame = frame
+                self.navHairline?.alpha = 1.0
+            })
+            toolBarShown = false
+        }
     }
     
     func showProgressIndicator() {
-        self.progressActivityIndicator.startAnimating()
-        self.tableView.hidden = true
+        progressActivityIndicator.startAnimating()
+        tableView.hidden = true
     }
     
     func hideProgressIndicator() {
-        self.progressActivityIndicator.stopAnimating()
-        self.tableView.hidden = false
+        progressActivityIndicator.stopAnimating()
+        tableView.hidden = false
     }
     
     func selectMenuButton(selected: Bool) {
         if (selected) {
+            searchBar.resignFirstResponder()
             menuButton.tintColor = UIColor.tintSelected()
         } else {
             menuButton.tintColor = self.view.tintColor
         }
     }
-
-    /*
-    func showAutocompleteTable() {
-        self.searchAutocompleteTableView.hidden = false
-    }
-    
-    func hideAutocompleteTable() {
-        self.searchAutocompleteTableView.hidden = true
-    }*/
 }

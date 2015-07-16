@@ -15,6 +15,8 @@
 		2C15D8231B47EE8800935E9F /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15D8221B47EE8800935E9F /* Article.swift */; };
 		2C16AD251B4FFC2600E72F9A /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16AD241B4FFC2600E72F9A /* DetailsViewController.swift */; };
 		2C16AD271B501A9B00E72F9A /* DetailsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C16AD261B501A9B00E72F9A /* DetailsDataSource.swift */; };
+		2C1EC3F71B55B368002A6595 /* SearchAutocompleteTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1EC3F61B55B368002A6595 /* SearchAutocompleteTableViewController.swift */; };
+		2C1EC3F91B57081F002A6595 /* NSDate+SQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C1EC3F81B57081F002A6595 /* NSDate+SQLite.swift */; };
 		2C24CA2B1B4C104E0045FF5F /* MyDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C24CA2A1B4C104E0045FF5F /* MyDatabase.swift */; };
 		2C24CA2D1B4C190C0045FF5F /* ArticleDataSourceDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C24CA2C1B4C190C0045FF5F /* ArticleDataSourceDelegate.swift */; };
 		2C3D64F81B4962C400CEDCDB /* articles.db in Resources */ = {isa = PBXBuildFile; fileRef = 2C3D64F71B4962C400CEDCDB /* articles.db */; };
@@ -59,6 +61,8 @@
 		2C15D8221B47EE8800935E9F /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		2C16AD241B4FFC2600E72F9A /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		2C16AD261B501A9B00E72F9A /* DetailsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsDataSource.swift; sourceTree = "<group>"; };
+		2C1EC3F61B55B368002A6595 /* SearchAutocompleteTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAutocompleteTableViewController.swift; sourceTree = "<group>"; };
+		2C1EC3F81B57081F002A6595 /* NSDate+SQLite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+SQLite.swift"; sourceTree = "<group>"; };
 		2C24CA2A1B4C104E0045FF5F /* MyDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDatabase.swift; sourceTree = "<group>"; };
 		2C24CA2C1B4C190C0045FF5F /* ArticleDataSourceDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleDataSourceDelegate.swift; sourceTree = "<group>"; };
 		2C3D64F71B4962C400CEDCDB /* articles.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = articles.db; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				2C7479111B52E57E00D3DC1C /* AboutViewController.swift */,
 				2C67EF701B4ACD1600F19B2F /* Localizable.strings */,
 				2C24CA2A1B4C104E0045FF5F /* MyDatabase.swift */,
+				2C1EC3F81B57081F002A6595 /* NSDate+SQLite.swift */,
 				2CD1D8741B4D3C3C00B4693E /* String+length.swift */,
 				2CD1D8721B4D370D00B4693E /* UIFont+AppSizes.swift */,
 				2C15D8061B47E8BD00935E9F /* Main.storyboard */,
@@ -157,6 +162,7 @@
 				2C15D8091B47E8BD00935E9F /* Images.xcassets */,
 				2C15D80B1B47E8BD00935E9F /* LaunchScreen.xib */,
 				2C15D8221B47EE8800935E9F /* Article.swift */,
+				2C1EC3F61B55B368002A6595 /* SearchAutocompleteTableViewController.swift */,
 				2C15D7FD1B47E8BD00935E9F /* Supporting Files */,
 			);
 			path = baranov;
@@ -349,6 +355,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C1EC3F91B57081F002A6595 /* NSDate+SQLite.swift in Sources */,
 				2C67EF731B4AEADF00F19B2F /* MainViewController.swift in Sources */,
 				2C3D64FC1B4A848C00CEDCDB /* UIColor+AppColors.swift in Sources */,
 				2C24CA2D1B4C190C0045FF5F /* ArticleDataSourceDelegate.swift in Sources */,
@@ -357,6 +364,7 @@
 				2C16AD271B501A9B00E72F9A /* DetailsDataSource.swift in Sources */,
 				2C15D8231B47EE8800935E9F /* Article.swift in Sources */,
 				2CE189381B541D9700D019DA /* ENSideMenuNavigationController.swift in Sources */,
+				2C1EC3F71B55B368002A6595 /* SearchAutocompleteTableViewController.swift in Sources */,
 				2CE189341B53B4A100D019DA /* Alphabet.swift in Sources */,
 				2CD1D8751B4D3C3C00B4693E /* String+length.swift in Sources */,
 				2C15D8001B47E8BD00935E9F /* AppDelegate.swift in Sources */,

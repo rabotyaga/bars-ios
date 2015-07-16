@@ -35,6 +35,19 @@ func ==(lhs: AQuery, rhs:AQuery) -> Bool {
     }
 }
 
+func getStringFromQuery(query: AQuery) -> String {
+    switch (query) {
+    case let .Like(string):
+        return string
+    case let .Exact(string):
+        return string
+    case let .Root(string):
+        return string
+    default:
+        return ""
+    }
+}
+
 struct QueryResult {
     let query: AQuery
     let articles: [Article]

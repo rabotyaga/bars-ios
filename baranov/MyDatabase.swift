@@ -17,8 +17,10 @@ class MyDatabase {
     
     let db: Database
     let articles_table: Query
+    var search_history_table: Query
     
     let articles_table_name = "articles"
+    let search_history_table_name = "search_history"
     
     let nr = Expression<Int64>("nr")
     let ar_inf = Expression<String>("ar_inf")
@@ -36,6 +38,10 @@ class MyDatabase {
     let mn1 = Expression<String>("mn1")
     let mn2 = Expression<String>("mn2")
     let mn3 = Expression<String>("mn3")
+    
+    let updated_at = Expression<NSDate>("updated_at")
+    let search_string = Expression<String>("search_string")
+    let details_string = Expression<String>("details_string")
     
     let matchAttr = [NSBackgroundColorAttributeName : UIColor.matchBg()]
     let translationSizeAttr = [NSFontAttributeName : UIFont.translationFont()]
@@ -77,6 +83,44 @@ class MyDatabase {
         db = Database(destinationFilename)
         articles_table = db[articles_table_name]
         lastArticleNr = articles_table.max(nr)
+        
+        search_history_table = db[search_history_table_name]
+        
+        db.create(table: search_history_table, ifNotExists: true) { t in
+            t.column(updated_at)
+            t.column(search_string)
+            t.column(details_string)
+        }
+    }
+    
+    func getSearchHistory(searchString: String) -> [SearchHistory] {
+        var searchHistory: [SearchHistory] = []
+        var q = search_history_table.filter(like("\(searchString)%", search_string)).order(updated_at.desc).limit(100)
+        for s in q {
+            searchHistory.append(SearchHistory(searchString: s[search_string], details: s[details_string]))
+        }
+        return searchHistory
+    }
+    
+    func saveSearchHistory(searchHistory: SearchHistory) {
+        let sh = search_history_table.filter(search_string == searchHistory.searchString)
+        let update = sh.update(details_string <- searchHistory.details, updated_at <- NSDate())
+        if let changes = update.changes where changes > 0 {
+            // updated, do nothing
+            //println("updated history for \(searchHistory.searchString)")
+        } else {
+            // insert
+            search_history_table.insert(search_string <- searchHistory.searchString, details_string <- searchHistory.details, updated_at <- NSDate())
+            //println("inserted history for \(searchHistory.searchString)")
+        }
+    }
+    
+    func deleteSearchHistory(searchHistory: SearchHistory) {
+        search_history_table.filter(search_string == searchHistory.searchString).delete()
+    }
+    
+    func clearSearchHistory() {
+        search_history_table.delete()
     }
     
     func fillInArticles(query: AQuery) -> QueryResult {
