@@ -47,9 +47,17 @@ class MyDatabase {
     let translationSizeAttr = [NSFontAttributeName : UIFont.translationFont()]
     let arabicAttr = [NSForegroundColorAttributeName : UIColor.arabicText()]
     
-    let arabicVowelsPattern = "[\\u064b\\u064c\\u064d\\u064e\\u064f\\u0650\\u0651\\u0652\\u0653\\u0670]*"
+    static let arabicVowels = "[\\u064b\\u064c\\u064d\\u064e\\u064f\\u0650\\u0651\\u0652\\u0653\\u0670]"
+    let arabicVowelsPattern = "\(arabicVowels)*"
     static let arabicTextPattern = "[\\p{Arabic}]+((\\s*~)*(\\s*[\\p{Arabic}]+)+)*"
     let arabicTextRegex = NSRegularExpression(pattern: arabicTextPattern, options: nil, error: nil)!
+    
+    static let anyAlifPattern = "[\\u0622\\u0623\\u0625\\u0627]" //alif-madda, alif-hamza, hamza-alif, alif
+    static let anyWawPattern = "[\\u0624\\u0648]" //waw-hamza, waw
+    static let anyYehPattern = "[\\u0626\\u0649]" //yeh-hamza, yeh
+    let anyAlifRegex = NSRegularExpression(pattern: anyAlifPattern, options: nil, error: nil)!
+    let anyWawRegex = NSRegularExpression(pattern: anyWawPattern, options: nil, error: nil)!
+    let anyYehRegex = NSRegularExpression(pattern: anyYehPattern, options: nil, error: nil)!
     
     let lastArticleNr: Int64?
     
@@ -281,9 +289,25 @@ class MyDatabase {
     
     private func makeRegexWithVowels(query: String) -> NSRegularExpression? {
         var pattern = ""
+
         for char in query {
-            pattern = pattern + [char] + arabicVowelsPattern
+            var char_str: String = "" + [char]
+            
+            if let match = anyAlifRegex.firstMatchInString(char_str, options: nil, range: NSMakeRange(0, char_str.length)) {
+                char_str = MyDatabase.anyAlifPattern
+            } else {
+                if let match = anyWawRegex.firstMatchInString(char_str, options: nil, range: NSMakeRange(0, char_str.length)) {
+                    char_str = MyDatabase.anyWawPattern
+                } else {
+                    if let match = anyYehRegex.firstMatchInString(char_str, options: nil, range: NSMakeRange(0, char_str.length)) {
+                        char_str = MyDatabase.anyYehPattern
+                    }
+                }
+            }
+
+            pattern = pattern + char_str + arabicVowelsPattern
         }
+
         var queryRegex = NSRegularExpression(pattern: pattern, options: nil, error: nil)
         return queryRegex
     }
