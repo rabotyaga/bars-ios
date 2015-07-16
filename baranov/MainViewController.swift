@@ -30,9 +30,9 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     var query: AQuery {
         get {
             if (segmentedControl.selectedSegmentIndex == 0) {
-                return AQuery.Like(searchBar.text.lowercaseString)
+                return AQuery.Like(searchBar.text.format_for_query())
             } else {
-                return AQuery.Exact(searchBar.text.lowercaseString)
+                return AQuery.Exact(searchBar.text.format_for_query())
             }
         }
     }
@@ -159,7 +159,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         hideSideMenuView()
-        searchBar.text = searchBar.text.stripForbiddenCharacters()
+        searchBar.text = searchBar.text.format_for_query()
         if (searchBar.text.length == 0) {
             return
         }
