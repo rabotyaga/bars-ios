@@ -22,6 +22,7 @@ import UIKit
     func setContentViewController(contentViewController: UIViewController)
     func performSegue(id: String)
     func pushViewController(viewController: UIViewController)
+    func presentViewController(controller: UIViewController, animated: Bool, completion: (() -> Void)?)
 }
 
 public enum ENSideMenuAnimation : Int {
@@ -130,7 +131,7 @@ public class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     /// The duration of the slide animation. Used only when `bouncingEnabled` is FALSE.
     public var animationDuration = 0.4
     private let sideMenuContainerView =  UIView()
-    private var menuViewController : UIViewController!
+    var menuViewController : UIViewController!
     private var animator : UIDynamicAnimator!
     private var sourceView : UIView!
     private var needUpdateApperance : Bool = false

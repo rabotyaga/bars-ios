@@ -123,6 +123,10 @@ class MyDatabase {
         search_history_table.delete()
     }
     
+    func searchHistoryCount() -> Int {
+        return search_history_table.count
+    }
+    
     func fillInArticles(query: AQuery) -> QueryResult {
         var startTime = NSDate.timeIntervalSinceReferenceDate()
         var stopTime: NSTimeInterval = 0

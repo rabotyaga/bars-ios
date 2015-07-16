@@ -15,6 +15,8 @@ struct MenuItem {
 
 class MenuTableViewController: UITableViewController {
     
+    let myDatabase = MyDatabase.sharedInstance
+    
     let menu = [
         MenuItem(name: NSLocalizedString("alphabet", comment: ""), controllerName: "AlphabetViewController"),
         MenuItem(name: NSLocalizedString("about", comment: ""), controllerName: "AboutViewController"),
@@ -49,6 +51,21 @@ class MenuTableViewController: UITableViewController {
         return menu.count
     }
     
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        if (indexPath.row == 2) {
+            // "separator"/empty menu line
+            return nil
+        }
+        
+        if (indexPath.row == 3) {
+            if (myDatabase.searchHistoryCount() == 0) {
+                return nil
+            }
+        }
+        
+        return indexPath
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("MenuCell") as? UITableViewCell
@@ -69,6 +86,11 @@ class MenuTableViewController: UITableViewController {
             cell!.textLabel?.lineBreakMode = .ByWordWrapping
             cell!.textLabel?.preferredMaxLayoutWidth = cell!.frame.size.width
             cell!.textLabel?.numberOfLines = 0
+            if (myDatabase.searchHistoryCount() == 0) {
+                cell!.textLabel?.textColor = UIColor.lightGrayColor()
+            } else {
+                cell!.textLabel?.textColor = UIColor.darkGrayColor()
+            }
         }
         
         return cell!
@@ -81,11 +103,6 @@ class MenuTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
 
-        if (indexPath.row == 2) {
-            // "separator"/empty menu line
-            return
-        }
-        
         toggleSideMenuView()
         
         // first & 2nd menu lines have controllerName
@@ -104,7 +121,7 @@ class MenuTableViewController: UITableViewController {
             let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
             let okAction = UIAlertAction(title: okButtonTitle, style: .Cancel) { action in
                 // delete
-                MyDatabase.sharedInstance.clearSearchHistory()
+                self.myDatabase.clearSearchHistory()
             }
             let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Default) { action in
                 // do nothing
@@ -112,7 +129,7 @@ class MenuTableViewController: UITableViewController {
             alertController.addAction(okAction)
             alertController.addAction(cancelAction)
             
-            presentViewController(alertController, animated: true, completion: nil)
+            sideMenuController()?.presentViewController(alertController, animated: true, completion: nil)
         }
     }
 }

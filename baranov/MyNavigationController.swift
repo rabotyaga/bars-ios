@@ -45,6 +45,11 @@ class MyNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate
     }
     
     func sideMenuWillOpen() {
+        if let menuTableViewController = sideMenu?.menuViewController as? UITableViewController {
+            // reload menu table to check search history emptyness
+            menuTableViewController.tableView.reloadData()
+        }
+
         if let mainViewController = topViewController as? MainViewController {
             mainViewController.selectMenuButton(true)
         }
