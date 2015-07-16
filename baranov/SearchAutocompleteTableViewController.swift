@@ -101,6 +101,9 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
             myDatabase.deleteSearchHistory(searchHistory[indexPath.row])
             searchHistory.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            if (searchHistory.count == 0) {
+                hideAutocompleteTable()
+            }
         }
     }
     
