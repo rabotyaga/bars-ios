@@ -208,6 +208,7 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
             }, completion: {
                 a in
                 self.showing = false
+                self.containerView.hidden = true
             }
         )
     }
@@ -226,7 +227,7 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
         containerView.backgroundColor = UIColor.clearColor()
         containerView.clipsToBounds = false
         containerView.layer.masksToBounds = false
-        containerView.layer.shadowOffset = CGSizeMake(1.0, 1.0)
+        containerView.layer.shadowOffset = CGSizeMake(-1.0, -1.0)
         containerView.layer.shadowRadius = 1.0
         containerView.layer.shadowOpacity = 0.125
         containerView.layer.shadowPath = UIBezierPath(rect: view.bounds).CGPath
@@ -238,7 +239,7 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
         containerView.addSubview(visualEffectView)
 
         view.frame = containerView.bounds
-        containerView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        view.autoresizingMask = .FlexibleHeight | .FlexibleWidth
         
         containerView.addSubview(view)
         parentView.addSubview(containerView)
