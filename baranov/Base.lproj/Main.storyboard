@@ -8,7 +8,7 @@
         <!--Main View Controller-->
         <scene sceneID="WGm-t2-1JY">
             <objects>
-                <viewController id="HpM-9N-lpe" customClass="MainViewController" customModule="baranov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="HpM-9N-lpe" customClass="MainViewController" customModule="Словарь_Баранова" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g6H-bx-wPL"/>
                         <viewControllerLayoutGuide type="bottom" id="2KH-nS-yht"/>
@@ -35,14 +35,14 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="180" id="1on-3Y-TDn" customClass="ArticleTableViewCell" customModule="baranov" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Cell" rowHeight="180" id="1on-3Y-TDn" customClass="ArticleTableViewCell" customModule="Словарь_Баранова" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1on-3Y-TDn" id="lMT-cZ-d8i">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="800" verticalCompressionResistancePriority="800" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="goQ-e0-eEN">
-                                                    <rect key="frame" x="15" y="137" width="537" height="42.5"/>
+                                                    <rect key="frame" x="15" y="137" width="552" height="42.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <attributedString key="attributedText">
                                                         <fragment content="translation">
@@ -127,7 +127,7 @@
                                                 <constraint firstItem="a38-MY-8OW" firstAttribute="top" secondItem="lMT-cZ-d8i" secondAttribute="top" constant="5" id="fWu-2h-WVw"/>
                                                 <constraint firstItem="iB5-F1-LLX" firstAttribute="leading" secondItem="lMT-cZ-d8i" secondAttribute="leading" constant="20" id="fjt-jI-8Jq"/>
                                                 <constraint firstItem="0jj-Vh-db5" firstAttribute="top" secondItem="lMT-cZ-d8i" secondAttribute="top" constant="5" id="gx7-t0-Dz1"/>
-                                                <constraint firstAttribute="trailing" secondItem="goQ-e0-eEN" secondAttribute="trailing" constant="15" id="lKi-fV-ro7"/>
+                                                <constraint firstAttribute="trailing" secondItem="goQ-e0-eEN" secondAttribute="trailing" id="lKi-fV-ro7"/>
                                                 <constraint firstItem="VKi-BR-8gX" firstAttribute="leading" secondItem="lMT-cZ-d8i" secondAttribute="leading" constant="20" id="m5M-yQ-MP7"/>
                                                 <constraint firstAttribute="trailing" secondItem="a38-MY-8OW" secondAttribute="trailing" constant="20" id="y9v-uW-1cb"/>
                                             </constraints>
@@ -191,7 +191,7 @@
         <!--Alphabet View Controller-->
         <scene sceneID="C4b-Nu-3J3">
             <objects>
-                <viewController storyboardIdentifier="AlphabetViewController" id="Njv-AE-Jxl" customClass="AlphabetViewController" customModule="baranov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AlphabetViewController" id="Njv-AE-Jxl" customClass="AlphabetViewController" customModule="Словарь_Баранова" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WH2-TX-int"/>
                         <viewControllerLayoutGuide type="bottom" id="hBq-iJ-UeR"/>
@@ -205,7 +205,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlphabetCell" rowHeight="228" id="niQ-fg-OcV" customClass="AlphabetTableViewCell" customModule="baranov" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="AlphabetCell" rowHeight="228" id="niQ-fg-OcV" customClass="AlphabetTableViewCell" customModule="Словарь_Баранова" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="niQ-fg-OcV" id="Ks3-gG-q1z">
@@ -342,7 +342,7 @@
         <!--Details View Controller-->
         <scene sceneID="xe3-XI-ocb">
             <objects>
-                <viewController id="hgq-ap-1w0" customClass="DetailsViewController" customModule="baranov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hgq-ap-1w0" customClass="DetailsViewController" customModule="Словарь_Баранова" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DKw-Tq-fEK"/>
                         <viewControllerLayoutGuide type="bottom" id="ID1-U0-xfv"/>
@@ -369,7 +369,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailsCell" rowHeight="180" id="das-Ed-dgy" customClass="ArticleTableViewCell" customModule="baranov" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailsCell" rowHeight="180" id="das-Ed-dgy" customClass="ArticleTableViewCell" customModule="Словарь_Баранова" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="das-Ed-dgy" id="N6s-hH-CGP">
@@ -524,7 +524,7 @@
         <!--About View Controller-->
         <scene sceneID="BJG-c3-pVw">
             <objects>
-                <viewController storyboardIdentifier="AboutViewController" id="Beo-Se-DP5" customClass="AboutViewController" customModule="baranov" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AboutViewController" id="Beo-Se-DP5" customClass="AboutViewController" customModule="Словарь_Баранова" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Neu-jg-kYh"/>
                         <viewControllerLayoutGuide type="bottom" id="O5l-mm-Erl"/>
@@ -646,7 +646,7 @@
         <!--My Navigation Controller-->
         <scene sceneID="v4t-xK-6WO">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uN2-my-juR" customClass="MyNavigationController" customModule="baranov" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="uN2-my-juR" customClass="MyNavigationController" customModule="Словарь_Баранова" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ngF-a2-8Zc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
