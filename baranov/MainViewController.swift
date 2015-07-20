@@ -239,8 +239,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
             // save search history
             var detailsString = firstArticle.ar_inf.string.bidiWrapped() + ": "
             if (firstArticle.translation.string.length > 30) {
-                let index: String.Index = advance(firstArticle.translation.string.startIndex, 30)
-                detailsString += "\(firstArticle.translation.string.substringToIndex(index))...".bidiWrapped(true)
+                detailsString += "\((firstArticle.translation.string as NSString).substringToIndex(30))...".bidiWrapped(true)
             } else {
                 detailsString += firstArticle.translation.string.bidiWrapped(true)
             }
