@@ -273,6 +273,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
             UIView.animateWithDuration(0.3, animations: {
                 self.toolBar.frame = frame
                 self.navHairline?.alpha = 0.0
+                self.toolBar.alpha = 1.0
             })
             toolBarShown = true
         }
@@ -285,6 +286,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
             UIView.animateWithDuration(0.3, animations: {
                 self.toolBar.frame = frame
                 self.navHairline?.alpha = 1.0
+                self.toolBar.alpha = 0.0
             })
             toolBarShown = false
         }
