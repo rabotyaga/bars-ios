@@ -49,7 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2C15D7FA1B47E8BD00935E9F /* baranov.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = baranov.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C15D7FA1B47E8BD00935E9F /* Словарь Баранова.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Словарь Баранова.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C15D7FE1B47E8BD00935E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C15D7FF1B47E8BD00935E9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2C15D8071B47E8BD00935E9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -127,7 +127,7 @@
 		2C15D7FB1B47E8BD00935E9F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2C15D7FA1B47E8BD00935E9F /* baranov.app */,
+				2C15D7FA1B47E8BD00935E9F /* Словарь Баранова.app */,
 				2C15D8121B47E8BD00935E9F /* baranovTests.xctest */,
 			);
 			name = Products;
@@ -222,7 +222,7 @@
 			);
 			name = "Словарь Баранова";
 			productName = baranov;
-			productReference = 2C15D7FA1B47E8BD00935E9F /* baranov.app */;
+			productReference = 2C15D7FA1B47E8BD00935E9F /* Словарь Баранова.app */;
 			productType = "com.apple.product-type.application";
 		};
 		2C15D8111B47E8BD00935E9F /* baranovTests */ = {
