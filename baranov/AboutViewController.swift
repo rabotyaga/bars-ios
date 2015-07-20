@@ -12,7 +12,7 @@ class AboutViewController: UIViewController {
     
     let siteUrl = "https://desolate-island-2917.herokuapp.com/about"
     let itunesUrl = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=APP_ID&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"
-    let appId = "123456789";
+    let appId = "1021251680";
     
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var appNameLongLabel: UILabel!
