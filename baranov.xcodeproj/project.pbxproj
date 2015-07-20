@@ -205,9 +205,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2C15D7F91B47E8BD00935E9F /* baranov */ = {
+		2C15D7F91B47E8BD00935E9F /* Словарь Баранова */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C15D81C1B47E8BD00935E9F /* Build configuration list for PBXNativeTarget "baranov" */;
+			buildConfigurationList = 2C15D81C1B47E8BD00935E9F /* Build configuration list for PBXNativeTarget "Словарь Баранова" */;
 			buildPhases = (
 				32B92FF8A7A1F06E900A41F7 /* Check Pods Manifest.lock */,
 				2C15D7F61B47E8BD00935E9F /* Sources */,
@@ -220,7 +220,7 @@
 			);
 			dependencies = (
 			);
-			name = baranov;
+			name = "Словарь Баранова";
 			productName = baranov;
 			productReference = 2C15D7FA1B47E8BD00935E9F /* baranov.app */;
 			productType = "com.apple.product-type.application";
@@ -254,6 +254,7 @@
 				TargetAttributes = {
 					2C15D7F91B47E8BD00935E9F = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 96NVXXUC7J;
 					};
 					2C15D8111B47E8BD00935E9F = {
 						CreatedOnToolsVersion = 6.4;
@@ -274,7 +275,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2C15D7F91B47E8BD00935E9F /* baranov */,
+				2C15D7F91B47E8BD00935E9F /* Словарь Баранова */,
 				2C15D8111B47E8BD00935E9F /* baranovTests */,
 			);
 		};
@@ -393,7 +394,7 @@
 /* Begin PBXTargetDependency section */
 		2C15D8141B47E8BD00935E9F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2C15D7F91B47E8BD00935E9F /* baranov */;
+			target = 2C15D7F91B47E8BD00935E9F /* Словарь Баранова */;
 			targetProxy = 2C15D8131B47E8BD00935E9F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -506,9 +507,12 @@
 			baseConfigurationReference = A568682317F0F6BA0780AB63 /* Pods-baranov.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = baranov/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -517,9 +521,12 @@
 			baseConfigurationReference = F5AEA7ACC49199865E0334BD /* Pods-baranov.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = baranov/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -569,7 +576,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C15D81C1B47E8BD00935E9F /* Build configuration list for PBXNativeTarget "baranov" */ = {
+		2C15D81C1B47E8BD00935E9F /* Build configuration list for PBXNativeTarget "Словарь Баранова" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C15D81D1B47E8BD00935E9F /* Debug */,
