@@ -10,7 +10,7 @@ import UIKit
 
 class AboutViewController: UIViewController {
     
-    let siteUrl = "https://desolate-island-2917.herokuapp.com/about"
+    let siteUrl = "http://bars.org.ru/about"
     let itunesUrl = "itms-apps://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=APP_ID&onlyLatestVersion=true&pageNumber=0&sortOrdering=1&type=Purple+Software"
     let appId = "1021251680";
     

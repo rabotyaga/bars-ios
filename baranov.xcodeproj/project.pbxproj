@@ -205,9 +205,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2C15D7F91B47E8BD00935E9F /* Словарь Баранова */ = {
+		2C15D7F91B47E8BD00935E9F /* БАРС */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C15D81C1B47E8BD00935E9F /* Build configuration list for PBXNativeTarget "Словарь Баранова" */;
+			buildConfigurationList = 2C15D81C1B47E8BD00935E9F /* Build configuration list for PBXNativeTarget "БАРС" */;
 			buildPhases = (
 				32B92FF8A7A1F06E900A41F7 /* Check Pods Manifest.lock */,
 				2C15D7F61B47E8BD00935E9F /* Sources */,
@@ -220,7 +220,7 @@
 			);
 			dependencies = (
 			);
-			name = "Словарь Баранова";
+			name = "БАРС";
 			productName = baranov;
 			productReference = 2C15D7FA1B47E8BD00935E9F /* Словарь Баранова.app */;
 			productType = "com.apple.product-type.application";
@@ -275,7 +275,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2C15D7F91B47E8BD00935E9F /* Словарь Баранова */,
+				2C15D7F91B47E8BD00935E9F /* БАРС */,
 				2C15D8111B47E8BD00935E9F /* baranovTests */,
 			);
 		};
@@ -394,7 +394,7 @@
 /* Begin PBXTargetDependency section */
 		2C15D8141B47E8BD00935E9F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2C15D7F91B47E8BD00935E9F /* Словарь Баранова */;
+			target = 2C15D7F91B47E8BD00935E9F /* БАРС */;
 			targetProxy = 2C15D8131B47E8BD00935E9F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -576,7 +576,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C15D81C1B47E8BD00935E9F /* Build configuration list for PBXNativeTarget "Словарь Баранова" */ = {
+		2C15D81C1B47E8BD00935E9F /* Build configuration list for PBXNativeTarget "БАРС" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C15D81D1B47E8BD00935E9F /* Debug */,

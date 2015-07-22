@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "2C15D7F91B47E8BD00935E9F"
-               BuildableName = "&#x421;&#x43b;&#x43e;&#x432;&#x430;&#x440;&#x44c; &#x411;&#x430;&#x440;&#x430;&#x43d;&#x43e;&#x432;&#x430;.app"
-               BlueprintName = "&#x421;&#x43b;&#x43e;&#x432;&#x430;&#x440;&#x44c; &#x411;&#x430;&#x440;&#x430;&#x43d;&#x43e;&#x432;&#x430;"
+               BuildableName = "&#x411;&#x410;&#x420;&#x421;.app"
+               BlueprintName = "&#x411;&#x410;&#x420;&#x421;"
                ReferencedContainer = "container:baranov.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -57,8 +57,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C15D7F91B47E8BD00935E9F"
-            BuildableName = "&#x421;&#x43b;&#x43e;&#x432;&#x430;&#x440;&#x44c; &#x411;&#x430;&#x440;&#x430;&#x43d;&#x43e;&#x432;&#x430;.app"
-            BlueprintName = "&#x421;&#x43b;&#x43e;&#x432;&#x430;&#x440;&#x44c; &#x411;&#x430;&#x440;&#x430;&#x43d;&#x43e;&#x432;&#x430;"
+            BuildableName = "&#x411;&#x410;&#x420;&#x421;.app"
+            BlueprintName = "&#x411;&#x410;&#x420;&#x421;"
             ReferencedContainer = "container:baranov.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -77,8 +77,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C15D7F91B47E8BD00935E9F"
-            BuildableName = "&#x421;&#x43b;&#x43e;&#x432;&#x430;&#x440;&#x44c; &#x411;&#x430;&#x440;&#x430;&#x43d;&#x43e;&#x432;&#x430;.app"
-            BlueprintName = "&#x421;&#x43b;&#x43e;&#x432;&#x430;&#x440;&#x44c; &#x411;&#x430;&#x440;&#x430;&#x43d;&#x43e;&#x432;&#x430;"
+            BuildableName = "&#x411;&#x410;&#x420;&#x421;.app"
+            BlueprintName = "&#x411;&#x410;&#x420;&#x421;"
             ReferencedContainer = "container:baranov.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -96,8 +96,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "2C15D7F91B47E8BD00935E9F"
-            BuildableName = "&#x421;&#x43b;&#x43e;&#x432;&#x430;&#x440;&#x44c; &#x411;&#x430;&#x440;&#x430;&#x43d;&#x43e;&#x432;&#x430;.app"
-            BlueprintName = "&#x421;&#x43b;&#x43e;&#x432;&#x430;&#x440;&#x44c; &#x411;&#x430;&#x440;&#x430;&#x43d;&#x43e;&#x432;&#x430;"
+            BuildableName = "&#x411;&#x410;&#x420;&#x421;.app"
+            BlueprintName = "&#x411;&#x410;&#x420;&#x421;"
             ReferencedContainer = "container:baranov.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
