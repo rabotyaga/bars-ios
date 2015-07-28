@@ -272,7 +272,7 @@ class MyDatabase {
         stopTime = NSDate.timeIntervalSinceReferenceDate()
         var readTime: Double = stopTime - startTime
         
-        println("* time is \(Int(readTime*1000))")
+        //println("* time is \(Int(readTime*1000))")
         
         return QueryResult(query: query, articles: articles, sections: sections)
     }
