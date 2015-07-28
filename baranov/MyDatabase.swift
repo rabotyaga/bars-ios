@@ -70,8 +70,12 @@ class MyDatabase {
         // nested func to allow code reuse in init
         // before stored properties db & articles_table are initialized
         func copyDatabase() {
-            if(!NSFileManager.defaultManager().copyItemAtPath(sourceFilename, toPath: destinationFilename, error: &error)) {
+            if (!NSFileManager.defaultManager().copyItemAtPath(sourceFilename, toPath: destinationFilename, error: &error)) {
                 println("Couldn't copy database: \(error!.localizedDescription)")
+            }
+            let Url = NSURL.fileURLWithPath(destinationFilename)!
+            if (!Url.setResourceValue(true, forKey: NSURLIsExcludedFromBackupKey, error: &error)) {
+                println("Error excluding \(Url.lastPathComponent) from backup \(error!.localizedDescription)")
             }
         }
         
