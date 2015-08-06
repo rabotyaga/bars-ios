@@ -25,5 +25,5 @@
 [bars.dictionary@gmail.com](mailto:bars.dictionary@gmail.com)
 
 ####История изменений
-* **28/07/2015* (05/08/2015 on App Store) - **v.1.1**
-* **21/07/2015* - **v.1.0**
+* *28/07/2015* (05/08/2015 on App Store) - **v.1.1**
+* *21/07/2015* - **v.1.0**
