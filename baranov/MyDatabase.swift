@@ -167,7 +167,17 @@ class MyDatabase {
                 f_articles = articles_table.filter(query_string.stripForbiddenCharacters() == articles_table[ar_inf_wo_vowels]).order(nr)
                 queryRegex = makeRegexWithVowels(query_string.stripForbiddenCharacters())
             } else {
-                f_articles = articles_table.filter(like("% \(query_string.stripForbiddenCharacters()) %", translation)).order(nr)
+                let qs = query_string.stripForbiddenCharacters()
+                f_articles = articles_table.filter(
+                    qs == translation ||
+                    like("\(qs) %", translation) ||
+                    like("% \(qs)", translation) ||
+                    like("% \(qs);%", translation) ||
+                    like("% \(qs) %", translation) ||
+                    like("% \(qs)!%", translation) ||
+                    like("% \(qs).%", translation) ||
+                    like("% \(qs),%", translation)
+                    ).order(nr)
                 searchingInArabic = false
                 queryRegex = NSRegularExpression(pattern: query_string.stripForbiddenCharacters(), options: nil, error: nil)
             }
