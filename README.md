@@ -13,7 +13,7 @@
 * [Веб-версия](http://bars.org.ru)
 * [Версия для Android](https://play.google.com/store/apps/details?id=ru.rabotyaga.baranov)
 * [Версия для iOS](https://itunes.apple.com/ru/app/bol-soj-arabsko-russkij-slovar/id1021251680?mt=8) (iPhone/iPad/iPod touch)
-* База данных словаря в формате Apple Dictionary (выйдет в ближайшее время)
+* [База данных словаря в формате Apple Dictionary](http://bars.org.ru/apple_dictionary)
 
 Ключевые особенности:
 
@@ -25,5 +25,7 @@
 [bars.dictionary@gmail.com](mailto:bars.dictionary@gmail.com)
 
 ####История изменений
+* *22/08/2015* (30/08/2015 on App Store) - **v.1.2**
+  * Улучшен поиск русских слов в режиме точного совпадения
 * *28/07/2015* (05/08/2015 on App Store) - **v.1.1**
 * *21/07/2015* - **v.1.0**
