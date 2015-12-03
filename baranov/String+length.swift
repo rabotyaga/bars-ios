@@ -10,12 +10,12 @@ import Foundation
 
 extension String {
     var length: Int {
-        return count(self.utf16)
+        return self.utf16.count
     }
     
     // should filter out: \ * ( ) ? [ ] { } %
     func stripForbiddenCharacters() -> String {
-        var s = self.stringByReplacingOccurrencesOfString("[\\\\\\*\\?\\$\\(\\)\\[\\]\\{\\}\\%]", withString: "", options: .RegularExpressionSearch, range: nil)
+        let s = self.stringByReplacingOccurrencesOfString("[\\\\\\*\\?\\$\\(\\)\\[\\]\\{\\}\\%]", withString: "", options: .RegularExpressionSearch, range: nil)
         return s
     }
     

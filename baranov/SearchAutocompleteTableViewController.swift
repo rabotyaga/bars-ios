@@ -67,7 +67,7 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-        var cell = tableView.dequeueReusableCellWithIdentifier("SearchHistoryCell") as? UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("SearchHistoryCell")
         
         if (cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "SearchHistoryCell")
@@ -133,7 +133,7 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
     func keyboardWillShow(notification: NSNotification) {
         let info = notification.userInfo!
         let value: AnyObject = info[UIKeyboardFrameEndUserInfoKey]!
-        let rawFrame = value.CGRectValue()
+        let rawFrame = value.CGRectValue
         let keyboardFrame = view.convertRect(rawFrame, fromView: nil)
 
         let delta = keyboardFrame.height - keyboardHeight
@@ -235,11 +235,11 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
         // Add blur view
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
         visualEffectView.frame = containerView.bounds
-        visualEffectView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        visualEffectView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         containerView.addSubview(visualEffectView)
 
         view.frame = containerView.bounds
-        view.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+        view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         
         containerView.addSubview(view)
         parentView.addSubview(containerView)

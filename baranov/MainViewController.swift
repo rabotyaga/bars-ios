@@ -30,9 +30,9 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     var query: AQuery {
         get {
             if (segmentedControl.selectedSegmentIndex == 0) {
-                return AQuery.Like(searchBar.text.format_for_query())
+                return AQuery.Like(searchBar.text!.format_for_query())
             } else {
-                return AQuery.Exact(searchBar.text.format_for_query())
+                return AQuery.Exact(searchBar.text!.format_for_query())
             }
         }
     }
@@ -96,15 +96,14 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     // submit new search after search type changed
     // if there is some text in search bar
     func segmentedControlChanged(sender: AnyObject) {
-        if (!searchBar.text.isEmpty) {
+        if (!searchBar.text!.isEmpty) {
             searchBarSearchButtonClicked(searchBar)
         }
     }
     
     func findNavBarHairline() -> UIImageView? {
-        var a,b: UIView
-        for a in navigationController?.navigationBar.subviews as! [UIView] {
-            for b in a.subviews as! [UIView] {
+        for a in (navigationController?.navigationBar.subviews)! as [UIView] {
+            for b in a.subviews {
                 if (b.isKindOfClass(UIImageView) && b.bounds.size.width == self.navigationController?.navigationBar.frame.size.width &&
                     b.bounds.size.height < 2) {
                         return b as? UIImageView
@@ -159,13 +158,13 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         hideSideMenuView()
-        searchBar.text = searchBar.text.format_for_query()
-        if (searchBar.text.length == 0) {
+        searchBar.text = searchBar.text!.format_for_query()
+        if (searchBar.text!.length == 0) {
             return
         }
         searchBar.resignFirstResponder()
         
-        if (count(searchBar.text) == 1 && segmentedControl.selectedSegmentIndex == 0) {
+        if (searchBar.text!.characters.count == 1 && segmentedControl.selectedSegmentIndex == 0) {
             let title = NSLocalizedString("youEnteredOnlyOneCharacter", comment: "")
             let message = NSLocalizedString("theSearchWillBeMadeInExactMode", comment: "")
             let cancelButtonTitle = NSLocalizedString("OK", comment: "")
@@ -188,7 +187,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
         hideSideMenuView()
         showToolBar()
-        searchAutocomplete.textDidChange(searchBar.text)
+        searchAutocomplete.textDidChange(searchBar.text!)
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar) {
@@ -214,7 +213,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         updateResultsIndicator(articleDataSourceDelegate.articles_count)
         tableView.setContentOffset(CGPointZero, animated: true)
         
-        if (queryResult.articles.count == 0) && (segmentedControl.selectedSegmentIndex == 1) && (searchBar.text.length > 1) {
+        if (queryResult.articles.count == 0) && (segmentedControl.selectedSegmentIndex == 1) && (searchBar.text!.length > 1) {
             let title = NSLocalizedString("nothingFound", comment: "")
             let message = NSLocalizedString("youDidSearchUsingExactMode", comment: "")
             let okButtonTitle = NSLocalizedString("OK", comment: "")

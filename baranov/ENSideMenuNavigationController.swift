@@ -32,7 +32,7 @@ public class ENSideMenuNavigationController: UINavigationController, ENSideMenuP
         view.bringSubviewToFront(navigationBar)
     }
 
-    required public init(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     

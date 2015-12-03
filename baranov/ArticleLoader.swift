@@ -28,7 +28,7 @@ func ==(lhs: AQuery, rhs:AQuery) -> Bool {
         return lrs == rrs
     case let (.RootByNr(lrnr), .RootByNr(rrnr)):
         return lrnr == rrnr
-    case let (.None, .None):
+    case (.None, .None):
         return true
     default:
         return false

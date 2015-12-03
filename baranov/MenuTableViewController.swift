@@ -68,7 +68,7 @@ class MenuTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("MenuCell") as? UITableViewCell
+        var cell = tableView.dequeueReusableCellWithIdentifier("MenuCell")
         
         if (cell == nil) {
             cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "MenuCell")
@@ -108,7 +108,7 @@ class MenuTableViewController: UITableViewController {
         // first & 2nd menu lines have controllerName
         if (!menu[indexPath.row].controllerName.isEmpty) {
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
-            let destViewController = mainStoryboard.instantiateViewControllerWithIdentifier(menu[indexPath.row].controllerName) as! UIViewController
+            let destViewController = mainStoryboard.instantiateViewControllerWithIdentifier(menu[indexPath.row].controllerName) 
             
             sideMenuController()?.pushViewController(destViewController)
         }

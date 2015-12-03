@@ -6,17 +6,17 @@
 //  Copyright (c) 2015 Rabotyaga. All rights reserved.
 //
 
-import Foundation
+/*import Foundation
 import SQLite
 
-extension NSDate: Value {
+extension NSDate {
     public class var declaredDatatype: String {
         return Int.declaredDatatype
     }
     public class func fromDatatypeValue(intValue: Int) -> Self {
-        return self(timeIntervalSince1970: NSTimeInterval(intValue))
+        return self.init(timeIntervalSince1970: NSTimeInterval(intValue))
     }
     public var datatypeValue: Int {
         return Int(timeIntervalSince1970)
     }
-}
+}*/

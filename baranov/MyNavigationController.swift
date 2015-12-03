@@ -31,7 +31,7 @@ class MyNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate
     
     func sideMenuShouldOpenSideMenu() -> Bool {
         // open side menu only in MainViewController
-        if let mainViewController = topViewController as? MainViewController {
+        if let _ = topViewController as? MainViewController {
             return true
         } else {
             return false

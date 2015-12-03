@@ -58,7 +58,7 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
     func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
         // hiding navigationController's builtin toolbar
         // when going back to MainViewController
-        if let vc = viewController as? MainViewController {
+        if let _ = viewController as? MainViewController {
             self.navigationController?.setToolbarHidden(true, animated: true)
         }
     }
@@ -77,7 +77,7 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
         self.detailsDataSource.articles = queryResult.articles
         self.tableView.reloadData()
         if let a = articleToLoad {
-            if let i = find(queryResult.articles, a) {
+            if let i = queryResult.articles.indexOf(a) {
                 let selectedIndexPath = NSIndexPath(forRow: i, inSection: 0)
                 
                 // there is a bug in iOS 7.x-8.4
@@ -105,14 +105,14 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
     // MARK: - Storyboard connected toolbar buttons actions
     
     @IBAction func loadPreviousRoot(sender: AnyObject) {
-        if let a = articleToLoad {
+        if let _ = articleToLoad {
             articleToLoad = nil
         }
         articleLoader.loadPreviousRoot();
     }
     
     @IBAction func loadNextRoot(sender: AnyObject) {
-        if let a = articleToLoad {
+        if let _ = articleToLoad {
             articleToLoad = nil
         }
         articleLoader.loadNextRoot();
