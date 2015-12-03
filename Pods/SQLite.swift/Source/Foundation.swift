@@ -44,12 +44,12 @@ extension NSDate : Value {
         return String.declaredDatatype
     }
 
-    public class func fromDatatypeValue(intValue: Int) -> NSDate {
-        return self.init(timeIntervalSince1970: NSTimeInterval(intValue))
+    public class func fromDatatypeValue(stringValue: String) -> NSDate {
+        return dateFormatter.dateFromString(stringValue)!
     }
 
-    public var datatypeValue: Int {
-        return Int(timeIntervalSince1970)
+    public var datatypeValue: String {
+        return dateFormatter.stringFromDate(self)
     }
 
 }

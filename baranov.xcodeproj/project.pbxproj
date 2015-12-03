@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1EA1B1C30C5D5C6E48CA0EF8 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19642369D24800398045424 /* Pods_____.framework */; };
 		2C15D8001B47E8BD00935E9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C15D7FF1B47E8BD00935E9F /* AppDelegate.swift */; };
 		2C15D8081B47E8BD00935E9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2C15D8061B47E8BD00935E9F /* Main.storyboard */; };
 		2C15D80A1B47E8BD00935E9F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C15D8091B47E8BD00935E9F /* Images.xcassets */; };
@@ -36,7 +35,7 @@
 		2CE189381B541D9700D019DA /* ENSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE189371B541D9700D019DA /* ENSideMenuNavigationController.swift */; };
 		2CE1893A1B541EB800D019DA /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE189391B541EB800D019DA /* MenuTableViewController.swift */; };
 		2CE1893C1B54201500D019DA /* MyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1893B1B54201500D019DA /* MyNavigationController.swift */; };
-		7B504B71273A149A0FFC6681 /* Pods_baranov.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E11146E4FDE6E4AD19A3877A /* Pods_baranov.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		7B1167AA70B035003DA6C7A2 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19642369D24800398045424 /* Pods_____.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,8 +94,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B504B71273A149A0FFC6681 /* Pods_baranov.framework in Frameworks */,
-				1EA1B1C30C5D5C6E48CA0EF8 /* Pods_____.framework in Frameworks */,
+				7B1167AA70B035003DA6C7A2 /* Pods_____.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,6 +447,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -495,6 +494,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -520,7 +520,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = baranov/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.rabotyaga.baranov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -535,7 +537,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = baranov/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ru.rabotyaga.baranov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -547,10 +551,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -567,10 +567,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = baranovTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.rabotyaga.$(PRODUCT_NAME:rfc1034identifier)";
