@@ -45,6 +45,7 @@ class MyDatabase {
     let mn1 = Expression<String>("mn1")
     let mn2 = Expression<String>("mn2")
     let mn3 = Expression<String>("mn3")
+    let ar123_wo_vowels_n_hamza = Expression<String>("ar123_wo_vowels_n_hamza")
     
     let updated_at = Expression<NSDate>("updated_at")
     let search_string = Expression<String>("search_string")
@@ -193,7 +194,8 @@ class MyDatabase {
         switch(query) {
         case let .Like(query_string):
             if let _ = query_string.rangeOfString("^\\p{Arabic}+$", options: .RegularExpressionSearch) {
-                f_articles = articles_table.filter(ar_inf_wo_vowels.like("%\(query_string.stripForbiddenCharacters())%")).order(nr)
+                let qs = query_string.stripForbiddenCharacters()
+                f_articles = articles_table.filter(ar_inf_wo_vowels.like("%\(qs)%") || ar123_wo_vowels_n_hamza.like("%\(qs)%")).order(nr)
                 queryRegex = makeRegexWithVowels(query_string.stripForbiddenCharacters())
             } else {
                 f_articles = articles_table.filter(translation.like("%\(query_string.stripForbiddenCharacters())%")).order(nr)
@@ -202,7 +204,14 @@ class MyDatabase {
             }
         case let .Exact(query_string):
             if let _ = query_string.rangeOfString("^\\p{Arabic}+$", options: .RegularExpressionSearch) {
-                f_articles = articles_table.filter(query_string.stripForbiddenCharacters() == articles_table[ar_inf_wo_vowels]).order(nr)
+                let qs = query_string.stripForbiddenCharacters()
+                f_articles = articles_table.filter(
+                    qs == articles_table[ar_inf_wo_vowels] ||
+                    qs == articles_table[ar123_wo_vowels_n_hamza] ||
+                    ar123_wo_vowels_n_hamza.like("\(qs) %") ||
+                    ar123_wo_vowels_n_hamza.like("% \(qs)") ||
+                    ar123_wo_vowels_n_hamza.like("% \(qs) %")
+                    ).order(nr)
                 queryRegex = makeRegexWithVowels(query_string.stripForbiddenCharacters())
             } else {
                 let qs = query_string.stripForbiddenCharacters()
@@ -262,6 +271,10 @@ class MyDatabase {
                         for match in qRegex.matchesInString(sa.ar_inf.string, options: [], range: NSMakeRange(0, sa.ar_inf.length)) {
                             sa.ar_inf.addAttributes(matchAttr, range: match.range)
                             current_article_match_score += Int(Float(match.range.length) / Float(sa.ar_inf.string.length) * 100)
+                        }
+                        for match in qRegex.matchesInString(sa.opts.string, options: [], range: NSMakeRange(0, sa.opts.length)) {
+                            sa.opts.addAttributes(matchAttr, range: match.range)
+                            current_article_match_score += Int(Float(match.range.length) / Float(sa.opts.string.length) * 100)
                         }
                     } else {
                         for match in qRegex.matchesInString(sa.translation.string, options: [], range: NSMakeRange(0, sa.translation.length)) {
