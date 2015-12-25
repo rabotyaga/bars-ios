@@ -37,9 +37,9 @@ extension String {
     
     func removeVowelsNHamza() -> String {
         var s = self.stringByReplacingOccurrencesOfString("[\\u064b\\u064c\\u064d\\u064e\\u064f\\u0650\\u0651\\u0652\\u0653\\u0670]*", withString: "", options: .RegularExpressionSearch, range: nil)
-        s = s.stringByReplacingOccurrencesOfString("[\\u0622\\u0623\\u0625]", withString: "\\u0627", options: .RegularExpressionSearch, range: nil)
-        s = s.stringByReplacingOccurrencesOfString("\\u0624", withString: "\\u0648", options: .RegularExpressionSearch, range: nil)
-        s = s.stringByReplacingOccurrencesOfString("\\u0626", withString: "\\u0649", options: .RegularExpressionSearch, range: nil)
+        s = s.stringByReplacingOccurrencesOfString("[\\u0622\\u0623\\u0625]", withString: "\u{0627}", options: .RegularExpressionSearch, range: nil)
+        s = s.stringByReplacingOccurrencesOfString("\\u0624", withString: "\u{0648}", options: .RegularExpressionSearch, range: nil)
+        s = s.stringByReplacingOccurrencesOfString("\\u0626", withString: "\u{0649}", options: .RegularExpressionSearch, range: nil)
         return s
     }
     
