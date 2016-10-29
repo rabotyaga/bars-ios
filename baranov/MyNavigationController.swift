@@ -13,12 +13,12 @@ class MyNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        sideMenu = ENSideMenu(sourceView: self.view, menuViewController: MenuTableViewController(), menuPosition: .Left)
+        sideMenu = ENSideMenu(sourceView: self.view, menuViewController: MenuTableViewController(), menuPosition: .left)
         sideMenu?.delegate = self
         //sideMenu?.bouncingEnabled = false
         
         // make navigation bar showing over side menu
-        view.bringSubviewToFront(navigationBar)
+        view.bringSubview(toFront: navigationBar)
 
     }
 

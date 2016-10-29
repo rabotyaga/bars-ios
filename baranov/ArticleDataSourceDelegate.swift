@@ -18,16 +18,16 @@ class ArticleDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDel
         super.init()
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.sections.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.sections[section].rows
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! ArticleTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! ArticleTableViewCell
         let article = articleForIndexPath(indexPath)
         
         cell.arInfLabel.attributedText = article.ar_inf
@@ -67,43 +67,43 @@ class ArticleDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDel
         
         // needed for the 1st run to place label & textView correctly
         //cell.layoutIfNeeded()
-        cell.bounds = CGRect(x: 0, y: 0, width: CGRectGetWidth(tableView.bounds), height: 99999)
+        cell.bounds = CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 99999)
         cell.contentView.bounds = cell.bounds
         cell.layoutIfNeeded()
         
         return cell
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 22))
-        view.autoresizingMask = UIViewAutoresizing.FlexibleWidth
-        let label = UILabel(frame: CGRectMake(0, 0, tableView.frame.size.width, 22))
-        label.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 22))
+        view.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 22))
+        label.autoresizingMask = UIViewAutoresizing.flexibleWidth
         label.text = self.sections[section].name
         view.addSubview(label)
         view.backgroundColor = UIColor.headerBg()
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return view
     }
     
-    func articleForIndexPath(indexPath: NSIndexPath) -> Article {
+    func articleForIndexPath(_ indexPath: IndexPath) -> Article {
         let article = self.sections[indexPath.section].articles[indexPath.row]
         return article
     }
     
-    func tableView(tableView: UITableView, shouldShowMenuForRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
         return true
     }
     
-    func tableView(tableView: UITableView, canPerformAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        if (action == "copy:") {
+    func tableView(_ tableView: UITableView, canPerformAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
+        if (action == #selector(UIResponderStandardEditActions.copy(_:))) {
             return true
         }
         return false
     }
     
-    func tableView(tableView: UITableView, performAction action: Selector, forRowAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-        if (action == "copy:") {
+    func tableView(_ tableView: UITableView, performAction action: Selector, forRowAt indexPath: IndexPath, withSender sender: Any?) {
+        if (action == #selector(UIResponderStandardEditActions.copy(_:))) {
             articleForIndexPath(indexPath).copyToClipboard()
         }
     }

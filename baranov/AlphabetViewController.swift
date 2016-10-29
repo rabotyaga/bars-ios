@@ -80,22 +80,22 @@ class AlphabetViewController: UIViewController, UITableViewDataSource, UITableVi
     
     // MARK: - UITableViewDataSource, UITableViewDelegate
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return alphabet.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("AlphabetCell", forIndexPath: indexPath) as! AlphabetTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AlphabetCell", for: indexPath) as! AlphabetTableViewCell
         let letter = alphabet[indexPath.row]
         
         if (letter.has_nr) {
             cell.nvLabelHeight.constant = 20.0
             cell.nvLabelTopSpace.constant = 5.0
-            cell.backgroundColor = UIColor.whiteColor()
+            cell.backgroundColor = UIColor.white
             cell.nrLabel.text = String(letter.nr)
             cell.nvLabel.text = NSLocalizedString("nvLabel", comment: "") + String(letter.nv)
         } else {

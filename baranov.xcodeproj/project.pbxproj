@@ -35,7 +35,8 @@
 		2CE189381B541D9700D019DA /* ENSideMenuNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE189371B541D9700D019DA /* ENSideMenuNavigationController.swift */; };
 		2CE1893A1B541EB800D019DA /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE189391B541EB800D019DA /* MenuTableViewController.swift */; };
 		2CE1893C1B54201500D019DA /* MyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1893B1B54201500D019DA /* MyNavigationController.swift */; };
-		7B1167AA70B035003DA6C7A2 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F19642369D24800398045424 /* Pods_____.framework */; };
+		D3233D76D857142FE387A910 /* libPods-baranovTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C3DB8F36EE4A684CD38F20F /* libPods-baranovTests.a */; };
+		F6636428E0DCB040C8F7DA2D /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 608438EDD266F6D6348E6984 /* Pods_____.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0ABC1B8AD4DEABB6DC2D4A47 /* Pods-baranovTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-baranovTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-baranovTests/Pods-baranovTests.release.xcconfig"; sourceTree = "<group>"; };
 		2C15D7FA1B47E8BD00935E9F /* БАРС.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "БАРС.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C15D7FE1B47E8BD00935E9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C15D7FF1B47E8BD00935E9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -81,12 +83,11 @@
 		2CE189371B541D9700D019DA /* ENSideMenuNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ENSideMenuNavigationController.swift; sourceTree = "<group>"; };
 		2CE189391B541EB800D019DA /* MenuTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		2CE1893B1B54201500D019DA /* MyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNavigationController.swift; sourceTree = "<group>"; };
-		5E43B89F9258B94691DD546E /* Pods-БАРС.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-БАРС.debug.xcconfig"; path = "Pods/Target Support Files/Pods-БАРС/Pods-БАРС.debug.xcconfig"; sourceTree = "<group>"; };
-		A568682317F0F6BA0780AB63 /* Pods-baranov.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-baranov.debug.xcconfig"; path = "Pods/Target Support Files/Pods-baranov/Pods-baranov.debug.xcconfig"; sourceTree = "<group>"; };
-		E11146E4FDE6E4AD19A3877A /* Pods_baranov.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_baranov.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F02D1B0C9E31BB344407CC7D /* Pods-БАРС.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-БАРС.release.xcconfig"; path = "Pods/Target Support Files/Pods-БАРС/Pods-БАРС.release.xcconfig"; sourceTree = "<group>"; };
-		F19642369D24800398045424 /* Pods_____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5AEA7ACC49199865E0334BD /* Pods-baranov.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-baranov.release.xcconfig"; path = "Pods/Target Support Files/Pods-baranov/Pods-baranov.release.xcconfig"; sourceTree = "<group>"; };
+		608438EDD266F6D6348E6984 /* Pods_____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C4B1DF6C94F00877A65DC61 /* Pods-БАРС.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-БАРС.debug.xcconfig"; path = "Pods/Target Support Files/Pods-БАРС/Pods-БАРС.debug.xcconfig"; sourceTree = "<group>"; };
+		7C3DB8F36EE4A684CD38F20F /* libPods-baranovTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-baranovTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		82514B811BD70B27624B02EA /* Pods-БАРС.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-БАРС.release.xcconfig"; path = "Pods/Target Support Files/Pods-БАРС/Pods-БАРС.release.xcconfig"; sourceTree = "<group>"; };
+		92159442831CB355904986FB /* Pods-baranovTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-baranovTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-baranovTests/Pods-baranovTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B1167AA70B035003DA6C7A2 /* Pods_____.framework in Frameworks */,
+				F6636428E0DCB040C8F7DA2D /* Pods_____.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,29 +103,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3233D76D857142FE387A910 /* libPods-baranovTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		189EE780DC2F399C46F06967 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E11146E4FDE6E4AD19A3877A /* Pods_baranov.framework */,
-				F19642369D24800398045424 /* Pods_____.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		2C15D7F11B47E8BD00935E9F = {
 			isa = PBXGroup;
 			children = (
 				2C15D7FC1B47E8BD00935E9F /* baranov */,
 				2C15D8151B47E8BD00935E9F /* baranovTests */,
 				2C15D7FB1B47E8BD00935E9F /* Products */,
-				9107183D142989116B26C16C /* Pods */,
-				189EE780DC2F399C46F06967 /* Frameworks */,
+				E13AB210956462771BD696C7 /* Pods */,
+				B7508F36E86041F8C2FBE9A2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -197,13 +190,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		9107183D142989116B26C16C /* Pods */ = {
+		B7508F36E86041F8C2FBE9A2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A568682317F0F6BA0780AB63 /* Pods-baranov.debug.xcconfig */,
-				F5AEA7ACC49199865E0334BD /* Pods-baranov.release.xcconfig */,
-				5E43B89F9258B94691DD546E /* Pods-БАРС.debug.xcconfig */,
-				F02D1B0C9E31BB344407CC7D /* Pods-БАРС.release.xcconfig */,
+				7C3DB8F36EE4A684CD38F20F /* libPods-baranovTests.a */,
+				608438EDD266F6D6348E6984 /* Pods_____.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E13AB210956462771BD696C7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				92159442831CB355904986FB /* Pods-baranovTests.debug.xcconfig */,
+				0ABC1B8AD4DEABB6DC2D4A47 /* Pods-baranovTests.release.xcconfig */,
+				6C4B1DF6C94F00877A65DC61 /* Pods-БАРС.debug.xcconfig */,
+				82514B811BD70B27624B02EA /* Pods-БАРС.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -215,12 +217,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C15D81C1B47E8BD00935E9F /* Build configuration list for PBXNativeTarget "БАРС" */;
 			buildPhases = (
-				32B92FF8A7A1F06E900A41F7 /* Check Pods Manifest.lock */,
+				4F7B7A76EB47CB1081A3FFB7 /* 📦 Check Pods Manifest.lock */,
 				2C15D7F61B47E8BD00935E9F /* Sources */,
 				2C15D7F71B47E8BD00935E9F /* Frameworks */,
 				2C15D7F81B47E8BD00935E9F /* Resources */,
-				50BD2176BE5BFD31384FA0B3 /* Embed Pods Frameworks */,
-				9D8D8D6AAF053F90F1F899DF /* Copy Pods Resources */,
+				95B4C97E551D7D9C2B26DF40 /* 📦 Embed Pods Frameworks */,
+				EA1D5CB6C4558543015E2C3E /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -235,9 +237,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2C15D81F1B47E8BD00935E9F /* Build configuration list for PBXNativeTarget "baranovTests" */;
 			buildPhases = (
+				A52D3E9E625AB6C25E5FDA0B /* 📦 Check Pods Manifest.lock */,
 				2C15D80E1B47E8BD00935E9F /* Sources */,
 				2C15D80F1B47E8BD00935E9F /* Frameworks */,
 				2C15D8101B47E8BD00935E9F /* Resources */,
+				6ED1BE914A297277D588C1A5 /* 📦 Embed Pods Frameworks */,
+				087114D2C79655353528E63E /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -257,15 +262,17 @@
 			attributes = {
 				LastSwiftMigration = 0710;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Rabotyaga;
 				TargetAttributes = {
 					2C15D7F91B47E8BD00935E9F = {
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 96NVXXUC7J;
+						LastSwiftMigration = 0810;
 					};
 					2C15D8111B47E8BD00935E9F = {
 						CreatedOnToolsVersion = 6.4;
+						LastSwiftMigration = 0810;
 						TestTargetID = 2C15D7F91B47E8BD00935E9F;
 					};
 				};
@@ -312,14 +319,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		32B92FF8A7A1F06E900A41F7 /* Check Pods Manifest.lock */ = {
+		087114D2C79655353528E63E /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-baranovTests/Pods-baranovTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4F7B7A76EB47CB1081A3FFB7 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,14 +349,29 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		50BD2176BE5BFD31384FA0B3 /* Embed Pods Frameworks */ = {
+		6ED1BE914A297277D588C1A5 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-baranovTests/Pods-baranovTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95B4C97E551D7D9C2B26DF40 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -342,14 +379,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-БАРС/Pods-БАРС-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9D8D8D6AAF053F90F1F899DF /* Copy Pods Resources */ = {
+		A52D3E9E625AB6C25E5FDA0B /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EA1D5CB6C4558543015E2C3E /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -440,8 +492,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -487,8 +541,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -508,6 +564,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -515,8 +572,9 @@
 		};
 		2C15D81D1B47E8BD00935E9F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E43B89F9258B94691DD546E /* Pods-БАРС.debug.xcconfig */;
+			baseConfigurationReference = 6C4B1DF6C94F00877A65DC61 /* Pods-БАРС.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -527,13 +585,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.rabotyaga.baranov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		2C15D81E1B47E8BD00935E9F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F02D1B0C9E31BB344407CC7D /* Pods-БАРС.release.xcconfig */;
+			baseConfigurationReference = 82514B811BD70B27624B02EA /* Pods-БАРС.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -544,11 +604,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ru.rabotyaga.baranov;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		2C15D8201B47E8BD00935E9F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92159442831CB355904986FB /* Pods-baranovTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -559,19 +621,22 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.rabotyaga.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/baranov.app/baranov";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/БАРС.app/БАРС";
 			};
 			name = Debug;
 		};
 		2C15D8211B47E8BD00935E9F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0ABC1B8AD4DEABB6DC2D4A47 /* Pods-baranovTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = baranovTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.rabotyaga.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/baranov.app/baranov";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/БАРС.app/БАРС";
 			};
 			name = Release;
 		};

@@ -33,19 +33,19 @@ class AboutViewController: UIViewController {
         self.title = NSLocalizedString("about", comment: "")
         
         appNameLongLabel.text = NSLocalizedString("appNameLong", comment: "")
-        if let appVersion = NSBundle.mainBundle().objectForInfoDictionaryKey("CFBundleShortVersionString") as? String {
+        if let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
             versionLabel.text = NSLocalizedString("version", comment: "") + appVersion
         } else {
             versionLabel.text = NSLocalizedString("version", comment: "")
         }
 
         copyrightLabel.text = NSLocalizedString("copyright", comment: "")
-        makeReviewButton.setTitle(NSLocalizedString("makeReview", comment: ""), forState: .Normal)
+        makeReviewButton.setTitle(NSLocalizedString("makeReview", comment: ""), for: UIControlState())
         descriptionLabel.text = NSLocalizedString("description", comment: "")
         descriptionLabel.sizeToFit()
         description2Label.text = NSLocalizedString("description2", comment: "")
         description2Label.sizeToFit()
-        goToSiteButton.setTitle(NSLocalizedString("goToSite", comment: ""), forState: .Normal)
+        goToSiteButton.setTitle(NSLocalizedString("goToSite", comment: ""), for: UIControlState())
         
         // hide navigationController's builtin toolbar
         self.navigationController?.setToolbarHidden(true, animated: false)
@@ -72,15 +72,15 @@ class AboutViewController: UIViewController {
     
     // MARK: - Storyboard connected buttons actions
     
-    @IBAction func makeReviewButtonClicked(sender: AnyObject) {
-        if let url = NSURL(string: itunesUrl.stringByReplacingOccurrencesOfString("APP_ID", withString: appId, options: .LiteralSearch, range: nil)) {
-            UIApplication.sharedApplication().openURL(url)
+    @IBAction func makeReviewButtonClicked(_ sender: AnyObject) {
+        if let url = URL(string: itunesUrl.replacingOccurrences(of: "APP_ID", with: appId, options: .literal, range: nil)) {
+            UIApplication.shared.openURL(url)
         }
     }
     
-    @IBAction func goToSiteButtonClicked(sender: AnyObject) {
-        if let url = NSURL(string: siteUrl) {
-            UIApplication.sharedApplication().openURL(url)
+    @IBAction func goToSiteButtonClicked(_ sender: AnyObject) {
+        if let url = URL(string: siteUrl) {
+            UIApplication.shared.openURL(url)
         }
     }
     

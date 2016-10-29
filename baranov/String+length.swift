@@ -15,7 +15,7 @@ extension String {
     
     // should filter out: \ * ( ) ? [ ] { } %
     func stripForbiddenCharacters() -> String {
-        let s = self.stringByReplacingOccurrencesOfString("[\\\\\\*\\?\\$\\(\\)\\[\\]\\{\\}\\%]", withString: "", options: .RegularExpressionSearch, range: nil)
+        let s = self.replacingOccurrences(of: "[\\\\\\*\\?\\$\\(\\)\\[\\]\\{\\}\\%]", with: "", options: .regularExpression, range: nil)
         return s
     }
     
@@ -24,7 +24,7 @@ extension String {
         return self.bidiWrapped(false)
     }
     
-    func bidiWrapped(ltr: Bool) -> String {
+    func bidiWrapped(_ ltr: Bool) -> String {
         if (!self.isEmpty) {
             if (ltr) {
                 return "\u{202A}" + self + "\u{202C}"
@@ -36,14 +36,14 @@ extension String {
     }
     
     func removeVowelsNHamza() -> String {
-        var s = self.stringByReplacingOccurrencesOfString("[\\u064b\\u064c\\u064d\\u064e\\u064f\\u0650\\u0651\\u0652\\u0653\\u0670]*", withString: "", options: .RegularExpressionSearch, range: nil)
-        s = s.stringByReplacingOccurrencesOfString("[\\u0622\\u0623\\u0625]", withString: "\u{0627}", options: .RegularExpressionSearch, range: nil)
-        s = s.stringByReplacingOccurrencesOfString("\\u0624", withString: "\u{0648}", options: .RegularExpressionSearch, range: nil)
-        s = s.stringByReplacingOccurrencesOfString("\\u0626", withString: "\u{0649}", options: .RegularExpressionSearch, range: nil)
+        var s = self.replacingOccurrences(of: "[\\u064b\\u064c\\u064d\\u064e\\u064f\\u0650\\u0651\\u0652\\u0653\\u0670]*", with: "", options: .regularExpression, range: nil)
+        s = s.replacingOccurrences(of: "[\\u0622\\u0623\\u0625]", with: "\u{0627}", options: .regularExpression, range: nil)
+        s = s.replacingOccurrences(of: "\\u0624", with: "\u{0648}", options: .regularExpression, range: nil)
+        s = s.replacingOccurrences(of: "\\u0626", with: "\u{0649}", options: .regularExpression, range: nil)
         return s
     }
     
     func format_for_query() -> String {
-        return self.lowercaseString.stripForbiddenCharacters().removeVowelsNHamza()
+        return self.lowercased().stripForbiddenCharacters().removeVowelsNHamza()
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 extension UIFont {
     class func translationFont() -> UIFont {
-        return UIFont.systemFontOfSize(17.0)
+        return UIFont.systemFont(ofSize: 17.0)
     }
     
 }

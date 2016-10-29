@@ -33,12 +33,12 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
         tableView.delegate = self.detailsDataSource
         
         if let article = articleToLoad {
-            articleLoader.loadArticlesByQuery(AQuery.Root(article.root))
+            articleLoader.loadArticlesByQuery(AQuery.root(article.root))
             self.title = NSLocalizedString("root", comment: "") + article.root
         }
         
         self.navigationController?.delegate = self
-        self.navigationController?.toolbarHidden = false
+        self.navigationController?.isToolbarHidden = false
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,7 +55,7 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
     
     // MARK: - UINavigationControllerDelegate
 
-    func navigationController(navigationController: UINavigationController, willShowViewController viewController: UIViewController, animated: Bool) {
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         // hiding navigationController's builtin toolbar
         // when going back to MainViewController
         if let _ = viewController as? MainViewController {
@@ -69,7 +69,7 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
         self.showProgressIndicator()
     }
     
-    func loaderDidLoad(queryResult: QueryResult) {
+    func loaderDidLoad(_ queryResult: QueryResult) {
         self.hideProgressIndicator()
         if let root = queryResult.articles.first?.root {
             self.title = NSLocalizedString("root", comment: "") + root
@@ -77,26 +77,26 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
         self.detailsDataSource.articles = queryResult.articles
         self.tableView.reloadData()
         if let a = articleToLoad {
-            if let i = queryResult.articles.indexOf(a) {
-                let selectedIndexPath = NSIndexPath(forRow: i, inSection: 0)
+            if let i = queryResult.articles.index(of: a) {
+                let selectedIndexPath = IndexPath(row: i, section: 0)
                 
                 // there is a bug in iOS 7.x-8.4
                 // with scrolling tableView with autoLayout cell height
                 // as a dirty workaround sometimes helps calling scroll twice
-                self.tableView.selectRowAtIndexPath(selectedIndexPath, animated: false, scrollPosition: .Bottom)
-                self.tableView.selectRowAtIndexPath(selectedIndexPath, animated: true, scrollPosition: .Middle)
+                self.tableView.selectRow(at: selectedIndexPath, animated: false, scrollPosition: .bottom)
+                self.tableView.selectRow(at: selectedIndexPath, animated: true, scrollPosition: .middle)
             }
         } else {
-            self.tableView.setContentOffset(CGPointZero, animated: true)
+            self.tableView.setContentOffset(CGPoint.zero, animated: true)
         }
         if (queryResult.articles.first?.nr == 1) {
-            backToolbarButton.enabled = false
+            backToolbarButton.isEnabled = false
         } else {
-            backToolbarButton.enabled = true
+            backToolbarButton.isEnabled = true
             if (queryResult.articles.last?.nr == articleLoader.lastArticleNr()) {
-                forwardToolbarButton.enabled = false
+                forwardToolbarButton.isEnabled = false
             } else {
-                forwardToolbarButton.enabled = true
+                forwardToolbarButton.isEnabled = true
             }
         }
         self.tableView.allowsSelection = false
@@ -104,29 +104,29 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
     
     // MARK: - Storyboard connected toolbar buttons actions
     
-    @IBAction func loadPreviousRoot(sender: AnyObject) {
+    @IBAction func loadPreviousRoot(_ sender: AnyObject) {
         if let _ = articleToLoad {
             articleToLoad = nil
         }
-        articleLoader.loadPreviousRoot();
+        try! articleLoader.loadPreviousRoot();
     }
     
-    @IBAction func loadNextRoot(sender: AnyObject) {
+    @IBAction func loadNextRoot(_ sender: AnyObject) {
         if let _ = articleToLoad {
             articleToLoad = nil
         }
-        articleLoader.loadNextRoot();
+        try! articleLoader.loadNextRoot();
     }
     
     // MARK: - UI Show & Hide
     
     func showProgressIndicator() {
         self.progressActivityIndicator.startAnimating()
-        self.tableView.hidden = true
+        self.tableView.isHidden = true
     }
     
     func hideProgressIndicator() {
         self.progressActivityIndicator.stopAnimating()
-        self.tableView.hidden = false
+        self.tableView.isHidden = false
     }
 }

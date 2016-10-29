@@ -29,8 +29,8 @@ class MenuTableViewController: UITableViewController {
         
         // Customize apperance of table view
         tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0) //
-        tableView.separatorStyle = .None
-        tableView.backgroundColor = UIColor.clearColor()
+        tableView.separatorStyle = .none
+        tableView.backgroundColor = UIColor.clear
         tableView.scrollsToTop = false
         
         self.clearsSelectionOnViewWillAppear = true
@@ -43,15 +43,15 @@ class MenuTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return menu.count
     }
     
-    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if (indexPath.row == 2) {
             // "separator"/empty menu line
             return nil
@@ -66,49 +66,49 @@ class MenuTableViewController: UITableViewController {
         return indexPath
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("MenuCell")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell")
         
         if (cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "MenuCell")
-            cell!.backgroundColor = UIColor.clearColor()
-            cell!.textLabel?.textColor = UIColor.darkGrayColor()
-            let selectedBackgroundView = UIView(frame: CGRectMake(0, 0, cell!.frame.size.width, cell!.frame.size.height))
-            selectedBackgroundView.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.2)
+            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "MenuCell")
+            cell!.backgroundColor = UIColor.clear
+            cell!.textLabel?.textColor = UIColor.darkGray
+            let selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: cell!.frame.size.width, height: cell!.frame.size.height))
+            selectedBackgroundView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
             cell!.selectedBackgroundView = selectedBackgroundView
         }
         
         cell!.textLabel?.text = menu[indexPath.row].name
         
         if (indexPath.row == 3) {
-            cell!.textLabel?.font = UIFont.systemFontOfSize(14)
-            cell!.textLabel?.lineBreakMode = .ByWordWrapping
+            cell!.textLabel?.font = UIFont.systemFont(ofSize: 14)
+            cell!.textLabel?.lineBreakMode = .byWordWrapping
             cell!.textLabel?.preferredMaxLayoutWidth = cell!.frame.size.width
             cell!.textLabel?.numberOfLines = 0
             if (myDatabase.searchHistoryCount() == 0) {
-                cell!.textLabel?.textColor = UIColor.lightGrayColor()
+                cell!.textLabel?.textColor = UIColor.lightGray
             } else {
-                cell!.textLabel?.textColor = UIColor.darkGrayColor()
+                cell!.textLabel?.textColor = UIColor.darkGray
             }
         }
         
         return cell!
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50.0
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
 
         toggleSideMenuView()
         
         // first & 2nd menu lines have controllerName
         if (!menu[indexPath.row].controllerName.isEmpty) {
             let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main",bundle: nil)
-            let destViewController = mainStoryboard.instantiateViewControllerWithIdentifier(menu[indexPath.row].controllerName) 
+            let destViewController = mainStoryboard.instantiateViewController(withIdentifier: menu[indexPath.row].controllerName) 
             
             sideMenuController()?.pushViewController(destViewController)
         }
@@ -118,12 +118,12 @@ class MenuTableViewController: UITableViewController {
             let message = NSLocalizedString("deleteSearchHistory", comment: "") + "?"
             let okButtonTitle = NSLocalizedString("delete", comment: "")
             let cancelButtonTitle = NSLocalizedString("Cancel", comment: "")
-            let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: okButtonTitle, style: .Cancel) { action in
+            let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: okButtonTitle, style: .cancel) { action in
                 // delete
                 self.myDatabase.clearSearchHistory()
             }
-            let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Default) { action in
+            let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .default) { action in
                 // do nothing
             }
             alertController.addAction(okAction)

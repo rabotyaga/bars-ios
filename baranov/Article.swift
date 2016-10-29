@@ -41,7 +41,7 @@ class Article: Equatable {
         self.ar_inf = NSMutableAttributedString(string: ar_inf)
         self.ar_inf_wo_vowels = ar_inf_wo_vowels
         self.transcription = transcription
-        self.translation = NSMutableAttributedString(string: translation.stringByReplacingOccurrencesOfString("\\n", withString: "\n").stringByReplacingOccurrencesOfString("\\r", withString: ""))
+        self.translation = NSMutableAttributedString(string: translation.replacingOccurrences(of: "\\n", with: "\n").replacingOccurrences(of: "\\r", with: ""))
         self.root = root
         self.form = form
         
@@ -78,7 +78,7 @@ class Article: Equatable {
         */
     }
     
-    private func bidiWrapWithTrailingSpace(string: String, ltr: Bool) -> String {
+    fileprivate func bidiWrapWithTrailingSpace(_ string: String, ltr: Bool) -> String {
         var bidiWrapped = string.bidiWrapped(ltr)
         if (!bidiWrapped.isEmpty) {
             bidiWrapped = bidiWrapped + " "
@@ -86,12 +86,12 @@ class Article: Equatable {
         return bidiWrapped
     }
     
-    private func bidiWrap(string: String, ltr: Bool) -> String {
+    fileprivate func bidiWrap(_ string: String, ltr: Bool) -> String {
         return string.bidiWrapped(ltr)
     }
     
     func copyToClipboard() {
-        let pasteBoard = UIPasteboard.generalPasteboard()
+        let pasteBoard = UIPasteboard.general
         pasteBoard.string = self.toString()
     }
     

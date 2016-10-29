@@ -39,14 +39,14 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.backgroundColor = UIColor.clearColor()
+        tableView.backgroundColor = UIColor.clear
         tableView.scrollsToTop = false
         
         self.clearsSelectionOnViewWillAppear = true
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWillShow:", name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SearchAutocompleteTableViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "orientationChanged:", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SearchAutocompleteTableViewController.orientationChanged(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
 
     }
 
@@ -57,24 +57,24 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
 
     // MARK: - Table view data source & delegate
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchHistory.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         //let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
-        var cell = tableView.dequeueReusableCellWithIdentifier("SearchHistoryCell")
+        var cell = tableView.dequeueReusableCell(withIdentifier: "SearchHistoryCell")
         
         if (cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "SearchHistoryCell")
-            cell!.backgroundColor = UIColor.clearColor()
+            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "SearchHistoryCell")
+            cell!.backgroundColor = UIColor.clear
             //cell!.textLabel?.textColor = UIColor.darkGrayColor()
-            let selectedBackgroundView = UIView(frame: CGRectMake(0, 0, cell!.frame.size.width, cell!.frame.size.height))
-            selectedBackgroundView.backgroundColor = UIColor.grayColor().colorWithAlphaComponent(0.2)
+            let selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: cell!.frame.size.width, height: cell!.frame.size.height))
+            selectedBackgroundView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
             cell!.selectedBackgroundView = selectedBackgroundView
         }
         
@@ -84,23 +84,23 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
         return cell!
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         searchBar.text = searchHistory[indexPath.row].searchString
         searchBarDelegate.searchBarSearchButtonClicked?(searchBar)
     }
 
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Allow edit
         return true
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             // Delete the row from the data source
             myDatabase.deleteSearchHistory(searchHistory[indexPath.row])
-            searchHistory.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            searchHistory.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
             if (searchHistory.count == 0) {
                 hideAutocompleteTable()
             }
@@ -109,7 +109,7 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
     
     // MARK: - search history logics
     
-    func textDidChange(searchText: String) {
+    func textDidChange(_ searchText: String) {
         searchHistory = myDatabase.getSearchHistory(searchText)
         tableView.reloadData()
         if (showing && searchHistory.count == 0) {
@@ -120,7 +120,7 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
         }
     }
     
-    func saveSearchHistory(searchHistory: SearchHistory) {
+    func saveSearchHistory(_ searchHistory: SearchHistory) {
         myDatabase.saveSearchHistory(searchHistory)
     }
     
@@ -130,11 +130,11 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
     
     // MARK: - UIKeyboardWillShowNotification
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         let info = notification.userInfo!
-        let value: AnyObject = info[UIKeyboardFrameEndUserInfoKey]!
-        let rawFrame = value.CGRectValue
-        let keyboardFrame = view.convertRect(rawFrame, fromView: nil)
+        let value: AnyObject = info[UIKeyboardFrameEndUserInfoKey]! as AnyObject
+        let rawFrame = value.cgRectValue
+        let keyboardFrame = view.convert(rawFrame!, from: nil)
 
         let delta = keyboardFrame.height - keyboardHeight
         
@@ -149,13 +149,13 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
     
     // MARK: - UIDeviceOrientationDidChangeNotification
     
-    func orientationChanged(notification: NSNotification) {
-        let orientation = UIDevice.currentDevice().orientation
-        if (orientation == .FaceDown || orientation == .FaceUp) {
+    func orientationChanged(_ notification: Notification) {
+        let orientation = UIDevice.current.orientation
+        if (orientation == .faceDown || orientation == .faceUp) {
             // just ignore
             return
         }
-        if (orientation == .LandscapeLeft || orientation == .LandscapeRight || orientation == .PortraitUpsideDown) {
+        if (orientation == .landscapeLeft || orientation == .landscapeRight || orientation == .portraitUpsideDown) {
             originY = originYinLandscape
         } else {
             originY = originYinPortrait
@@ -167,10 +167,10 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
     
     // MARK: - UI: frame adjust, show & hide
     
-    func adjustContainerViewHeight(delta: CGFloat) {//, duration: Double) {
+    func adjustContainerViewHeight(_ delta: CGFloat) {//, duration: Double) {
         myHeight = parentView.frame.height - originY - keyboardHeight - delta
         
-        let frame = CGRectMake(containerView.frame.origin.x, containerView.frame.origin.y, containerView.frame.width, myHeight)
+        let frame = CGRect(x: containerView.frame.origin.x, y: containerView.frame.origin.y, width: containerView.frame.width, height: myHeight)
 
         //UIView.animateWithDuration(duration, animations: {
             self.containerView.frame = frame
@@ -179,17 +179,17 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
     
     func adjustContainerView() {
         myHeight = parentView.frame.height - originY - keyboardHeight
-        containerView.frame = CGRectMake(showing ? parentView.frame.width - myWidth : parentView.frame.width, originY, myWidth, myHeight)
+        containerView.frame = CGRect(x: showing ? parentView.frame.width - myWidth : parentView.frame.width, y: originY, width: myWidth, height: myHeight)
     }
     
     func showAutocompleteTable() {
         if (showing) {
             return
         }
-        let frame = CGRectMake(parentView.frame.width - myWidth, originY, myWidth, myHeight)
+        let frame = CGRect(x: parentView.frame.width - myWidth, y: originY, width: myWidth, height: myHeight)
         adjustContainerView()
-        containerView.hidden = false
-        UIView.animateWithDuration(0.3, animations: {
+        containerView.isHidden = false
+        UIView.animate(withDuration: 0.3, animations: {
             self.containerView.frame = frame
             }, completion: {
                 a in
@@ -202,49 +202,49 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
         if (!showing) {
             return
         }
-        let frame = CGRectMake(parentView.frame.width, originY, myWidth, myHeight)
-        UIView.animateWithDuration(0.3, animations: {
+        let frame = CGRect(x: parentView.frame.width, y: originY, width: myWidth, height: myHeight)
+        UIView.animate(withDuration: 0.3, animations: {
             self.containerView.frame = frame
             }, completion: {
                 a in
                 self.showing = false
-                self.containerView.hidden = true
+                self.containerView.isHidden = true
             }
         )
     }
     
     // MARK: - Setup, called from MainViewController
     
-    func setup(parentView: UIView, searchBarDelegate: UISearchBarDelegate, searchBar: UISearchBar) {
+    func setup(_ parentView: UIView, searchBarDelegate: UISearchBarDelegate, searchBar: UISearchBar) {
         self.parentView = parentView
         self.searchBarDelegate = searchBarDelegate
         self.searchBar = searchBar
         
         originY = originYinPortrait
         myHeight = parentView.frame.height - originY
-        containerView.frame = CGRectMake(parentView.frame.width, originY, myWidth, myHeight)
+        containerView.frame = CGRect(x: parentView.frame.width, y: originY, width: myWidth, height: myHeight)
         
-        containerView.backgroundColor = UIColor.clearColor()
+        containerView.backgroundColor = UIColor.clear
         containerView.clipsToBounds = false
         containerView.layer.masksToBounds = false
-        containerView.layer.shadowOffset = CGSizeMake(-1.0, -1.0)
+        containerView.layer.shadowOffset = CGSize(width: -1.0, height: -1.0)
         containerView.layer.shadowRadius = 1.0
         containerView.layer.shadowOpacity = 0.125
-        containerView.layer.shadowPath = UIBezierPath(rect: view.bounds).CGPath
+        containerView.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
         
         // Add blur view
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .light)) as UIVisualEffectView
         visualEffectView.frame = containerView.bounds
-        visualEffectView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        visualEffectView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         containerView.addSubview(visualEffectView)
 
         view.frame = containerView.bounds
-        view.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
         containerView.addSubview(view)
         parentView.addSubview(containerView)
         
-        containerView.hidden = true
+        containerView.isHidden = true
     }
 
 }

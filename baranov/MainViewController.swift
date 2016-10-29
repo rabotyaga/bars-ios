@@ -30,9 +30,9 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     var query: AQuery {
         get {
             if (segmentedControl.selectedSegmentIndex == 0) {
-                return AQuery.Like(searchBar.text!.format_for_query())
+                return AQuery.like(searchBar.text!.format_for_query())
             } else {
-                return AQuery.Exact(searchBar.text!.format_for_query())
+                return AQuery.exact(searchBar.text!.format_for_query())
             }
         }
     }
@@ -45,23 +45,23 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         
         // search bar setup
         searchBar = UISearchBar()
-        searchBar.searchBarStyle = .Minimal
+        searchBar.searchBarStyle = .minimal
         searchBar.placeholder = NSLocalizedString("searchPlaceholder", comment: "")
         searchBar.delegate = self
         navigationItem.titleView = searchBar
         
         // toolbar setup
         segmentedControl = UISegmentedControl(items: [NSLocalizedString("searchLike", comment: ""), NSLocalizedString("searchExact", comment: "")])
-        segmentedControl.setTitle(NSLocalizedString("searchLike", comment: ""), forSegmentAtIndex: 0)
-        segmentedControl.setTitle(NSLocalizedString("searchExact", comment: ""), forSegmentAtIndex: 1)
+        segmentedControl.setTitle(NSLocalizedString("searchLike", comment: ""), forSegmentAt: 0)
+        segmentedControl.setTitle(NSLocalizedString("searchExact", comment: ""), forSegmentAt: 1)
         segmentedControl.selectedSegmentIndex = 0
-        segmentedControl.addTarget(self, action: "segmentedControlChanged:", forControlEvents: .ValueChanged)
+        segmentedControl.addTarget(self, action: #selector(MainViewController.segmentedControlChanged(_:)), for: .valueChanged)
         let barb = UIBarButtonItem(customView: segmentedControl)
-        let flex = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let flex = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
         toolBar.items = [flex, barb, flex]
         
         // hide navigationController's builtin toolbar at start
-        navigationController?.toolbarHidden = true
+        navigationController?.isToolbarHidden = true
         
         // special imageView with 0.5px height line at the bottom of navbar
         // find & store it for later hiding/showing
@@ -82,7 +82,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         //??
         //definesPresentationContext = true
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "orientationChanged:", name: UIDeviceOrientationDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainViewController.orientationChanged(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
         
         searchAutocomplete.setup(view, searchBarDelegate: self, searchBar: searchBar)
 
@@ -95,7 +95,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     
     // submit new search after search type changed
     // if there is some text in search bar
-    func segmentedControlChanged(sender: AnyObject) {
+    func segmentedControlChanged(_ sender: AnyObject) {
         if (!searchBar.text!.isEmpty) {
             searchBarSearchButtonClicked(searchBar)
         }
@@ -104,7 +104,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     func findNavBarHairline() -> UIImageView? {
         for a in (navigationController?.navigationBar.subviews)! as [UIView] {
             for b in a.subviews {
-                if (b.isKindOfClass(UIImageView) && b.bounds.size.width == self.navigationController?.navigationBar.frame.size.width &&
+                if (b.isKind(of: UIImageView.self) && b.bounds.size.width == self.navigationController?.navigationBar.frame.size.width &&
                     b.bounds.size.height < 2) {
                         return b as? UIImageView
                 }
@@ -114,25 +114,25 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     }
     
     func makeTableHeaderView() {
-        let view = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 22))
-        view.autoresizingMask = UIViewAutoresizing.FlexibleWidth
-        let label = UILabel(frame: CGRectMake(0, 0, tableView.frame.size.width, 22))
-        label.autoresizingMask = UIViewAutoresizing.FlexibleWidth
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 22))
+        view.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 22))
+        label.autoresizingMask = UIViewAutoresizing.flexibleWidth
         view.addSubview(label)
-        label.textAlignment = .Center
+        label.textAlignment = .center
         
         tableHeaderLabel = label
         
         tableView.tableHeaderView = view
     }
     
-    func updateResultsIndicator(count : Int) {
+    func updateResultsIndicator(_ count : Int) {
         self.tableHeaderLabel.text = String(format: NSLocalizedString("results", comment: ""), arguments: [count])
     }
     
     // MARK: - Storyboard connected actions
     
-    @IBAction func menuButtonClicked(sender: AnyObject) {
+    @IBAction func menuButtonClicked(_ sender: AnyObject) {
         if (sideMenuController()?.sideMenu?.isMenuOpen == true) {
             hideSideMenuView()
         } else {
@@ -142,11 +142,11 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         hideSideMenuView()
-        if let detailsViewController = segue.destinationViewController as? DetailsViewController {
+        if let detailsViewController = segue.destination as? DetailsViewController {
             if let cell = sender as? ArticleTableViewCell {
-                if let indexPath = self.tableView.indexPathForCell(cell) {
+                if let indexPath = self.tableView.indexPath(for: cell) {
                     let article = self.articleDataSourceDelegate.articleForIndexPath(indexPath)
                     detailsViewController.articleToLoad = article
                 }
@@ -156,7 +156,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     
     // MARK: - UISearchBarDelegate
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         hideSideMenuView()
         searchBar.text = searchBar.text!.format_for_query()
         if (searchBar.text!.length == 0) {
@@ -168,15 +168,15 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
             let title = NSLocalizedString("youEnteredOnlyOneCharacter", comment: "")
             let message = NSLocalizedString("theSearchWillBeMadeInExactMode", comment: "")
             let cancelButtonTitle = NSLocalizedString("OK", comment: "")
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-            let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Cancel) { action in
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .cancel) { action in
                 // do nothing
             }
             alertController.addAction(cancelAction)
             
             segmentedControl.selectedSegmentIndex = 1
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
         }
         
         if (articleLoader.queryResult?.query != query) {
@@ -184,18 +184,18 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         }
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         hideSideMenuView()
         showToolBar()
         searchAutocomplete.textDidChange(searchBar.text!)
     }
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar) {
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         hideToolBar()
         searchAutocomplete.hideAutocompleteTable()
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchAutocomplete.textDidChange(searchText)
     }
     
@@ -205,40 +205,40 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         showProgressIndicator()
     }
     
-    func loaderDidLoad(queryResult: QueryResult) {
+    func loaderDidLoad(_ queryResult: QueryResult) {
         hideProgressIndicator()
         articleDataSourceDelegate.articles_count = queryResult.articles.count
         articleDataSourceDelegate.sections = queryResult.sections
         tableView.reloadData()
         updateResultsIndicator(articleDataSourceDelegate.articles_count)
-        tableView.setContentOffset(CGPointZero, animated: true)
+        tableView.setContentOffset(CGPoint.zero, animated: true)
         
         if (queryResult.articles.count == 0) && (segmentedControl.selectedSegmentIndex == 1) && (searchBar.text!.length > 1) {
             let title = NSLocalizedString("nothingFound", comment: "")
             let message = NSLocalizedString("youDidSearchUsingExactMode", comment: "")
             let okButtonTitle = NSLocalizedString("OK", comment: "")
             let cancelButtonTitle = NSLocalizedString("Cancel", comment: "")
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-            let okAction = UIAlertAction(title: okButtonTitle, style: .Cancel) { action in
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let okAction = UIAlertAction(title: okButtonTitle, style: .cancel) { action in
                 // resubmit query in Like mode
                 self.segmentedControl.selectedSegmentIndex = 0
                 self.searchBarSearchButtonClicked(self.searchBar)
             }
-            let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .Default) { action in
+            let cancelAction = UIAlertAction(title: cancelButtonTitle, style: .default) { action in
                 // make searchBar active
                 self.searchBar.becomeFirstResponder()
             }
             alertController.addAction(okAction)
             alertController.addAction(cancelAction)
 
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
         }
         
         if let firstArticle = queryResult.sections.first?.articles.first {
             // save search history
             var detailsString = firstArticle.ar_inf.string.bidiWrapped() + ": "
             if (firstArticle.translation.string.length > 30) {
-                detailsString += "\((firstArticle.translation.string as NSString).substringToIndex(30))...".bidiWrapped(true)
+                detailsString += "\((firstArticle.translation.string as NSString).substring(to: 30))...".bidiWrapped(true)
             } else {
                 detailsString += firstArticle.translation.string.bidiWrapped(true)
             }
@@ -251,7 +251,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     
     // MARK: - UIDeviceOrientationDidChangeNotification
     
-    func orientationChanged(notification: NSNotification) {
+    func orientationChanged(_ notification: Notification) {
         // orientation change while toolBar is shown
         // should recalc its frame and redraw it
         // toolBar.frame.origin.y should be 20 in portrait mode (64 - 44)
@@ -268,8 +268,8 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         // slide down top tool bar that extends nav bar
         if (!toolBarShown) {
             // slide down top tool bar that extends nav bar
-            let frame = CGRectMake(0, toolBar.frame.origin.y + toolBar.frame.height, toolBar.frame.width, toolBar.frame.height)
-            UIView.animateWithDuration(0.3, animations: {
+            let frame = CGRect(x: 0, y: toolBar.frame.origin.y + toolBar.frame.height, width: toolBar.frame.width, height: toolBar.frame.height)
+            UIView.animate(withDuration: 0.3, animations: {
                 self.toolBar.frame = frame
                 self.navHairline?.alpha = 0.0
                 self.toolBar.alpha = 1.0
@@ -281,8 +281,8 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     func hideToolBar() {
         // slide up top tool bar that extends nav bar
         if (toolBarShown) {
-            let frame = CGRectMake(0, toolBar.frame.origin.y - toolBar.frame.height, toolBar.frame.width, toolBar.frame.height)
-            UIView.animateWithDuration(0.3, animations: {
+            let frame = CGRect(x: 0, y: toolBar.frame.origin.y - toolBar.frame.height, width: toolBar.frame.width, height: toolBar.frame.height)
+            UIView.animate(withDuration: 0.3, animations: {
                 self.toolBar.frame = frame
                 self.navHairline?.alpha = 1.0
                 self.toolBar.alpha = 0.0
@@ -293,15 +293,15 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     
     func showProgressIndicator() {
         progressActivityIndicator.startAnimating()
-        tableView.hidden = true
+        tableView.isHidden = true
     }
     
     func hideProgressIndicator() {
         progressActivityIndicator.stopAnimating()
-        tableView.hidden = false
+        tableView.isHidden = false
     }
     
-    func selectMenuButton(selected: Bool) {
+    func selectMenuButton(_ selected: Bool) {
         if (selected) {
             searchBar.resignFirstResponder()
             menuButton.tintColor = UIColor.tintSelected()
