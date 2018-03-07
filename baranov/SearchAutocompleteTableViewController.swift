@@ -130,7 +130,7 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
     
     // MARK: - UIKeyboardWillShowNotification
     
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         let info = notification.userInfo!
         let value: AnyObject = info[UIKeyboardFrameEndUserInfoKey]! as AnyObject
         let rawFrame = value.cgRectValue
@@ -149,7 +149,7 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
     
     // MARK: - UIDeviceOrientationDidChangeNotification
     
-    func orientationChanged(_ notification: Notification) {
+    @objc func orientationChanged(_ notification: Notification) {
         let orientation = UIDevice.current.orientation
         if (orientation == .faceDown || orientation == .faceUp) {
             // just ignore

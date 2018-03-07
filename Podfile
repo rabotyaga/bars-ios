@@ -1,10 +1,9 @@
 # Uncomment this line to define a global platform for your project
-# platform :ios, '6.0'
+platform :ios, '10.3'
 
 target 'БАРС' do
   use_frameworks!
-  platform :ios, '9.1'
-  pod 'SQLite.swift', git: 'https://github.com/stephencelis/SQLite.swift.git'
+  pod 'SQLite.swift', '~> 0.11.4'
 
 end
 

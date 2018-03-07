@@ -74,13 +74,21 @@ class AboutViewController: UIViewController {
     
     @IBAction func makeReviewButtonClicked(_ sender: AnyObject) {
         if let url = URL(string: itunesUrl.replacingOccurrences(of: "APP_ID", with: appId, options: .literal, range: nil)) {
-            UIApplication.shared.openURL(url)
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
         }
     }
     
     @IBAction func goToSiteButtonClicked(_ sender: AnyObject) {
         if let url = URL(string: siteUrl) {
-            UIApplication.shared.openURL(url)
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(url)
+            }
         }
     }
     

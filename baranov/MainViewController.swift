@@ -95,7 +95,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     
     // submit new search after search type changed
     // if there is some text in search bar
-    func segmentedControlChanged(_ sender: AnyObject) {
+    @objc func segmentedControlChanged(_ sender: AnyObject) {
         if (!searchBar.text!.isEmpty) {
             searchBarSearchButtonClicked(searchBar)
         }
@@ -164,7 +164,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         }
         searchBar.resignFirstResponder()
         
-        if (searchBar.text!.characters.count == 1 && segmentedControl.selectedSegmentIndex == 0) {
+        if (searchBar.text!.count == 1 && segmentedControl.selectedSegmentIndex == 0) {
             let title = NSLocalizedString("youEnteredOnlyOneCharacter", comment: "")
             let message = NSLocalizedString("theSearchWillBeMadeInExactMode", comment: "")
             let cancelButtonTitle = NSLocalizedString("OK", comment: "")
@@ -251,7 +251,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     
     // MARK: - UIDeviceOrientationDidChangeNotification
     
-    func orientationChanged(_ notification: Notification) {
+    @objc func orientationChanged(_ notification: Notification) {
         // orientation change while toolBar is shown
         // should recalc its frame and redraw it
         // toolBar.frame.origin.y should be 20 in portrait mode (64 - 44)

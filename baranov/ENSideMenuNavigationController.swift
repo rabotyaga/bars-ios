@@ -57,12 +57,10 @@ open class ENSideMenuNavigationController: UINavigationController, ENSideMenuPro
     }
     
     open func performSegue(_ id: String) {
-        navigationController
         self.performSegue(withIdentifier: id, sender: self)
     }
     
     open func pushViewController(_ viewController: UIViewController) {
         pushViewController(viewController, animated: true)
     }
-
 }

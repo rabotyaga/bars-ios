@@ -129,7 +129,7 @@ class MenuTableViewController: UITableViewController {
             alertController.addAction(okAction)
             alertController.addAction(cancelAction)
             
-            sideMenuController()?.presentViewController(alertController, animated: true, completion: nil)
+            sideMenuController()?.present(alertController, animated: true, completion: nil)
         }
     }
 }

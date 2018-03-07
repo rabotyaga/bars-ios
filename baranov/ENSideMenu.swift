@@ -11,18 +11,18 @@
 
 import UIKit
 
-@objc public protocol ENSideMenuDelegate {
-    @objc optional func sideMenuWillOpen()
-    @objc optional func sideMenuWillClose()
-    @objc optional func sideMenuShouldOpenSideMenu () -> Bool
+public protocol ENSideMenuDelegate: class {
+    func sideMenuWillOpen()
+    func sideMenuWillClose()
+    func sideMenuShouldOpenSideMenu () -> Bool
 }
 
-@objc public protocol ENSideMenuProtocol {
+public protocol ENSideMenuProtocol {
     var sideMenu : ENSideMenu? { get }
     func setContentViewController(_ contentViewController: UIViewController)
     func performSegue(_ id: String)
     func pushViewController(_ viewController: UIViewController)
-    func presentViewController(_ controller: UIViewController, animated: Bool, completion: (() -> Void)?)
+    func present(_ controller: UIViewController, animated: Bool, completion: (() -> Void)?)
 }
 
 public enum ENSideMenuAnimation : Int {
@@ -262,7 +262,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
     }
     
     fileprivate func toggleMenu (_ shouldOpen: Bool) {
-        if (shouldOpen && delegate?.sideMenuShouldOpenSideMenu?() == false) {
+        if (shouldOpen && delegate?.sideMenuShouldOpenSideMenu() == false) {
             return
         }
         updateSideMenuApperanceIfNeeded()
@@ -330,9 +330,9 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         }
         
         if (shouldOpen) {
-            delegate?.sideMenuWillOpen?()
+            delegate?.sideMenuWillOpen()
         } else {
-            delegate?.sideMenuWillClose?()
+            delegate?.sideMenuWillClose()
         }
     }
     
@@ -354,7 +354,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         return true
     }
     
-    internal func handleGesture(_ gesture: UISwipeGestureRecognizer) {
+    @objc internal func handleGesture(_ gesture: UISwipeGestureRecognizer) {
         toggleMenu((self.menuPosition == .right && gesture.direction == .left)
                 || (self.menuPosition == .left && gesture.direction == .right))
     }

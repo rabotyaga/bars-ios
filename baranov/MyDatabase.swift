@@ -64,9 +64,9 @@ class MyDatabase {
     let search_string = Expression<String>("search_string")
     let details_string = Expression<String>("details_string")
     
-    let matchAttr = [NSBackgroundColorAttributeName : UIColor.matchBg()]
-    let translationSizeAttr = [NSFontAttributeName : UIFont.translationFont()]
-    let arabicAttr = [NSForegroundColorAttributeName : UIColor.arabicText()]
+    let matchAttr = [NSAttributedStringKey.backgroundColor : UIColor.matchBg()]
+    let translationSizeAttr = [NSAttributedStringKey.font : UIFont.translationFont()]
+    let arabicAttr = [NSAttributedStringKey.foregroundColor : UIColor.arabicText()]
     
     static let arabicVowels = "[\\u064b\\u064c\\u064d\\u064e\\u064f\\u0650\\u0651\\u0652\\u0653\\u0670]"
     let arabicVowelsPattern = "\(arabicVowels)*"
@@ -368,7 +368,7 @@ class MyDatabase {
     fileprivate func makeRegexWithVowels(_ query: String) -> NSRegularExpression? {
         var pattern = ""
 
-        for char in query.characters {
+        for char in query {
             var char_str: String = String([char])
             
             if let _ = anyAlifRegex.firstMatch(in: char_str, options: [], range: NSMakeRange(0, char_str.length)) {
