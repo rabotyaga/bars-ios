@@ -16,10 +16,7 @@ struct SearchHistory {
 class SearchAutocompleteTableViewController: UITableViewController, UISearchBarDelegate {
     
     let myDatabase = MyDatabase.sharedInstance
-    
-    let originYinPortrait : CGFloat = 108 // 64 nav bar + 44 tool bar
-    let originYinLandscape: CGFloat = 76  // 32 nav bar + 44 tool bar
-    
+
     let myWidth : CGFloat = 220
     // height & originY will change due to orientation change and keyboard
     var originY: CGFloat = 0
@@ -155,11 +152,18 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
             // just ignore
             return
         }
-        if (orientation == .landscapeLeft || orientation == .landscapeRight || orientation == .portraitUpsideDown) {
-            originY = originYinLandscape
+
+        if #available(iOS 11.0, *) {
+            originY = parentView.safeAreaInsets.top + 44
         } else {
-            originY = originYinPortrait
+            // iOS 10 / iPhone 5 default
+            if (orientation == .landscapeLeft || orientation == .landscapeRight || orientation == .portraitUpsideDown) {
+                originY = 76 //originYinLandscape: CGFloat = 76  // 32 nav bar + 44 tool bar
+            } else {
+                originY = 108 //originYinPortrait : CGFloat = 108 // 64 nav bar + 44 tool bar
+            }
         }
+
         if (showing) {
             adjustContainerView()
         }
@@ -220,7 +224,7 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
         self.searchBarDelegate = searchBarDelegate
         self.searchBar = searchBar
         
-        originY = originYinPortrait
+        originY = 108 // iOS 10 /iPhone 5 default = originYinPortrait : CGFloat = 108 // 64 nav bar + 44 tool bar
         myHeight = parentView.frame.height - originY
         containerView.frame = CGRect(x: parentView.frame.width, y: originY, width: myWidth, height: myHeight)
         
@@ -246,5 +250,4 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
         
         containerView.isHidden = true
     }
-
 }

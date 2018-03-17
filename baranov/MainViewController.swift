@@ -254,9 +254,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     @objc func orientationChanged(_ notification: Notification) {
         // orientation change while toolBar is shown
         // should recalc its frame and redraw it
-        // toolBar.frame.origin.y should be 20 in portrait mode (64 - 44)
-        // and -12 in landscape mode (32 - 44)
-        if (toolBarShown && toolBar.frame.origin.y <= 20) {
+        if (toolBarShown) {
             toolBarShown = false
             showToolBar()
         }
