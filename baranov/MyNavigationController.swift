@@ -18,7 +18,7 @@ class MyNavigationController: ENSideMenuNavigationController, ENSideMenuDelegate
         //sideMenu?.bouncingEnabled = false
         
         // make navigation bar showing over side menu
-        view.bringSubview(toFront: navigationBar)
+        view.bringSubviewToFront(navigationBar)
 
     }
 

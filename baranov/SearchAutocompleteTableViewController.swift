@@ -41,9 +41,9 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
         
         self.clearsSelectionOnViewWillAppear = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(SearchAutocompleteTableViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SearchAutocompleteTableViewController.keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(SearchAutocompleteTableViewController.orientationChanged(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(SearchAutocompleteTableViewController.orientationChanged(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
 
     }
 
@@ -67,7 +67,7 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
         var cell = tableView.dequeueReusableCell(withIdentifier: "SearchHistoryCell")
         
         if (cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: "SearchHistoryCell")
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: "SearchHistoryCell")
             cell!.backgroundColor = UIColor.clear
             //cell!.textLabel?.textColor = UIColor.darkGrayColor()
             let selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: cell!.frame.size.width, height: cell!.frame.size.height))
@@ -92,7 +92,7 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
         return true
     }
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             myDatabase.deleteSearchHistory(searchHistory[indexPath.row])
@@ -129,7 +129,7 @@ class SearchAutocompleteTableViewController: UITableViewController, UISearchBarD
     
     @objc func keyboardWillShow(_ notification: Notification) {
         let info = notification.userInfo!
-        let value: AnyObject = info[UIKeyboardFrameEndUserInfoKey]! as AnyObject
+        let value: AnyObject = info[UIResponder.keyboardFrameEndUserInfoKey]! as AnyObject
         let rawFrame = value.cgRectValue
         let keyboardFrame = view.convert(rawFrame!, from: nil)
 

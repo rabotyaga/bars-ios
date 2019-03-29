@@ -64,9 +64,9 @@ class MyDatabase {
     let search_string = Expression<String>("search_string")
     let details_string = Expression<String>("details_string")
     
-    let matchAttr = [NSAttributedStringKey.backgroundColor : UIColor.matchBg()]
-    let translationSizeAttr = [NSAttributedStringKey.font : UIFont.translationFont()]
-    let arabicAttr = [NSAttributedStringKey.foregroundColor : UIColor.arabicText()]
+    let matchAttr = [NSAttributedString.Key.backgroundColor : UIColor.matchBg()]
+    let translationSizeAttr = [NSAttributedString.Key.font : UIFont.translationFont()]
+    let arabicAttr = [NSAttributedString.Key.foregroundColor : UIColor.arabicText()]
     
     static let arabicVowels = "[\\u064b\\u064c\\u064d\\u064e\\u064f\\u0650\\u0651\\u0652\\u0653\\u0670]"
     let arabicVowelsPattern = "\(arabicVowels)*"
@@ -186,9 +186,9 @@ class MyDatabase {
         }
     }
     
-    func searchHistoryCount() -> Int {
+    func searchHistoryCount() -> Int64 {
         //print("search hist count: \(db.scalar(search_history_table.count))")
-        return try! db.scalar(search_history_table.count)
+        return try! db.scalar("SELECT COUNT(*) FROM search_history") as! Int64
     }
     
     func fillInArticles(_ query: AQuery) -> QueryResult {

@@ -27,7 +27,7 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
         articleLoader = ArticleLoader(delegate: self)
 
         // main table view setup
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 130
         tableView.dataSource = self.detailsDataSource
         tableView.delegate = self.detailsDataSource
@@ -77,7 +77,7 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
         self.detailsDataSource.articles = queryResult.articles
         self.tableView.reloadData()
         if let a = articleToLoad {
-            if let i = queryResult.articles.index(of: a) {
+            if let i = queryResult.articles.firstIndex(of: a) {
                 let selectedIndexPath = IndexPath(row: i, section: 0)
                 
                 // there is a bug in iOS 7.x-8.4

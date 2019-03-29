@@ -21,6 +21,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     var tableHeaderLabel: UILabel!
     
     var toolBarShown: Bool = false
+    var prevOrientation: UIDeviceOrientation = UIDevice.current.orientation
     
     var searchAutocomplete = SearchAutocompleteTableViewController()
     
@@ -57,7 +58,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         segmentedControl.selectedSegmentIndex = 0
         segmentedControl.addTarget(self, action: #selector(MainViewController.segmentedControlChanged(_:)), for: .valueChanged)
         let barb = UIBarButtonItem(customView: segmentedControl)
-        let flex = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let flex = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
         toolBar.items = [flex, barb, flex]
         
         // hide navigationController's builtin toolbar at start
@@ -70,7 +71,7 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         navHairline = findNavBarHairline()
         
         // main table view setup
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 180
         tableView.delegate = self.articleDataSourceDelegate
         tableView.dataSource = self.articleDataSourceDelegate
@@ -82,10 +83,11 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         //??
         //definesPresentationContext = true
         
-        NotificationCenter.default.addObserver(self, selector: #selector(MainViewController.orientationChanged(_:)), name: NSNotification.Name.UIDeviceOrientationDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MainViewController.orientationChanged(_:)), name: UIDevice.orientationDidChangeNotification, object: nil)
         
         searchAutocomplete.setup(view, searchBarDelegate: self, searchBar: searchBar)
-
+        
+        prevOrientation = UIDevice.current.orientation
     }
     
     override func didReceiveMemoryWarning() {
@@ -115,9 +117,9 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     
     func makeTableHeaderView() {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 22))
-        view.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        view.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 22))
-        label.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        label.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         view.addSubview(label)
         label.textAlignment = .center
         
@@ -252,11 +254,14 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     // MARK: - UIDeviceOrientationDidChangeNotification
     
     @objc func orientationChanged(_ notification: Notification) {
-        // orientation change while toolBar is shown
-        // should recalc its frame and redraw it
-        if (toolBarShown) {
-            toolBarShown = false
-            showToolBar()
+        if (UIDevice.current.orientation.isValidInterfaceOrientation && UIDevice.current.orientation != prevOrientation) {
+            // orientation change while toolBar is shown
+            // should recalc its frame and redraw it
+            if (toolBarShown) {
+                toolBarShown = false
+                showToolBar()
+            }
+            prevOrientation = UIDevice.current.orientation
         }
     }
     

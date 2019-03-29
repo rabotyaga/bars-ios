@@ -76,9 +76,9 @@ class ArticleDataSourceDelegate: NSObject, UITableViewDataSource, UITableViewDel
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 22))
-        view.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        view.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 22))
-        label.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        label.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
         label.text = self.sections[section].name
         view.addSubview(label)
         view.backgroundColor = UIColor.headerBg()

@@ -55,7 +55,7 @@ class AlphabetViewController: UIViewController, UITableViewDataSource, UITableVi
         self.navigationController?.setToolbarHidden(true, animated: false)
         
         // main table view setup
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 130
         tableView.delegate = self
         tableView.dataSource = self

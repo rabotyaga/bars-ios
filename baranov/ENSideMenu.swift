@@ -44,19 +44,19 @@ public extension UIViewController {
     /**
     Changes current state of side menu view.
     */
-    public func toggleSideMenuView () {
+    func toggleSideMenuView () {
         sideMenuController()?.sideMenu?.toggleMenu()
     }
     /**
     Hides the side menu view.
     */
-    public func hideSideMenuView () {
+    func hideSideMenuView () {
         sideMenuController()?.sideMenu?.hideSideMenu()
     }
     /**
     Shows the side menu view.
     */
-    public func showSideMenuView () {
+    func showSideMenuView () {
         
         sideMenuController()?.sideMenu?.showSideMenu()
     }
@@ -66,7 +66,7 @@ public extension UIViewController {
     
     :returns: BOOL value
     */
-    public func isSideMenuOpen () -> Bool {
+    func isSideMenuOpen () -> Bool {
         let sieMenuOpen = self.sideMenuController()?.sideMenu?.isMenuOpen
         return sieMenuOpen!
     }
@@ -86,7 +86,7 @@ public extension UIViewController {
     
     :returns: A `UIViewController`responding to `ENSideMenuProtocol` protocol
     */
-    public func sideMenuController () -> ENSideMenuProtocol? {
+    func sideMenuController () -> ENSideMenuProtocol? {
         var iteration : UIViewController? = self.parent
         if (iteration == nil) {
             return topMostController()
@@ -162,12 +162,12 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
         // Add right swipe gesture recognizer
         let rightSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ENSideMenu.handleGesture(_:)))
         rightSwipeGestureRecognizer.delegate = self
-        rightSwipeGestureRecognizer.direction =  UISwipeGestureRecognizerDirection.right
+        rightSwipeGestureRecognizer.direction =  UISwipeGestureRecognizer.Direction.right
         
         // Add left swipe gesture recognizer
         let leftSwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(ENSideMenu.handleGesture(_:)))
         leftSwipeGestureRecognizer.delegate = self
-        leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizerDirection.left
+        leftSwipeGestureRecognizer.direction = UISwipeGestureRecognizer.Direction.left
         
         if (menuPosition == .left) {
             sourceView.addGestureRecognizer(rightSwipeGestureRecognizer)
@@ -303,7 +303,7 @@ open class ENSideMenu : NSObject, UIGestureRecognizerDelegate {
                 to: CGPoint(x: boundaryPointX, y: height))
             animator.addBehavior(collisionBehavior)
             
-            let pushBehavior = UIPushBehavior(items: [sideMenuContainerView], mode: UIPushBehaviorMode.instantaneous)
+            let pushBehavior = UIPushBehavior(items: [sideMenuContainerView], mode: UIPushBehavior.Mode.instantaneous)
             pushBehavior.magnitude = pushMagnitude
             animator.addBehavior(pushBehavior)
             

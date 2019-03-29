@@ -40,12 +40,12 @@ class AboutViewController: UIViewController {
         }
 
         copyrightLabel.text = NSLocalizedString("copyright", comment: "")
-        makeReviewButton.setTitle(NSLocalizedString("makeReview", comment: ""), for: UIControlState())
+        makeReviewButton.setTitle(NSLocalizedString("makeReview", comment: ""), for: UIControl.State())
         descriptionLabel.text = NSLocalizedString("description", comment: "")
         descriptionLabel.sizeToFit()
         description2Label.text = NSLocalizedString("description2", comment: "")
         description2Label.sizeToFit()
-        goToSiteButton.setTitle(NSLocalizedString("goToSite", comment: ""), for: UIControlState())
+        goToSiteButton.setTitle(NSLocalizedString("goToSite", comment: ""), for: UIControl.State())
         
         // hide navigationController's builtin toolbar
         self.navigationController?.setToolbarHidden(true, animated: false)
@@ -75,7 +75,7 @@ class AboutViewController: UIViewController {
     @IBAction func makeReviewButtonClicked(_ sender: AnyObject) {
         if let url = URL(string: itunesUrl.replacingOccurrences(of: "APP_ID", with: appId, options: .literal, range: nil)) {
             if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
                 UIApplication.shared.openURL(url)
             }
@@ -85,7 +85,7 @@ class AboutViewController: UIViewController {
     @IBAction func goToSiteButtonClicked(_ sender: AnyObject) {
         if let url = URL(string: siteUrl) {
             if #available(iOS 10.0, *) {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: nil)
             } else {
                 UIApplication.shared.openURL(url)
             }
@@ -102,4 +102,9 @@ class AboutViewController: UIViewController {
     }
     */
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

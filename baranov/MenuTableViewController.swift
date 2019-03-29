@@ -28,7 +28,7 @@ class MenuTableViewController: UITableViewController {
         super.viewDidLoad()
         
         // Customize apperance of table view
-        tableView.contentInset = UIEdgeInsetsMake(64.0, 0, 0, 0) //
+        tableView.contentInset = UIEdgeInsets.init(top: 64.0, left: 0, bottom: 0, right: 0) //
         tableView.separatorStyle = .none
         tableView.backgroundColor = UIColor.clear
         tableView.scrollsToTop = false
@@ -71,7 +71,7 @@ class MenuTableViewController: UITableViewController {
         var cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell")
         
         if (cell == nil) {
-            cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "MenuCell")
+            cell = UITableViewCell(style: UITableViewCell.CellStyle.default, reuseIdentifier: "MenuCell")
             cell!.backgroundColor = UIColor.clear
             cell!.textLabel?.textColor = UIColor.darkGray
             let selectedBackgroundView = UIView(frame: CGRect(x: 0, y: 0, width: cell!.frame.size.width, height: cell!.frame.size.height))

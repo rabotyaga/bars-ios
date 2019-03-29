@@ -28,7 +28,7 @@ class DetailsDataSource: NSObject, UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "DetailsCell", for: indexPath) as! ArticleTableViewCell
         let article = articles[indexPath.row]
         
-        cell.accessoryType = UITableViewCellAccessoryType.none
+        cell.accessoryType = UITableViewCell.AccessoryType.none
         
         cell.arInfLabel.attributedText = article.ar_inf
         cell.translationTextView.attributedText = article.translation
