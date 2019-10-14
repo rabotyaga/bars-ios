@@ -88,6 +88,10 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         searchAutocomplete.setup(view, searchBarDelegate: self, searchBar: searchBar)
         
         prevOrientation = UIDevice.current.orientation
+        
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
     }
     
     override func didReceiveMemoryWarning() {

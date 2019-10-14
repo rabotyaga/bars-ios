@@ -39,6 +39,10 @@ class DetailsViewController: UIViewController, ArticleLoaderDelegate, UINavigati
         
         self.navigationController?.delegate = self
         self.navigationController?.isToolbarHidden = false
+        
+        if #available(iOS 13.0, *) {
+            overrideUserInterfaceStyle = .light
+        }
     }
 
     override func didReceiveMemoryWarning() {
