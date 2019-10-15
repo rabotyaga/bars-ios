@@ -275,9 +275,8 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
         // slide down top tool bar that extends nav bar
         if (!toolBarShown) {
             // slide down top tool bar that extends nav bar
-            let frame = CGRect(x: 0, y: toolBar.frame.origin.y + toolBar.frame.height, width: toolBar.frame.width, height: toolBar.frame.height)
             UIView.animate(withDuration: 0.3, animations: {
-                self.toolBar.frame = frame
+                self.toolBar.transform = CGAffineTransform(translationX: 0, y: self.toolBar.frame.height)
                 self.navHairline?.alpha = 0.0
                 self.toolBar.alpha = 1.0
             })
@@ -288,9 +287,8 @@ class MainViewController: UIViewController, UISearchBarDelegate, ArticleLoaderDe
     func hideToolBar() {
         // slide up top tool bar that extends nav bar
         if (toolBarShown) {
-            let frame = CGRect(x: 0, y: toolBar.frame.origin.y - toolBar.frame.height, width: toolBar.frame.width, height: toolBar.frame.height)
             UIView.animate(withDuration: 0.3, animations: {
-                self.toolBar.frame = frame
+                self.toolBar.transform = CGAffineTransform(translationX: 0, y: -self.toolBar.frame.height)
                 self.navHairline?.alpha = 1.0
                 self.toolBar.alpha = 0.0
             })
